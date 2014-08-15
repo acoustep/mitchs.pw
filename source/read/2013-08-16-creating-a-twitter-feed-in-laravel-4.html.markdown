@@ -112,7 +112,7 @@ $tweets = twitterFeed();
 
 At this point if you try the code you will most likely not be able to access the ```twitterFeed()``` funtion.  To use we must add it to ```composer.json``` as shown below
 
-<pre class="brush:javascript">
+```javascript
 {
 	"require": {
 		"laravel/framework": "4.0.*@dev",

@@ -4,4 +4,9 @@
 		<p><em>Posted on <%= current_page.date.strftime('%b %e, %Y') %></em></p>
 		<%= yield %>
 	</article>
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><%= link_to 'Back to Latest Blogs', '/' %></li>
+		</ul>
+	</div>
 <% end %>
