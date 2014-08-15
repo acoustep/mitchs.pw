@@ -14,3 +14,14 @@ body {
 #container {
 	@include outer-container;
 }
+
+ul {
+	list-style-type: square;
+	padding-left:20px;
+}
+
+code {
+	background-color:#f8f8f8;
+	color:#d14;
+	font-size: 1.3em;
+}

@@ -13,10 +13,15 @@ activate :blog do |blog|
 	blog.permalink = "{title}"
 	blog.layout = "article"
 	blog.paginate = true
-	blog.per_page = 1
+	blog.per_page = 3
 end
 
 activate :ember
+
+activate :syntax, line_numbers: true
+
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
 
 ###
 # Page options, layouts, aliases and proxies

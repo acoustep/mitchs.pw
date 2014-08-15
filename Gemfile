@@ -9,8 +9,9 @@ gem "middleman-ember"
 gem 'bitters'
 gem 'bourbon', '~>3.2.0'
 gem 'neat'
-gem 'rails', '~>4.1.0'
-gem 'refills'
+gem "middleman-syntax"
+
+gem 'redcarpet'
 
 # add nokogiri
 gem 'nokogiri'
