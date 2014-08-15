@@ -13,6 +13,15 @@ body {
 
 #container {
 	@include outer-container;
+	padding-left:1em;
+	padding-right:1em;
+	@include media($medium-screen) {
+		padding-left:0em;
+		padding-right:0em;
+	}
+	.article {
+		@include span-columns(12);
+	}
 }
 
 ul {
@@ -25,3 +34,4 @@ code {
 	color:#d14;
 	font-size: 1.3em;
 }
+
