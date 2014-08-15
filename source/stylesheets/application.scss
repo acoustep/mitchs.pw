@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+@import "bourbon";
+@import "base/base";   /* Bitters needs to be imported before Neat */
+@import "neat";
+@import "navigation";
+@import "footer";
+@import "pagination";
+
+body {
+	margin: 0;
+}
+
+#container {
+	@include outer-container;
+}

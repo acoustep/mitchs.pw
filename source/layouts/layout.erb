@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+		<!-- Use title if it's in the page YAML frontmatter -->
+		<title><%= current_page.data.title || "Mitch Stanley's Blog" %></title>
+
+		<%= stylesheet_link_tag "application" %>
+		<%= javascript_include_tag  "all" %>
+	</head>
+
+	<body class="<%= page_classes %>">
+		<div class="wrapper-for-content-outside-of-footer">
+		<%= partial "partials/header" %>
+			<div id="container">
+				<%= yield %>
+			</div>
+			<div class="push"></div>
+		</div>
+
+		<footer class="footer-2">
+			<div id="container">
+				<ul>
+					<li><a href="javascript:void(0)">About</a></li>
+					<li><a href="javascript:void(0)">Contact</a></li>
+				</ul>
+
+				<div class="footer-secondary-links">
+					<ul class="footer-social">
+						<li><a href="javascript:void(0)">
+								<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="">
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="">
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="">
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</html>

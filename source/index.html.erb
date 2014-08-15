@@ -1,0 +1,29 @@
+---
+title: Welcome to My Blog
+pageable: true
+---
+
+<h1>Latest Blogs</h1>
+<% page_articles.each do |article| %>
+	<article>
+		<h1>
+			<a href="<%= article.url %>"><%= article.title %></a>
+		</h1>
+		<time><%= article.date.strftime('%b %e, %Y') %></time>
+
+		<%= article.summary %>
+
+		<a href="<%= article.url %>">Read more</a>
+	</article>
+<% end %>
+
+<div class="pagination">
+	<ul>
+		<% if prev_page %>
+			<li class="page-prev"><%= link_to 'Previous Page', prev_page.url %></li>
+		<% end %>
+		<% if next_page %>
+			<li class="page-next"><%= link_to 'Next Page', next_page.url %></li>
+		<% end %>
+	</ul>
+</div>
