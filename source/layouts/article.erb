@@ -1,7 +1,7 @@
 <% wrap_layout :layout do %>
-	<h1><%= current_page.title %></h1>
-		<p><em>Posted on <%= current_page.date.strftime('%b %e, %Y') %></em></p>
 	<article>
+		<h1><%= current_page.title %></h1>
+		<p><em>Posted on <%= current_page.date.strftime('%b %e, %Y') %></em></p>
 		<%= yield %>
 	</article>
 <% end %>

@@ -6,18 +6,18 @@ tags: Eloquent, Slim, Twig, PHP
 
 Originally while I was writing this blog I intended to make a step by
 step guide to putting together three of my favourite PHP tools. After a
-few issues and finding out that [Slim Views][] is now a thing I decided
+few issues and finding out that [Slim Views](https://github.com/codeguy/Slim-Views) is now a thing I decided
 instead to put together a git repo so anyone can get started quickly. I
 will use this blog post to quickly show how it works!
 
 *Note that this tutorial doesn’t aim to teach you Slim, Twig or Eloquent
 - It’s to show you how to use them together effectively.*
 
-READMORE
-
 You can find the repo here: [https://github.com/acoustep/slim-twig-eloquent](https://github.com/acoustep/slim-twig-eloquent)
 
 After following the Installation instructions you should be able to use each component as well as Eloquent validation.
+
+READMORE
 
 ### Folder Structure
 
