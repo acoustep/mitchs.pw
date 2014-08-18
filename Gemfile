@@ -10,6 +10,7 @@ gem 'bitters'
 gem 'bourbon', '~>3.2.0'
 gem 'neat'
 gem "middleman-syntax"
+gem 'font-awesome-sass'
 
 gem 'redcarpet'
 
