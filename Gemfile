@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 
 gem "middleman", "~>3.3.4"
 gem "middleman-blog"
-gem "middleman-ember"
+gem "middleman-ember", github: "nerdyworm/middleman-ember"
 
 gem 'bitters'
 gem 'bourbon', '~>3.2.0'

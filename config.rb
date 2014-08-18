@@ -16,8 +16,6 @@ activate :blog do |blog|
 	blog.per_page = 3
 end
 
-activate :ember
-
 activate :syntax, line_numbers: true
 
 set :markdown_engine, :redcarpet
@@ -83,7 +81,6 @@ configure :build do
   # Use relative URLs
   activate :relative_assets
 
-	set :ember_variant, :production
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
