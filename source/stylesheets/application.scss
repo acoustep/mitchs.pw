@@ -7,6 +7,7 @@
 @import "footer";
 @import "pagination";
 @import "font-awesome";
+@import "compass/css3/box-shadow";
 
 body {
 	margin: 0;
@@ -14,6 +15,7 @@ body {
 
 #container {
 	@include outer-container;
+	padding-top:1em;
 	padding-left:1em;
 	padding-right:1em;
 	@include media($medium-screen) {
@@ -23,6 +25,9 @@ body {
 	.article {
 		@include span-columns(12);
 	}
+}
+.partial-container {
+	@include outer-container;
 }
 
 ul {
@@ -36,3 +41,12 @@ code {
 	font-size: 1.3em;
 }
 
+#aboutMe, #contact {
+	display:none;
+	@include linear-gradient(to top, lighten($base-accent-color, 5), $base-accent-color);
+	border-top: solid 1px lighten($base-accent-color, 40);
+	border-bottom: solid 1px darken($base-accent-color, 10);
+	color: #fff;
+	padding:20px;
+	@include box-shadow(lighten(#000, 70) 0px 2px 2px);
+}
