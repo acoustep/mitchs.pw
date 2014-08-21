@@ -2,6 +2,12 @@
 # Compass
 ###
 
+now = Time.now.utc.to_date
+age = now.year - 1989 - ((now.month > 3 || (now.month == 3 && now.day >= 21)) ? 0 : 1)
+page "/" do
+	@age = age
+end
+
 # Change Compass configuration
 compass_config do |config|
   config.output_style = :compact
