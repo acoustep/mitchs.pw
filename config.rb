@@ -10,10 +10,13 @@ end
 activate :blog do |blog|
 	# set options on blog
 	blog.prefix = "read"
+  # blog.sources = "/read/{title}"
 	blog.permalink = "{title}"
 	blog.layout = "article"
 	blog.paginate = true
 	blog.per_page = 3
+  blog.tag_template = "tags.html"
+  blog.taglink = "/categories/{tag}"
 end
 
 activate :syntax, line_numbers: true

@@ -3,7 +3,7 @@ title: Welcome to My Blog
 pageable: true
 ---
 
-<h1>Latest Blogs</h1>
+<h1>Blogs</h1>
 <% page_articles.each do |article| %>
 	<article>
 		<h1>
@@ -11,7 +11,7 @@ pageable: true
 		</h1>
     <div class="tags">
       <% article.tags.each do |tag| %>
-        <a href="<%= tag_path tag %>"><%= tag %></a>
+        <a href="<%= tag_path tag %><%#= tag_path 'test' %>"><%= tag %></a>
       <% end %>
     </div>
 		<time><%= article.date.strftime('%b %e, %Y') %></time>
@@ -32,3 +32,4 @@ pageable: true
 		<% end %>
 	</ul>
 </div>
+
