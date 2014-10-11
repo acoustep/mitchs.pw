@@ -21,7 +21,7 @@
 		</script>
 	</head>
 
-	<body class="page page_2 page_2_index">
+	<body class="read read_categories read_categories_laravel">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,28 +59,56 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
+					<h1>Laravel Blogs</h1>
 	<article>
 		<h1>
-			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
+			<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Laravel 4.1 one-to-one polymorphic relationships</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/middleman">Middleman</a>
-        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/sass">SASS</a>
+        <a href="/read/categories/laravel-4-1">Laravel 4.1</a>
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/eloquent">Eloquent</a>
     </div>
-		<time>Nov 12, 2013</time>
+		<time>Jan 20, 2014</time>
 
-		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
+		<p>To use one-to-one polymorphic relationships in Laravel 4.1  use the &ldquo;morphOne&rdquo; method in your models.</p>
 
-<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
+<p>For example: I have two tables, pages and products.  I want to be able to add one featured image to each of these.</p>
 
-<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
+<p>The Product model would look like this:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>The Page model would be:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Page</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
 
 <p>
 
-		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
+		<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Read more</a>
 	</article>
 	<article>
 		<h1>
@@ -200,10 +228,10 @@
 
 <div class="pagination">
 	<ul>
-			<li class="page-prev"><a href="/">Previous Page</a></li>
-			<li class="page-next"><a href="/page/3/">Next Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>
