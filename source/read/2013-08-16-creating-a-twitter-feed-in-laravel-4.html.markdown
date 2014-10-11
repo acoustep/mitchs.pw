@@ -1,7 +1,7 @@
 ---
 title: Creating a Twitter Feed in Laravel 4
 date: 2013-08-16 00:00 UTC
-tags: laravel, laravel 4, twitter
+tags: Laravel, Laravel 4, Twitter, PHP
 ---
 
 *This tutorial is now out of date - checkout [philo/laravel-twitter](http://packalyst.com/packages/package/philo/laravel-twitter) or [thujohn/twitter](http://packalyst.com/packages/package/thujohn/twitter) for an easier and more up to date solution.*

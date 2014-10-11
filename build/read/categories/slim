@@ -21,7 +21,7 @@
 		</script>
 	</head>
 
-	<body class="page page_3 page_3_index">
+	<body class="read read_categories read_categories_slim">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,7 +59,7 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
+					<h1>Slim Blogs</h1>
 	<article>
 		<h1>
 			<a href="/read/using-eloquent-twig-and-slim-php">Using Eloquent, Twig and Slim PHP</a>
@@ -92,9 +92,10 @@ will use this blog post to quickly show how it works!</p>
 
 <div class="pagination">
 	<ul>
-			<li class="page-prev"><a href="/page/2/">Previous Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>

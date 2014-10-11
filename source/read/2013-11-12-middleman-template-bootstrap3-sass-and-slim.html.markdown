@@ -1,7 +1,7 @@
 ---
 title: "Middleman Template: bootstrap3, SASS and Slim"
 date: 2013-11-12 00:01 UTC
-tags: middleman, bootstrap 3, bootstrap, sass
+tags: Middleman, Bootstrap 3, Bootstrap, SASS
 ---
 
 As quoted from their website, Middleman is "A static site generator using all the shortcuts and tools in modern web development".

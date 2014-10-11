@@ -1,9 +1,9 @@
 ---
 title: Welcome to My Blog
-pageable: true
+pageable: false
 ---
 
-<h1>Blogs</h1>
+<h1><%= tagname %> Blogs</h1>
 <% page_articles.each do |article| %>
 	<article>
 		<h1>
@@ -11,7 +11,7 @@ pageable: true
 		</h1>
     <div class="tags">
       <% article.tags.each do |tag| %>
-        <a href="<%= tag_path tag %><%#= tag_path 'test' %>"><%= tag %></a>
+        <a href="<%= tag_path tag %>"><%= tag %></a>
       <% end %>
     </div>
 		<time><%= article.date.strftime('%b %e, %Y') %></time>
@@ -24,12 +24,7 @@ pageable: true
 
 <div class="pagination">
 	<ul>
-		<% if prev_page %>
-			<li class="page-prev"><%= link_to 'Previous Page', prev_page.url %></li>
-		<% end %>
-		<% if next_page %>
-			<li class="page-next"><%= link_to 'Next Page', next_page.url %></li>
-		<% end %>
+			<li class="page-prev"><%= link_to 'Back to Latest Blogs', '/' %></li>
 	</ul>
 </div>
 

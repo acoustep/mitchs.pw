@@ -21,7 +21,7 @@
 		</script>
 	</head>
 
-	<body class="page page_3 page_3_index">
+	<body class="read read_categories read_categories_sass">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,42 +59,36 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
+					<h1>SASS Blogs</h1>
 	<article>
 		<h1>
-			<a href="/read/using-eloquent-twig-and-slim-php">Using Eloquent, Twig and Slim PHP</a>
+			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/eloquent">Eloquent</a>
-        <a href="/read/categories/slim">Slim</a>
-        <a href="/read/categories/twig">Twig</a>
-        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/middleman">Middleman</a>
+        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
+        <a href="/read/categories/bootstrap">Bootstrap</a>
+        <a href="/read/categories/sass">SASS</a>
     </div>
-		<time>Aug  7, 2013</time>
+		<time>Nov 12, 2013</time>
 
-		<p>Originally while I was writing this blog I intended to make a step by
-step guide to putting together three of my favourite PHP tools. After a
-few issues and finding out that <a href="https://github.com/codeguy/Slim-Views">Slim Views</a> is now a thing I decided
-instead to put together a git repo so anyone can get started quickly. I
-will use this blog post to quickly show how it works!</p>
+		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
 
-<p><em>Note that this tutorial doesn’t aim to teach you Slim, Twig or Eloquent
-- It’s to show you how to use them together effectively.</em></p>
+<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
 
-<p>You can find the repo here: <a href="https://github.com/acoustep/slim-twig-eloquent">https://github.com/acoustep/slim-twig-eloquent</a></p>
-
-<p>After following the Installation instructions you should be able to use each component as well as Eloquent validation.</p>
+<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
 
 <p>
 
-		<a href="/read/using-eloquent-twig-and-slim-php">Read more</a>
+		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
 	</article>
 
 <div class="pagination">
 	<ul>
-			<li class="page-prev"><a href="/page/2/">Previous Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>

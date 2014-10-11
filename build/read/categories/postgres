@@ -21,7 +21,7 @@
 		</script>
 	</head>
 
-	<body class="page page_3 page_3_index">
+	<body class="read read_categories read_categories_postgres">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,42 +59,39 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
+					<h1>Postgres Blogs</h1>
 	<article>
 		<h1>
-			<a href="/read/using-eloquent-twig-and-slim-php">Using Eloquent, Twig and Slim PHP</a>
+			<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Vagrant, RBENV, Rails 4 and PostgreSQL headaches</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/eloquent">Eloquent</a>
-        <a href="/read/categories/slim">Slim</a>
-        <a href="/read/categories/twig">Twig</a>
-        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/rails-4">Rails 4</a>
+        <a href="/read/categories/rbenv">Rbenv</a>
+        <a href="/read/categories/postgresql">PostgreSQL</a>
+        <a href="/read/categories/postgres">Postgres</a>
+        <a href="/read/categories/vagrant">Vagrant</a>
     </div>
-		<time>Aug  7, 2013</time>
+		<time>Jan 18, 2014</time>
 
-		<p>Originally while I was writing this blog I intended to make a step by
-step guide to putting together three of my favourite PHP tools. After a
-few issues and finding out that <a href="https://github.com/codeguy/Slim-Views">Slim Views</a> is now a thing I decided
-instead to put together a git repo so anyone can get started quickly. I
-will use this blog post to quickly show how it works!</p>
+		<p><strong>Forewarning:</strong> This post is more of a rambling and future reference to myself.</p>
 
-<p><em>Note that this tutorial doesn’t aim to teach you Slim, Twig or Eloquent
-- It’s to show you how to use them together effectively.</em></p>
+<p>I&rsquo;ve been working on a project in Ruby on Rails for a little while and a few days ago I made the mistake of upgrading to OS X Mavericks with the thoughts &ldquo;What&rsquo;s the worst that could happen?&rdquo; running through my mind.</p>
 
-<p>You can find the repo here: <a href="https://github.com/acoustep/slim-twig-eloquent">https://github.com/acoustep/slim-twig-eloquent</a></p>
+<p>Well for some reason the PG gem really doesn&rsquo;t like my computer anymore.  Long story short I decided that I would fire up a Ubuntu development environment on Vagrant and well, it has been a difficult ride.</p>
 
-<p>After following the Installation instructions you should be able to use each component as well as Eloquent validation.</p>
+<p>To keep it short.  First time around I had many issues.</p>
 
 <p>
 
-		<a href="/read/using-eloquent-twig-and-slim-php">Read more</a>
+		<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Read more</a>
 	</article>
 
 <div class="pagination">
 	<ul>
-			<li class="page-prev"><a href="/page/2/">Previous Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>

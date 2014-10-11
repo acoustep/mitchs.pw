@@ -1,7 +1,7 @@
 ---
 title: Automating Configurations with Laravel
 date: 2013-08-07 00:01 UTC
-tags: laravel, laravel 4
+tags: Laravel, Laravel 4
 ---
 
 One of my favourite features of Laravel is how it handles configurations for different environments.  You can have different settings for development, staging, beta, production and even separate configurations for each developer working on the project.

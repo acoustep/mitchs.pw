@@ -21,7 +21,7 @@
 		</script>
 	</head>
 
-	<body class="page page_2 page_2_index">
+	<body class="read read_categories read_categories_laravel-4">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,29 +59,7 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
-	<article>
-		<h1>
-			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/middleman">Middleman</a>
-        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/sass">SASS</a>
-    </div>
-		<time>Nov 12, 2013</time>
-
-		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
-
-<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
-
-<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
-
-<p>
-
-		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
-	</article>
+					<h1>Laravel 4 Blogs</h1>
 	<article>
 		<h1>
 			<a href="/read/creating-a-twitter-feed-in-laravel-4">Creating a Twitter Feed in Laravel 4</a>
@@ -200,10 +178,10 @@
 
 <div class="pagination">
 	<ul>
-			<li class="page-prev"><a href="/">Previous Page</a></li>
-			<li class="page-next"><a href="/page/3/">Next Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>

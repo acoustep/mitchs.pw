@@ -49,4 +49,27 @@ code {
 	color: #fff;
 	padding:20px;
 	@include box-shadow(lighten(#000, 70) 0px 2px 2px);
+	a {
+		color: #fff;
+	}
+}
+#contact {
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.tags a {
+  border-radius: 3px;
+  background-color: #2c2d2d;
+  color: #fff;
+  text-decoration: none;
+  padding: 2px 5px;
+  transition: all 0.25s ease-in;
+  font-size: 0.8em;
+
+  &:hover {
+    background-color: $base-accent-color;
+  
+  }
 }
