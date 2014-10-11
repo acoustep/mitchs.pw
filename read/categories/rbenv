@@ -9,7 +9,7 @@
 		<!-- Use title if it's in the page YAML frontmatter -->
 		<title>Welcome to My Blog</title>
 
-		<link href="../../stylesheets/application-93582311.css" rel="stylesheet" type="text/css" />
+		<link href="../../stylesheets/application-d3b4fa8d.css" rel="stylesheet" type="text/css" />
 		<link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -60,7 +60,7 @@
 			<div id="container">
 				<div id="main">
 					<h1>Rbenv Blogs</h1>
-	<article>
+	<article class="blurb">
 		<h1>
 			<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Vagrant, RBENV, Rails 4 and PostgreSQL headaches</a>
 		</h1>
