@@ -9,7 +9,7 @@
 		<!-- Use title if it's in the page YAML frontmatter -->
 		<title>Welcome to My Blog</title>
 
-		<link href="../../stylesheets/application-93582311.css" rel="stylesheet" type="text/css" />
+		<link href="../../stylesheets/application-d3b4fa8d.css" rel="stylesheet" type="text/css" />
 		<link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -60,7 +60,7 @@
 			<div id="container">
 				<div id="main">
 					<h1>PHP Blogs</h1>
-	<article>
+	<article class="blurb">
 		<h1>
 			<a href="/read/php-5-4-trait-qwerks">PHP 5.4 Trait Qwerks</a>
 		</h1>
@@ -108,7 +108,7 @@
 
 		<a href="/read/php-5-4-trait-qwerks">Read more</a>
 	</article>
-	<article>
+	<article class="blurb">
 		<h1>
 			<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Laravel 4.1 one-to-one polymorphic relationships</a>
 		</h1>
@@ -158,7 +158,7 @@
 
 		<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Read more</a>
 	</article>
-	<article>
+	<article class="blurb">
 		<h1>
 			<a href="/read/creating-a-twitter-feed-in-laravel-4">Creating a Twitter Feed in Laravel 4</a>
 		</h1>
@@ -229,7 +229,7 @@
 
 		<a href="/read/creating-a-twitter-feed-in-laravel-4">Read more</a>
 	</article>
-	<article>
+	<article class="blurb">
 		<h1>
 			<a href="/read/using-eloquent-twig-and-slim-php">Using Eloquent, Twig and Slim PHP</a>
 		</h1>

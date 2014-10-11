@@ -22,8 +22,15 @@ body {
 		padding-left:0em;
 		padding-right:0em;
 	}
-	.article {
+	article {
 		@include span-columns(12);
+    &.blurb {
+      border-bottom: solid 1px lighten(#000, 70);
+      // box-shadow: 0 1px 1px -1px red;
+      @include box-shadow(lighten(#000, 70) 0 1px 1px -1px);
+      padding-bottom:20px;
+      margin-bottom: 20px;
+    }
 	}
 }
 .partial-container {
