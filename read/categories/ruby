@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+		<!-- Use title if it's in the page YAML frontmatter -->
+		<title>Welcome to My Blog</title>
+
+		<link href="../../stylesheets/application-d3b4fa8d.css" rel="stylesheet" type="text/css" />
+		<link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-42788138-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</head>
+
+	<body class="read read_categories read_categories_ruby">
+		<div class="wrapper-for-content-outside-of-footer">
+		<header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="about" href="#top">About Me</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+		<a name="top"></a>
+		<div id="aboutMe">
+	<div class="partial-container">
+		<h5>About Me</h5>
+		<p>I am a 25 year old web developer from Birmingham. I work for a web design agency in Telford called The Studio 4. I build web applications with PHP, Laravel, SASS, Coffeescript and MySQL.</p>
+		<p>When I'm not at work I like to use Ruby and PostgreSQL to build my own projects.</p>
+		<p>I'm Currently learning Ember JS and Elixir.</p>
+		<p>In my spare time I like to read epic fantasy novels, lift weights, play guitar and play video games.</p>
+	</div>
+</div>
+
+
+		<div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+			<div id="container">
+				<div id="main">
+					<h1>Ruby Blogs</h1>
+	<article class="blurb">
+		<h1>
+			<a href="/read/12-day-challenge-rubymotion">12 Day Challenge: RubyMotion</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/android">Android</a>
+        <a href="/read/categories/ios">iOS</a>
+        <a href="/read/categories/ruby">Ruby</a>
+        <a href="/read/categories/rubymotion">RubyMotion</a>
+    </div>
+		<time>Dec 30, 2014</time>
+
+		<p>I have wanted to expand my skills into mobile development for a long time now. I <em>love</em> developing for the web and I think it&rsquo;s only natural for any web developer to want to take a peak in to the world of mobile app development.</p>
+
+<p>Many tools exist already that I could use to build HTML5 websites and convert them into usable apps. Software such as PhoneGap, Cordova or Titanium. The problem is that I don&rsquo;t want to build sluggish HTML apps.</p>
+
+<p>Over a year ago I spent some time learning to make Android apps using Java and Android Studio. My experience was <em>okay</em>. Nothing special. It wasn&rsquo;t all easy sailing because I have no previous experience with Java. Add that on to learning a new IDE and I feel like I&rsquo;m battling with both.</p>
+
+<p>I learned a lot in that time but I never really applied the knowledge. And I don&rsquo;t find Java enjoyable enough to push to continue.</p>
+
+<p>So right now I am fortunate enough to have 11 days off from my job for our Christmas break.  I have decided to dedicate an hour each day to learning RubyMotion (and an extra day because why not?!).</p>
+
+<p>
+
+		<a href="/read/12-day-challenge-rubymotion">Read more</a>
+	</article>
+
+<div class="pagination">
+	<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+	</ul>
+</div>
+
+
+				</div>
+			</div>
+			<div class="push"></div>
+		</div>
+
+		<footer class="footer-2">
+			<div class="partial-container">
+				<ul>
+					<li><a class="about" href="#top">About</a></li>
+					<li><a class="contact" href="#">Contact</a></li>
+				</ul>
+
+				<div class="footer-secondary-links">
+					<ul class="footer-social">
+						<li>
+							<a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+						</li>
+						<li>
+							<a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../../javascripts/application-678994e1.js" type="text/javascript"></script>
+	</body>
+</html>
