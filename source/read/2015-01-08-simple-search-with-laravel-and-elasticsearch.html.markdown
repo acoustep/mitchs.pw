@@ -177,7 +177,7 @@ With a standard analyzer ElasticSearch will create a list like this:
 * well
 * together
 
-The stop analyzer that separates commas will group them like this
+The stop analyzer that separates commas will group them like this:
 
 * I love laravel
 * ElasticSearch and Laravel work well together.
@@ -205,5 +205,48 @@ The first command sets up your index.  An index is sort of like a database table
 ```addAllToIndex()``` takes all the data from the database and puts it into ElasticSearch
 
 ## Creating the front end
+
+It's up to you to make this pretty/organised. I'll just go through the functionality
+
+Add a route to your ```app/routes.php```
+
+```
+Route::get('/', ['as' => 'search', 'uses' => function() {
+
+  // Check if user has sent a search query
+  if($query = Input::get('query', false)) {
+    // Use the Elasticquent search method to search ElasticSearch
+    $posts = Post::search($query);
+  } else {
+    // Show all posts if no query is set
+    $posts = Post::all(); 
+  }
+
+  return View::make('home', compact('posts'));
+  
+}]);
+```
+
+Make a template in ```app/views/search.blade.php```
+
+```
+<html>
+<body>
+{{ Form::open(['method' => 'get', 'route' => 'search']) }}
+
+  {{ Form::search('query', Input::get('query', ''))}}
+  {{ Form::submit('Filter results') }}
+
+{{ Form:: close() }}
+
+@foreach($posts as $post)
+ <div>
+ <h2>{{{ $post->title }}}</h2>
+ <div>{{{ $post->content }}}</div>
+ </div>
+@endforeach
+</body>
+</html>
+```
 
 ## Fine-tuning your search
