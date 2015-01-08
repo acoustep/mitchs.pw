@@ -162,9 +162,9 @@ Line 6 we add our mapping configuration for ElasticSearch.  You can read more ab
 
 Each mapping has a type and an analyzer. Type's can be various data types including strings, numbers and dates.  For now we will stick to the string type but be aware that different types allow you to take advantage of different things including querying ranges for integers and dates. You can learn more about the types that ElasticSearch supports [here](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-types.html)
 
-The analyzer determines how ElasticSearch stores your data for searching. I've chosen standard for title and content and ```stop``` for tags.  The standard analyzer will remove HTML and grammar and index each word separately.  The stop analyzer can be set to choose which characters split the words for indexing. So as an example take this sentence.
+The analyzer determines how ElasticSearch stores your data for searching. I've chosen standard for title and content and ```stop``` for tags.  The standard analyzer will remove HTML and grammar and index each word separately.  The stop analyzer can be set to choose which characters split the words for indexing. So as an example take this sentence:
 
-**I love laravel, ElasticSearch and Laravel work well together.**
+> I love laravel, ElasticSearch and Laravel work well together.
 
 With a standard analyzer ElasticSearch will create a list like this:
 
@@ -178,16 +178,20 @@ With a standard analyzer ElasticSearch will create a list like this:
 * well
 * together
 
-With our setings the stop analyzer will group them like this:
+With our settings the stop analyzer will group them like this:
 
 * I love laravel
 * ElasticSearch and Laravel work well together.
 
-This can be advantagous for if you want to prioritise certain phrases.
+This can be advantagous if you want to prioritise certain phrases.
 
 Now we've configured how we want our search to operate it's time to index our database!
 
-Let's use Laravel's REPL to generate our ElasticSearch data. Go to your command line and type ```php artisan tinker```.
+Let's use Laravel's REPL to generate our ElasticSearch data. Go to your command line and type 
+
+```
+php artisan tinker
+```
 
 Type the following commands
 
@@ -199,9 +203,9 @@ Post::putMapping($ignoreConflicts = true);
 Post::::addAllToIndex();
 ```
 
-The first command sets up your index.  An index is sort of like a database table in the ElasticSearch world.
+The first command sets up our index.  An index is sort of like a database table in the ElasticSearch world.
 
-```putMapping()``` takes the mapping properties we set in the model so that ElasticSearch knows how to index all of your data.
+```putMapping()``` takes the mapping properties we set in the model so that ElasticSearch knows how to index all of our data.
 
 ```addAllToIndex()``` takes all the data from the database and puts it into ElasticSearch
 
@@ -250,9 +254,9 @@ Make a template in ```app/views/search.blade.php```
 </html>
 ```
 
-In the above snippet we create a form that allows us to type in a search. Below the form we iterate through either through all of the posts or all of the search results depending on whether the user has searched something.
+In the above snippet we create a form that allows us to type in a search. Below the form we iterate through either through all of the posts or all of the search results depending on whether the user has entered a search term.
 
-We may be able to get away with leaving the code as it is for our search. But where is the fun in that? Let's tinker and see how we can improve our search results.
+We could stop now and the search would work fairly well. But where is the fun in that? Let's tinker and see how we can improve our search results.
 
 ## Fine-tuning your search
 
@@ -262,9 +266,9 @@ Elasticquent has another method called ```searchByQuery()``` which will allow us
 $posts = Post::searchByQuery(['match' => ['title' => 'Moby Dick']]);
 ```
 
-In the above example only the title is searched. You might be wondering how this differs from ```search()``` method behind the scenes. The search() query will match all parameters including our content and tags fields.
+In the above example only the title is searched. You might be wondering how this differs from the ```search()``` method behind the scenes. The search() query will match all parameters including our content and tags fields.
 
-If you try searching your data now with text from the content fields you will notice drastically different results.  You may even notice different results when you take data from the title fields, too.  This is because ElasticSearch generates a score from the data it searches. Any relevant text in the fields queried will improve that score.
+If we try searching our data now with text from the ```content``` field you will notice drastically different results.  You may even notice different results when you take data from the title fields, too.  This is because ElasticSearch generates a score from the data it searches. Any relevant text in the queried fields will improve that score.
 
 That's all well and good, but now we want to search our tags because they are the keywords we want to match in the search results. Let's also include content but give it a lower priority.
 
@@ -282,6 +286,8 @@ $posts = Post::searchByQuery([
   ]
 ]);
 ```
+
+Notice the ```^``` symbol next to the title.  This let's us boost the score of the field by the number that comes after it. We've adjusted the title to be worth more than the content because if a search matches a title then we know it's going to be relevant. The content is more likely to match random words due to the larger amount of data.
 
 We can also completely filter out specific terms if they are irrelevent to the search with the terms filter
 
@@ -304,3 +310,13 @@ $posts = Post::searchByQuery([
 ]);
 ```
 Between lines 2-6 we're specifying that when 'miley cyrus' or 'justin bieber' are in the title we want to disregard it from the search.
+
+## Summary
+
+That's it for our search.  We've looked at setting up Elasticquent with our model and looked at a few ways we can enhance our search results.  
+
+Although Elasticquent is great for a basic search engine there's also the official [ElasticSearch client for PHP](https://github.com/elasticsearch/elasticsearch-php) for when you need something more advance such as fragment highlighting or autocomplete. 
+
+I'm really enjoying what I've learned so far with ElasticSearch and I'm very glad that I decided to pick it up.  I also really recommend [ElasticSearch Server - Second Edition](http://www.amazon.co.uk/gp/product/1783980524/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=1783980524&linkCode=as2&tag=fulstasta-21&linkId=ZC2PRZOLU4TIGKMN) (Referral link).  I'm about 40% of the way through and I've learned a lot already.
+
+![](http://ir-uk.amazon-adsystem.com/e/ir?t=fulstasta-21&l=as2&o=2&a=1783980524)
