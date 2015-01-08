@@ -241,12 +241,65 @@ Make a template in ```app/views/search.blade.php```
 
 @foreach($posts as $post)
  <div>
- <h2>{{{ $post->title }}}</h2>
- <div>{{{ $post->content }}}</div>
+  <h2>{{{ $post->title }}}</h2>
+  <div>{{{ $post->content }}}</div>
  </div>
 @endforeach
 </body>
 </html>
 ```
 
+In the above snippet we create a form that allows us to type in a search. Below the form we iterate through either through all of the posts or all of the search results depending on whether the user has searched something.
+
+We may be able to get away with leaving the code as it is for our search. But where is the fun in that? Let's tinker and see how we can improve our search results.
+
 ## Fine-tuning your search
+
+Elasticquent has another method called ```searchByQuery()``` which will allow us to specify more details on how we want ElasticSearch to query our data. Here's an example (taken and modified from the Elasticquent docs)
+
+```
+$posts = Post::searchByQuery(['match' => ['title' => 'Moby Dick']]);
+```
+
+In the above example only the title is searched. You might be wondering how this differs from ```search()``` method behind the scenes. The search() query will match all parameters including our content and tags fields.
+
+If you try searching your data now with text from the content fields you will notice drastically different results.  You may even notice different results when you take data from the title fields, too.  This is because ElasticSearch generates a score from the data it searches. Any relevant text in the fields queried will improve that score.
+
+That's all well and good, but now we want to search our tags because they are the keywords we want to match in the search results. Let's also include content but give it a lower priority.
+
+
+```
+$posts = Post::searchByQuery([
+  'query' => [
+    'multi_match' => [
+      'query' => Input::get('query', ''),
+      'fields' => ['title^2', 'content']
+    ],
+    'match_phrase' => [
+      'tags' => Input::get('query', '')
+    ]
+  ]
+]);
+```
+
+We can also completely filter out specific terms if they are irrelevent to the search with the terms filter
+
+```
+$posts = Post::searchByQuery([
+ 'filtered' => [
+    'filter' => [
+      'terms' => ['title' => ['miley cyrus', 'justin bieber']]
+    ],
+  ],
+  'query' => [
+    'multi_match' => [
+      'query' => Input::get('query', ''),
+      'fields' => ['title^2', 'content']
+    ],
+    'match_phrase' => [
+      'tags' => Input::get('query', '')
+    ]
+  ]
+]);
+```
+Between lines 2-6 we're specifying that when 'miley cyrus' or 'justin bieber' are in the title we want to disregard it from the search.
