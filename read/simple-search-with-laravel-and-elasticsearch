@@ -8,7 +8,7 @@
 		<meta name="author" content="Mitch Stanley">
 
 		<!-- Use title if it's in the page YAML frontmatter -->
-		<title>Full Stack Stanley | Simple Search with Laravel and ElasticSearch</title>
+		<title>FullStack Stanley | Simple Search with Laravel and ElasticSearch</title>
 
 		<link href="../stylesheets/application-ce0aa2bc.css" rel="stylesheet" type="text/css" />
 		<link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -43,9 +43,7 @@
 		<div id="aboutMe">
 	<div class="partial-container">
 		<h5>About Me</h5>
-		<p>I am a 25 year old web developer from Birmingham. I work for a web design agency in Telford called The Studio 4. I build web applications with PHP, Laravel, SASS, Coffeescript and MySQL.</p>
-		<p>When I'm not at work I like to use Ruby and PostgreSQL to build my own projects.</p>
-		<p>I'm Currently learning Ember JS and Elixir.</p>
+		<p>My name is Mitch Stanley and I'm a 25 year old web developer from Birmingham, UK. I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
 		<p>In my spare time I like to read epic fantasy novels, lift weights, play guitar and play video games.</p>
 	</div>
 </div>
@@ -557,7 +555,7 @@ Post::addAllToIndex();
 
 <p>Here&rsquo;s how it looks currently.</p>
 
-<p><img alt="ElasticSearch Results" src="../images/media/elastic-search-results.png" /></p>
+<p><img alt="ElasticSearch Results" src="../media/elastic-search-results-14c58bdd.png" /></p>
 
 <p>We could stop now and the search would work fairly well. But where is the fun in that? Let&rsquo;s tinker and see how we can improve our search results.</p>
 
