@@ -1,0 +1,808 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+		<meta name="author" content="Mitch Stanley">
+
+		<!-- Use title if it's in the page YAML frontmatter -->
+		<title>Full Stack Stanley | Simple Search with Laravel and ElasticSearch</title>
+
+		<link href="../stylesheets/application-ce0aa2bc.css" rel="stylesheet" type="text/css" />
+		<link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-42788138-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</head>
+
+	<body class="read read_simple-search-with-laravel-and-elasticsearch">
+		<div class="wrapper-for-content-outside-of-footer">
+		<header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="about" href="#top">About Me</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+      <li class="nav-link right"><a target="_blank" href="http://fullstackstanley.us9.list-manage1.com/subscribe?u=f65caf2e9010cf2ce0fa854ab&amp;id=f053565052">Monthly Newsletter</a></li>
+		</ul>
+	</div>
+</header>
+
+		<a name="top"></a>
+		<div id="aboutMe">
+	<div class="partial-container">
+		<h5>About Me</h5>
+		<p>I am a 25 year old web developer from Birmingham. I work for a web design agency in Telford called The Studio 4. I build web applications with PHP, Laravel, SASS, Coffeescript and MySQL.</p>
+		<p>When I'm not at work I like to use Ruby and PostgreSQL to build my own projects.</p>
+		<p>I'm Currently learning Ember JS and Elixir.</p>
+		<p>In my spare time I like to read epic fantasy novels, lift weights, play guitar and play video games.</p>
+	</div>
+</div>
+
+
+		<div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+			<div id="container">
+				<div id="main">
+						<article>
+		<h1>Simple Search with Laravel and ElasticSearch</h1>
+		<p><em>Posted on Jan 10, 2015</em></p>
+		<p>I was recently asked to make a search engine for a client&rsquo;s website. Normally I would go down the MySQL fulltext search route but I was feeling rather adventurous at the time.  I had no experience with ElasticSearch, Apache Solr or any other search system prior to this so I decided to pick ElasticSearch and dive in head first. This tutorial is a result of some of the things I picked up while learning it.</p>
+
+<p>I aim to show you how to set up the <a href="https://github.com/adamfairholm/Elasticquent">Elasticquent</a> Laravel package and some basic ways to fine tune your search engine.</p>
+
+<p></p>
+
+<p><strong>Note:</strong> This tutorial is aimed at developers who are already familiar with Laravel but are new to ElasticSearch and want some guidance on getting them to work together.</p>
+
+<h2>Installing ElasticSearch</h2>
+
+<p>If you haven&rsquo;t installed ElasticSearch then make sure you check the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html">ElasticSearch documentation</a> for setting it up. Although not necessary it&rsquo;s worth running through the rest of the getting started guide to understand the basics of how ElasticSearch works.</p>
+
+<p>I also recommend <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Postman App</a> if you use Chrome.  Postman will let you run REST commands in a nice GUI rather than using command line.</p>
+
+<p>Confirm that your ElasticSearch instance is running by the following command in your command line / Postman App.</p>
+
+<p><code>curl -XPOST &#39;http://localhost:9200/?pretty&#39;</code></p>
+
+<p>You should see a nice prettified json response if everything is working okay.</p>
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mystique"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cluster_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elasticsearch_mitch"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"..."</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tagline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You Know, for Search"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+</div>
+
+<h2>Setting up Laravel</h2>
+
+<p>I have a fresh Laravel App up and running with a MySQL database. If you are unfamiliar see the <a href="http://laravel.com/docs/4.2/installation">Laravel docs on installing</a>.</p>
+
+<h2>Packages</h2>
+
+<p>We&rsquo;ll be using 2 packages in this tutorial, Elasticquent and Faker.  You can ignore faker if you plan on importing your own data. For the sake of the tutorial I&rsquo;ll include it.</p>
+
+<p>Open composer.json and add the following to the <code>require</code> object:</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre>"fairholm/elasticquent": "1.0.*",
+"fzaninotto/Faker": "1.4.*"
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Run <code>composer update --prefer-dist</code> and we&rsquo;ll create our database table.</p>
+
+<h2>Generating our database table</h2>
+
+<p>We&rsquo;re going to set up a &ldquo;posts&rdquo; table with 3 fields: title, content and tags.</p>
+
+<p><code>php artisan migrate:make create_posts_table</code></p>
+
+<p>In your migration file (located in <code>app/db/migrations/&lt;DATETIME&gt;_create_posts_table.php</code>) use the following code:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreatePostsTable</span> <span class="k">extends</span> <span class="nx">Migration</span> <span class="p">{</span>
+
+    <span class="sd">/**
+     * Run the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'title'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">'content'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+
+    <span class="sd">/**
+     * Reverse the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">drop</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Do a migration and then we&rsquo;ll move on to generating some dummy data.</p>
+
+<p><code>php artisan migrate</code></p>
+
+<h2>Dummy data</h2>
+
+<p>We&rsquo;re going to set up a bunch of test data in a seeder file.  This will let us test that the search works without the hassle of inserting data manually.</p>
+
+<p>Our initial post model should look like this <code>app/model/Post.php</code></p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nv">$fillable</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Create <code>app/database/seeds/PostsTableSeeder.php</code> and add the following code</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></td><td class="code"><pre><span class="cp">&lt;?php</span> 
+
+<span class="k">class</span> <span class="nc">PostsTableSeeder</span> <span class="k">extends</span> <span class="nx">Seeder</span> <span class="p">{</span>
+
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Remove any existing data
+</span>        <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">'pages'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">();</span>
+
+        <span class="nv">$faker</span> <span class="o">=</span> <span class="nx">Faker\Factory</span><span class="o">::</span><span class="na">create</span><span class="p">();</span>
+
+        <span class="c1">// Generate some dummy data
+</span>        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span><span class="o">&lt;</span><span class="mi">30</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">Post</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
+            <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">sentence</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+            <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">paragraph</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+            <span class="s1">'tags'</span> <span class="o">=&gt;</span> <span class="nb">join</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">words</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+          <span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table>
+</div>
+
+<p>After running <code>php artisan db:seed --class=&quot;PostsTableSeeder&quot;</code> we should now have plenty of test data to work with!</p>
+
+<h2>Setting up Elasticquent</h2>
+
+<p>Let&rsquo;s edit our model in <code>app/models/Post.php</code> and add the following:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">Elasticquent\ElasticquentTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">\Eloquent</span> <span class="p">{</span>
+  <span class="k">use</span> <span class="nx">ElasticquentTrait</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="nv">$fillable</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">];</span>
+
+  <span class="k">protected</span> <span class="nv">$mappingProperties</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span>
+      <span class="s2">"analyzer"</span> <span class="o">=&gt;</span> <span class="s2">"standard"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span>
+      <span class="s2">"analyzer"</span> <span class="o">=&gt;</span> <span class="s2">"standard"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">'tags'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span>
+      <span class="s2">"analyzer"</span> <span class="o">=&gt;</span> <span class="s2">"stop"</span><span class="p">,</span>
+      <span class="s2">"stopwords"</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">","</span><span class="p">]</span>
+    <span class="p">],</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table>
+</div>
+
+<p>On line 2 we create the Elasticquent Trait shortcut and on line 5 we include it in our class.</p>
+
+<p>Line 9 we add our mapping configuration for ElasticSearch.  You can read more about mappings <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.htmlhttp://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html">here</a>.</p>
+
+<p>Each mapping has a type and an analyzer. Type&rsquo;s can be various data types including strings, numbers and dates.  For now we will stick to the string type but be aware that different types allow you to take advantage of different things.  You can learn more about the types that ElasticSearch supports <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-types.html">here</a></p>
+
+<p>The analyzer determines how ElasticSearch stores your data for searching. I&rsquo;ve chosen <code>standard</code> for title and content and <code>stop</code> for tags.  The standard analyzer will remove HTML and grammar and index each word separately.  The stop analyzer can be set to choose which characters split the words for indexing.</p>
+
+<p>As an example take this sentence:</p>
+
+<blockquote>
+<p>I love laravel, ElasticSearch and Laravel work well together.</p>
+</blockquote>
+
+<p>With a standard analyzer ElasticSearch will create a list like this:</p>
+
+<ul>
+<li>i</li>
+<li>love</li>
+<li>laravel</li>
+<li>elasticsearch,</li>
+<li>and</li>
+<li>laravel</li>
+<li>work</li>
+<li>well</li>
+<li>together</li>
+</ul>
+
+<p>With our settings the stop analyzer will group them like this:</p>
+
+<ul>
+<li>I love laravel</li>
+<li>ElasticSearch and Laravel work well together.</li>
+</ul>
+
+<p>This can be advantagous if you want to prioritise certain phrases.</p>
+
+<p>Now we&rsquo;ve configured how we want our search to operate it&rsquo;s time to index our database!</p>
+
+<p>Let&rsquo;s use Laravel&rsquo;s REPL to generate our ElasticSearch data. Go to your command line and type </p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>php artisan tinker
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Type the following commands</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre>Post::createIndex($shards = null, $replicas = null);
+
+Post::putMapping($ignoreConflicts = true);
+
+Post::addAllToIndex();
+</pre></td></tr></tbody></table>
+</div>
+
+<p>The first command sets up our index.  An index is sort of like a database table in the ElasticSearch world.</p>
+
+<p><code>putMapping()</code> takes the mapping properties we set in the model so that ElasticSearch knows how to index all of our data.</p>
+
+<p><code>addAllToIndex()</code> takes all the data from the database and puts it into ElasticSearch</p>
+
+<h2>Useful ElasticSearch API methods</h2>
+
+<p>Elasticquent sets up our index as &ldquo;my_custom_index_name&rdquo; by default.  We can view our mappings by using the following curl request</p>
+
+<p><code>curl localhost:9200/my_custom_index_name/_mapping?pretty</code></p>
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></td><td class="code"><pre><span class="p">{</span><span class="w">
+  </span><span class="s2">"my_custom_index_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"mappings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"posts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"analyzer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"tags"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"analyzer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"stop"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"analyzer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"updated_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>In ElasticSearch a table is called a type.  We can view all of the documents in a specific type with this query:</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/_search?pretty'
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We can do a basic do a basic search by altering the above command slightly</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/_search?q=title:searchterm&amp;pretty'
+</pre></td></tr></tbody></table>
+</div>
+
+<p>And we can view a specific document with this</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/1?pretty'
+</pre></td></tr></tbody></table>
+</div>
+
+<p>For more info on the ElasticSearch API check out the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/docs.html">documentation</a></p>
+
+<h2>Creating the front end</h2>
+
+<p>Add a route to <code>app/routes.php</code></p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'as'</span> <span class="o">=&gt;</span> <span class="s1">'search'</span><span class="p">,</span> <span class="s1">'uses'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Check if user has sent a search query
+</span>  <span class="k">if</span><span class="p">(</span><span class="nv">$query</span> <span class="o">=</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="kc">false</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Use the Elasticquent search method to search ElasticSearch
+</span>    <span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Show all posts if no query is set
+</span>    <span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">all</span><span class="p">();</span> 
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">View</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="s1">'home'</span><span class="p">,</span> <span class="nb">compact</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">));</span>
+
+<span class="p">}]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Make a template in <code>app/views/home.blade.php</code></p>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td><td class="code"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+{{ Form::open(['method' =&gt; 'get', 'route' =&gt; 'search']) }}
+
+  {{ Form::input('search', 'query', Input::get('query', ''))}}
+  {{ Form::submit('Filter results') }}
+
+{{ Form:: close() }}
+
+@foreach($posts as $post)
+ <span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>{{{ $post-&gt;title }}}<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;div&gt;</span>{{{ $post-&gt;content }}}<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div&gt;&lt;small&gt;</span>{{{ $post-&gt;tags }}}<span class="nt">&lt;/small&gt;&lt;/div&gt;</span>
+ <span class="nt">&lt;/div&gt;</span>
+@endforeach
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In the above snippet we create a form that allows us to type in a search term. Below the form we iterate either through all of the posts or all of the search results depending on whether the user has entered a search term.</p>
+
+<p>Here&rsquo;s how it looks currently.</p>
+
+<p><img alt="ElasticSearch Results" src="../images/media/elastic-search-results.png" /></p>
+
+<p>We could stop now and the search would work fairly well. But where is the fun in that? Let&rsquo;s tinker and see how we can improve our search results.</p>
+
+<h2>Fine-tuning your search</h2>
+
+<p>Elasticquent has another method called <code>searchByQuery()</code> which will allow us to specify more details on how we want ElasticSearch to query our data. Here&rsquo;s an example (taken and modified from the Elasticquent docs)</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">searchByQuery</span><span class="p">([</span><span class="s1">'match'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)]]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In the above example only the title is searched. How does this differ from the <code>search()</code> method behind the scenes? The <code>search()</code> query will match all parameters including our content and tags fields.</p>
+
+<p>If we try searching our data now with text from the <code>content</code> field you will notice drastically different results.  We may even notice different results when you take data from the title fields, too.  This is because ElasticSearch generates a score from the data it searches. Any relevant text in the queried fields will improve that score.</p>
+
+<p>Let&rsquo;s give our <code>title</code> priority so that searches that match our titles will appear above those that only appear in the content.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">searchByQuery</span><span class="p">([</span>
+  <span class="s1">'multi_match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"title^5"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">]</span>
+  <span class="p">],</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>The caret symbol (^) lets ElasticSearch know we want the title field to have added weight to it by the number that follows it.</p>
+
+<p>That&rsquo;s all well and good, but now we want to search our tags because they have specific keywords and phrases we want to match in the search results.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">searchByQuery</span><span class="p">([</span>
+  <span class="s1">'match_phrase'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'tags'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>To make use of both searches we need to do a compound query.  There are many types of compound query but the one we&rsquo;ll use is the <code>bool</code> query.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">searchByQuery</span><span class="p">([</span>
+  <span class="s2">"bool"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'must'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'multi_match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"title^2"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">]</span>
+      <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s2">"should"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'tags'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s2">"query"</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+          <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"phrase"</span>
+        <span class="p">]</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In a <code>bool</code> query we can specify three parameters: <code>must</code>, <code>should</code> and <code>must_not</code>.  In ours we have specified we must get a match from the title or content field and that we can optionally also get a match from the tags field.</p>
+
+<p>We can also completely filter out specific terms if they are irrelevent with a filter.  Here we&rsquo;re using the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-not-filter.html">not_filter</a>.  You can read more on filters <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html">here</a></p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">searchByQuery</span><span class="p">([</span>
+  <span class="s1">'filtered'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'not'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'terms'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'impedit'</span><span class="p">,</span> <span class="s1">'voluptatem'</span><span class="p">]]</span>
+      <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s2">"bool"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'must'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'multi_match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+            <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"title^2"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">]</span>
+          <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s2">"should"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">'tags'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s2">"query"</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+              <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"phrase"</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+        <span class="p">]</span>
+      <span class="p">]</span>
+    <span class="p">],</span>
+  <span class="p">],</span>
+<span class="p">]);</span>
+
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Between lines 2-7 we&rsquo;re specifying that when &lsquo;impedit&rsquo; or &lsquo;voluptatem&rsquo; are not in the title. </p>
+
+<p>If we had a <code>published</code> field in out database another useful filter would be to only search published posts.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nv">$pages</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">page</span><span class="o">-&gt;</span><span class="na">searchByQuery</span><span class="p">([</span>
+  <span class="s1">'filtered'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'filter'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'term'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'published'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'multi_match'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="nx">Input</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'query'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"title^2"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">]</span>
+      <span class="p">],</span>
+    <span class="p">],</span>
+  <span class="p">],</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h2>Summary</h2>
+
+<p>That&rsquo;s it for our search.  We&rsquo;ve looked at setting up Elasticquent with our model and looked several ways we can customise our search results. </p>
+
+<p>We can use queries to order our search results by score, we can create compound queries for more complex search results and filters for simple boolean queries.</p>
+
+<p>Although Elasticquent is great for a basic search engine there&rsquo;s also the official <a href="https://github.com/elasticsearch/elasticsearch-php">ElasticSearch client for PHP</a> for when you need something more advance such as fragment highlighting or autocomplete. </p>
+
+<p>I&rsquo;m really enjoying what I&rsquo;ve learned so far with ElasticSearch and I&rsquo;m very glad that I decided to pick it up.  I also really recommend <a href="http://www.amazon.co.uk/gp/product/B00JXLF7AK/ref=as_li_tl?ie=UTF8&amp;camp=1634&amp;creative=19450&amp;creativeASIN=B00JXLF7AK&amp;linkCode=as2&amp;tag=fullstan-21&amp;linkId=3UGJUFM7O7NQS4GJ">ElasticSearch Server - Second Edition</a> (Amazon referral link).  I&rsquo;m about 40% of the way through and I&rsquo;ve learned a lot already.</p>
+
+<p><img src="http://ir-uk.amazon-adsystem.com/e/ir?t=fullstan-21&amp;l=as2&amp;o=2&amp;a=B00JXLF7AK" /></p>
+
+	</article>
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+				</div>
+			</div>
+			<div class="push"></div>
+		</div>
+
+		<footer class="footer-2">
+			<div class="partial-container">
+				<ul>
+					<li><a class="about" href="#top">About</a></li>
+					<li><a class="contact" href="#">Contact</a></li>
+				</ul>
+
+				<div class="footer-secondary-links">
+					<ul class="footer-social">
+						<li>
+							<a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+						</li>
+						<li>
+							<a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+	</body>
+</html>
