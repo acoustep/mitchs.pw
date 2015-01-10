@@ -8,10 +8,10 @@
 		<meta name="author" content="Mitch Stanley">
 
 		<!-- Use title if it's in the page YAML frontmatter -->
-		<title>Full Stack Stanley | Tutorials and thoughts on the world of programming and web development</title>
+		<title>Full Stack Stanley</title>
 
-		<link href="stylesheets/application-ce0aa2bc.css" rel="stylesheet" type="text/css" />
-		<link href="stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+		<link href="../../stylesheets/application-ce0aa2bc.css" rel="stylesheet" type="text/css" />
+		<link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -22,7 +22,7 @@
 		</script>
 	</head>
 
-	<body class="index">
+	<body class="read read_categories read_categories_elasticsearch">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -61,7 +61,7 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Latest Blogs</h1>
+					<h1>ElasticSearch Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/simple-search-with-laravel-and-elasticsearch">Simple Search with Laravel and ElasticSearch</a>
@@ -84,86 +84,13 @@
 
 		<a href="/read/simple-search-with-laravel-and-elasticsearch">Read more</a>
 	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/12-day-challenge-rubymotion">12 Day Challenge: RubyMotion</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/android">Android</a>
-        <a href="/read/categories/ios">iOS</a>
-        <a href="/read/categories/ruby">Ruby</a>
-        <a href="/read/categories/rubymotion">RubyMotion</a>
-    </div>
-		<time>Dec 30, 2014</time>
-
-		<p>I have wanted to expand my skills into mobile development for a long time now. I <em>love</em> developing for the web and I think it&rsquo;s only natural for any web developer to want to take a peak in to the world of mobile app development.</p>
-
-<p>Many tools exist already that I could use to build HTML5 websites and convert them into usable apps. Software such as PhoneGap, Cordova or Titanium. The problem is that I don&rsquo;t want to build sluggish HTML apps.</p>
-
-<p>Over a year ago I spent some time learning to make Android apps using Java and Android Studio. My experience was <em>okay</em>. Nothing special. It wasn&rsquo;t all easy sailing because I have no previous experience with Java. Add that on to learning a new IDE and I feel like I&rsquo;m battling with both.</p>
-
-<p>I learned a lot in that time but I never really applied the knowledge. And I don&rsquo;t find Java enjoyable enough to push to continue.</p>
-
-<p>So right now I am fortunate enough to have 11 days off from my job for our Christmas break.  I have decided to dedicate an hour each day to learning RubyMotion (and an extra day because why not?!).</p>
-
-<p>
-
-		<a href="/read/12-day-challenge-rubymotion">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/php-5-4-trait-qwerks">PHP 5.4 Trait Qwerks</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/php">PHP</a>
-        <a href="/read/categories/php-5-4">PHP 5.4</a>
-        <a href="/read/categories/traits">Traits</a>
-    </div>
-		<time>Aug 18, 2014</time>
-
-		<p>Although the title may lead you to think otherwise;  I actually really like Traits.  I wish I had made the switch to 5.4 sooner! Bundle them with the shorter array syntax and I&rsquo;m a happy PHP dev.</p>
-
-<p>I recently experimented with Traits in a Laravel package. You can find the package here <a href="https://github.com/acoustep/dat-controller">DatController</a></p>
-
-<p>This blog is contains a couple of the not-so-obvious points of traits which I came accross.</p>
-
-<h4>You can not override trait properties</h4>
-
-<p>I think this is what I like the least about traits.  You can not set a default property and have a class override it.</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="nx">trait</span> <span class="nx">NewTrait</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nv">$variable</span> <span class="o">=</span> <span class="s1">'default value'</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">class</span> <span class="nc">NewClass</span> <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">NewTrait</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="nv">$variable</span> <span class="o">=</span> <span class="s1">'override value'</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>I would love to be able to override trait properties. However, you could argue that it&rsquo;s best to use inheritence for these situations.</p>
-
-<p>
-
-		<a href="/read/php-5-4-trait-qwerks">Read more</a>
-	</article>
 
 <div class="pagination">
 	<ul>
-			<li class="page-next"><a href="/page/2/">Next Page</a></li>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
 	</ul>
 </div>
+
 
 				</div>
 			</div>
@@ -190,6 +117,6 @@
 			</div>
 		</footer>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="javascripts/application-678994e1.js" type="text/javascript"></script>
+		<script src="../../javascripts/application-678994e1.js" type="text/javascript"></script>
 	</body>
 </html>
