@@ -345,7 +345,7 @@ In the above snippet we create a form that allows us to type in a search term. B
 
 Here's how it looks currently.
 
-![ElasticSearch Results](media/elastic-search-results.png)
+![ElasticSearch Results](/media/elastic-search-results.png)
 
 We could stop now and the search would work fairly well. But where is the fun in that? Let's tinker and see how we can improve our search results.
 
