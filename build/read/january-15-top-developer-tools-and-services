@@ -8,7 +8,7 @@
 		<meta name="author" content="Mitch Stanley">
 
 		<!-- Use title if it's in the page YAML frontmatter -->
-		<title>FullStack Stanley | Laravel 4.1 one-to-one polymorphic relationships</title>
+		<title>FullStack Stanley | January ’15: Top Developer Tools and Services</title>
 
 		<link href="../stylesheets/application-30aaea03.css" rel="stylesheet" type="text/css" />
 		<link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -22,7 +22,7 @@
 		</script>
 	</head>
 
-	<body class="read read_laravel-4-1-one-to-one-polymorphic-relationships">
+	<body class="read read_january-15-top-developer-tools-and-services">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -60,64 +60,61 @@
 			<div id="container">
 				<div id="main">
 						<article>
-		<h1>Laravel 4.1 one-to-one polymorphic relationships</h1>
-		<p><em>Posted on Jan 20, 2014</em></p>
-		<p>To use one-to-one polymorphic relationships in Laravel 4.1  use the &ldquo;morphOne&rdquo; method in your models.</p>
+		<h1>January ’15: Top Developer Tools and Services</h1>
+		<p><em>Posted on Jan 15, 2015</em></p>
+		<p>Now that I&rsquo;m increasing the amount of blogs that I write I want to start giving credit to stuff that I use every day.</p>
 
-<p>For example: I have two tables, pages and products.  I want to be able to add one featured image to each of these.</p>
+<p>These aren&rsquo;t always going to be programming or web related.  Many of them are to do with organisation and learning. I may even throw in some fun stuff, too!</p>
 
-<p>The Product model would look like this:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
+<h2><a href="http://mailcatcher.me/">Mailcatcher</a></h2>
 
-<p>The Page model would be:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="k">class</span> <span class="nc">Page</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
+<p>First off the bat: Mailcatcher. A Ruby gem for testing emails on your local machine. It works by catching the emails sent through a local SMTP server and comes with a simple-but-awesome GUI for previewing your emails.</p>
+
+<p>As a bonus it already comes installed with <a href="https://puphpet.com/">PuPHPet</a> which I use to set up my PHP stacks.</p>
+
+<p>If you don’t use PHP or PuPHPet it’s still a breeze to install. So if you’re a developer that makes applications with emails I really recommend you give it a shot.</p>
 
 <p></p>
 
-<p>For the FeaturedImage table you would need to columns <code>imageable_id:integer</code> and <code>imageable_type</code>.</p>
+<h2><a href="https://github.com/gollum/gollum">Gollum</a></h2>
 
-<p>Then in your FeaturedImage model you can have:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="k">class</span> <span class="nc">FeaturedImage</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">imageable</span><span class="p">()</span>
-    <span class="p">{</span>
-            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphTo</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
+<p>Gollum is a wiki system built on top of Git. It’s incredibly minimalistic and requires you to know markdown but as a programmer it’s literally all I need.</p>
 
-<p>This will allow you to use polymorphism on one-to-one relationships</p>
+<p>I set up sections for all the languages and tools I learn. Subsections for areas that require a lot of notes and sometimes subsections just for specific versions of languages/frameworks.</p>
+
+<p>Personally I find writing down what I learn really helps reinforce what I’ve learned. As a bonus, when I come to start using the tool with a project I now have documentation written in a way I can understand perfectly all on my local machine.</p>
+
+<h2><a href="https://asana.com/">Asana</a></h2>
+
+<p>When I came to start using this I was looking for a tool to manage tasks at my job. I’ve used other solutions like Trello and Spiceworks but left feeling unsatisfied. I really enjoy Asana’s user interface and in combination with Toggl I have all my requirements met.</p>
+
+<h2><a href="https://www.toggl.com/">Toggl</a></h2>
+
+<p>Toggl by itself is a pretty good timer app but quite frankly I would not bother with it if the Chrome Toggl extension, <a href="https://chrome.google.com/webstore/detail/toggl-button/oejgccbfbmkkpaidnkphaiaecficdnfn?hl=en">Toggl Button</a> didn’t exist.</p>
+
+<p>Toggl button injects Toggl timers in to various websites including Asana and Github. </p>
+
+<p>The timer functionality is the only issue I have with Asana so this extension makes me incredibly happy.  I just wish they would make extensions for other browsers so that everyone can appreciate it! </p>
+
+<h2><a href="https://balsamiq.com/">Balsamiq</a> ($79)</h2>
+
+<p>Whenever I&rsquo;m creating a new web application I create mock ups of how I want the interface to be structured.  Balsamiq is my go to tool for this purpose.</p>
+
+<p>A much younger version of myself would think it’s a complete waste of time. I’d much rather get stuck in to the code and get the app completed as soon as possible.</p>
+
+<p>Present me knows better.  The time it takes to make a few scribbles in Balsamiq is negligible and comes with three major added bonuses:</p>
+
+<ol>
+<li>It allows me to plan the flow of the application’s GUI</li>
+<li>It allows me to think about how I’m going to structure the code once I start it.</li>
+<li>It flags up potential speed bumps. More often than not I’ll think of an issue or two that would have never occurred to me until I had hit them.  This let’s me plan my way around them and is a huge time saver.</li>
+</ol>
+
+<h2>That’s all for this month</h2>
+
+<p>I’ve gotta pace myself y’know? There are so many languages, tools and services that I use that it’s really unfair to highlight the above five but I’m doing it anyway!  </p>
+
+<p>I’ll post some more in February.  I may even dig in to my favourite programming languages!</p>
 
 	</article>
 	<div class="pagination">

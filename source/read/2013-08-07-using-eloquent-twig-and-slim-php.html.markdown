@@ -2,6 +2,7 @@
 title: Using Eloquent, Twig and Slim PHP
 date: 2013-08-07 00:00 UTC
 tags: Eloquent, Slim, Twig, PHP
+change_frequency: never
 ---
 
 Originally while I was writing this blog I intended to make a step by

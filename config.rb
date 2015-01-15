@@ -77,6 +77,10 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+set :url_root, 'http://fullstackstanley.com'
+
+activate :search_engine_sitemap
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

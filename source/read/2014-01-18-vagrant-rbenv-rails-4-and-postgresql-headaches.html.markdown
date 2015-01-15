@@ -2,6 +2,7 @@
 title: Vagrant, RBENV, Rails 4 and PostgreSQL headaches
 date: 2014-01-18 00:00 UTC
 tags: Rails 4, Rbenv, PostgreSQL, Postgres, Vagrant
+change_frequency: never
 ---
 
 **Forewarning:** This post is more of a rambling and future reference to myself.

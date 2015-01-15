@@ -2,6 +2,7 @@
 title: Simple Search with Laravel and ElasticSearch
 date: 2015-01-10 09:00 UTC
 tags: Laravel, Laravel 4.2, ElasticSearch, ElasticSearch 1.4, PHP, Search
+change_frequency: never
 ---
 I was recently asked to make a search engine for a client's website. Normally I would go down the MySQL fulltext search route but I was feeling rather adventurous at the time.  I had no experience with ElasticSearch, Apache Solr or any other search system prior to this so I decided to pick ElasticSearch and dive in head first. This tutorial is a result of some of the things I picked up while learning it.
 
