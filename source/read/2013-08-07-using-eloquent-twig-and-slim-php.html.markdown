@@ -1,7 +1,7 @@
 ---
 title: Using Eloquent, Twig and Slim PHP
 date: 2013-08-07 00:00 UTC
-tags: Eloquent, Slim, Twig, PHP
+tags: Eloquent, Slim, Twig, PHP, slim-twig-eloquent
 change_frequency: never
 ---
 
