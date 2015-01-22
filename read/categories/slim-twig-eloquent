@@ -22,7 +22,7 @@
 		</script>
 	</head>
 
-	<body class="read read_categories read_categories_slim">
+	<body class="read read_categories read_categories_slim-twig-eloquent">
 		<div class="wrapper-for-content-outside-of-footer">
 		<header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -59,7 +59,7 @@
 
 			<div id="container">
 				<div id="main">
-					<h1>Slim Blogs</h1>
+					<h1>slim-twig-eloquent Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/using-eloquent-twig-and-slim-php-revisited">Using Eloquent, Twig and Slim PHP - Revisited</a>
