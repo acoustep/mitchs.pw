@@ -330,7 +330,7 @@
 
 <p>On line 2 we create the Elasticquent Trait shortcut and on line 5 we include it in our class.</p>
 
-<p>Line 9 we add our mapping configuration for ElasticSearch.  You can read more about mappings <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.htmlhttp://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html">here</a>.</p>
+<p>Line 9 we add our mapping configuration for ElasticSearch.  You can read more about mappings <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html">here</a>.</p>
 
 <p>Each mapping has a type and an analyzer. Type&rsquo;s can be various data types including strings, numbers and dates.  For now we will stick to the string type but be aware that different types allow you to take advantage of different things.  You can learn more about the types that ElasticSearch supports <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-types.html">here</a></p>
 
@@ -347,8 +347,8 @@
 <ul>
 <li>i</li>
 <li>love</li>
-<li>laravel</li>
-<li>elasticsearch,</li>
+<li>laravel,</li>
+<li>elasticsearch</li>
 <li>and</li>
 <li>laravel</li>
 <li>work</li>
