@@ -184,7 +184,7 @@ class Post extends \Eloquent {
 
 On line 2 we create the Elasticquent Trait shortcut and on line 5 we include it in our class.
 
-Line 9 we add our mapping configuration for ElasticSearch.  You can read more about mappings [here](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.htmlhttp://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html).
+Line 9 we add our mapping configuration for ElasticSearch.  You can read more about mappings [here](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html).
 
 Each mapping has a type and an analyzer. Type's can be various data types including strings, numbers and dates.  For now we will stick to the string type but be aware that different types allow you to take advantage of different things.  You can learn more about the types that ElasticSearch supports [here](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-types.html)
 
@@ -198,8 +198,8 @@ With a standard analyzer ElasticSearch will create a list like this:
 
 * i
 * love
-* laravel
-* elasticsearch,
+* laravel,
+* elasticsearch
 * and
 * laravel
 * work
