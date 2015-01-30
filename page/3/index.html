@@ -62,6 +62,56 @@
 					<h1>Latest Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Laravel 4.1 one-to-one polymorphic relationships</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel-4-1">Laravel 4.1</a>
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/eloquent">Eloquent</a>
+    </div>
+		<time>Jan 20, 2014</time>
+
+		<p>To use one-to-one polymorphic relationships in Laravel 4.1  use the &ldquo;morphOne&rdquo; method in your models.</p>
+
+<p>For example: I have two tables, pages and products.  I want to be able to add one featured image to each of these.</p>
+
+<p>The Product model would look like this:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>The Page model would be:</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Page</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>
+
+		<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Vagrant, RBENV, Rails 4 and PostgreSQL headaches</a>
 		</h1>
     <div class="tags">
@@ -106,77 +156,6 @@
 <p>
 
 		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/creating-a-twitter-feed-in-laravel-4">Creating a Twitter Feed in Laravel 4</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/laravel-4">Laravel 4</a>
-        <a href="/read/categories/twitter">Twitter</a>
-        <a href="/read/categories/php">PHP</a>
-    </div>
-		<time>Aug 16, 2013</time>
-
-		<p><em>This tutorial is now out of date - checkout <a href="http://packalyst.com/packages/package/philo/laravel-twitter">philo/laravel-twitter</a> or <a href="http://packalyst.com/packages/package/thujohn/twitter">thujohn/twitter</a> for an easier and more up to date solution.</em></p>
-
-<p>In this tutorial I aim to show three things</p>
-
-<ul>
-<li>How to get Twitteroath working with Laravel 4</li>
-<li>How to create and access a new configuration file for your twitter settings</li>
-<li>How  to create a  helper method for your tweets</li>
-</ul>
-
-<p>To start off install <a href="https://github.com/abraham/twitteroauth">twitteroath</a> via composer.</p>
-
-<p>Put line 4 in your <code>composer.json</code> with the rest of the Laravel Composer set up and run <code>composer update</code> or <code>composer install</code> if you haven&rsquo;t already</p>
-<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></td><td class="code"><pre><span class="p">{</span>
-    <span class="s2">"require"</span><span class="err">:</span> <span class="p">{</span>
-        <span class="s2">"laravel/framework"</span><span class="err">:</span> <span class="s2">"4.0.*@dev"</span><span class="p">,</span>
-        <span class="s2">"abraham/twitteroauth"</span><span class="err">:</span> <span class="s2">"dev-add-composer-json"</span>
-    <span class="p">},</span>
-    <span class="s2">"autoload"</span><span class="err">:</span> <span class="p">{</span>
-        <span class="s2">"classmap"</span><span class="err">:</span> <span class="p">[</span>
-            <span class="s2">"app/commands"</span><span class="p">,</span>
-            <span class="s2">"app/controllers"</span><span class="p">,</span>
-            <span class="s2">"app/models"</span><span class="p">,</span>
-            <span class="s2">"app/database/migrations"</span><span class="p">,</span>
-            <span class="s2">"app/database/seeds"</span><span class="p">,</span>
-            <span class="s2">"app/tests/TestCase.php"</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="s2">"scripts"</span><span class="err">:</span> <span class="p">{</span>
-        <span class="s2">"post-update-cmd"</span><span class="err">:</span> <span class="s2">"php artisan optimize"</span>
-    <span class="p">},</span>
-    <span class="s2">"minimum-stability"</span><span class="err">:</span> <span class="s2">"dev"</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>
-
-		<a href="/read/creating-a-twitter-feed-in-laravel-4">Read more</a>
 	</article>
 
 <div class="pagination">

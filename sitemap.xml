@@ -2,103 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://fullstackstanley.com/about/</loc>
-    <lastmod>2014-08-19T20:46:31+01:00</lastmod>
+    <lastmod>2014-08-19T14:17:53+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/contact/</loc>
-    <lastmod>2014-08-19T20:46:31+01:00</lastmod>
+    <lastmod>2014-08-19T14:18:20+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:12:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/automating-configurations-with-laravel</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:12:52+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-eloquent-twig-and-slim-php</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-22T21:28:09+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/creating-a-twitter-feed-in-laravel-4</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:00+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/middleman-template-bootstrap3-sass-and-slim</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:03+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/vagrant-rbenv-rails-4-and-postgresql-headaches</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:07+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/laravel-4-1-one-to-one-polymorphic-relationships</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:10+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/php-5-4-trait-qwerks</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:13+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/12-day-challenge-rubymotion</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:13:16+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/simple-search-with-laravel-and-elasticsearch</loc>
-    <lastmod>2015-01-25T00:06:35+00:00</lastmod>
+    <lastmod>2015-01-30T13:29:03+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/january-15-top-developer-tools-and-services</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-15T13:30:54+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-eloquent-twig-and-slim-php-revisited</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-22T21:35:54+00:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://fullstackstanley.com/read/unix-commands-find</loc>
+    <lastmod>2015-01-30T13:32:04+00:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/page/4/</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:12:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/page/3/</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:12:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/page/2/</loc>
-    <lastmod>2015-01-25T00:05:52+00:00</lastmod>
+    <lastmod>2015-01-14T13:12:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

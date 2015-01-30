@@ -749,7 +749,7 @@ Post::addAllToIndex();
 
 <p>We can use queries to order our search results by score, we can create compound queries for more complex search results and filters for simple boolean queries.</p>
 
-<p>Although Elasticquent is great for a basic search engine there&rsquo;s also the official <a href="https://github.com/elasticsearch/elasticsearch-php">ElasticSearch client for PHP</a> for when you need something more advance such as fragment highlighting or autocomplete. </p>
+<p>Although Elasticquent is great for a basic search engine there&rsquo;s also the official <a href="https://github.com/elasticsearch/elasticsearch-php">ElasticSearch client for PHP</a> for when you need something more advanced such as fragment highlighting or autocomplete. </p>
 
 <p>I&rsquo;m really enjoying what I&rsquo;ve learned so far with ElasticSearch and I&rsquo;m very glad that I decided to pick it up.  I also really recommend <a href="http://www.amazon.co.uk/gp/product/B00JXLF7AK/ref=as_li_tl?ie=UTF8&amp;camp=1634&amp;creative=19450&amp;creativeASIN=B00JXLF7AK&amp;linkCode=as2&amp;tag=fullstan-21&amp;linkId=3UGJUFM7O7NQS4GJ">ElasticSearch Server - Second Edition</a> (Amazon referral link).  I&rsquo;m about 40% of the way through and I&rsquo;ve learned a lot already.</p>
 
