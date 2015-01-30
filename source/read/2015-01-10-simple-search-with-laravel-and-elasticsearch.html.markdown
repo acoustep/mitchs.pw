@@ -475,7 +475,7 @@ That's it for our search.  We've looked at setting up Elasticquent with our mode
 
 We can use queries to order our search results by score, we can create compound queries for more complex search results and filters for simple boolean queries.
 
-Although Elasticquent is great for a basic search engine there's also the official [ElasticSearch client for PHP](https://github.com/elasticsearch/elasticsearch-php) for when you need something more advance such as fragment highlighting or autocomplete. 
+Although Elasticquent is great for a basic search engine there's also the official [ElasticSearch client for PHP](https://github.com/elasticsearch/elasticsearch-php) for when you need something more advanced such as fragment highlighting or autocomplete. 
 
 I'm really enjoying what I've learned so far with ElasticSearch and I'm very glad that I decided to pick it up.  I also really recommend [ElasticSearch Server - Second Edition](http://www.amazon.co.uk/gp/product/B00JXLF7AK/ref=as_li_tl?ie=UTF8&camp=1634&creative=19450&creativeASIN=B00JXLF7AK&linkCode=as2&tag=fullstan-21&linkId=3UGJUFM7O7NQS4GJ) (Amazon referral link).  I'm about 40% of the way through and I've learned a lot already.
 
