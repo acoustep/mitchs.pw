@@ -239,13 +239,13 @@ The first command sets up our index.  An index is sort of like a database table 
 
 ## Useful ElasticSearch API methods
 
-Elasticquent sets up our index as "my\_custom\_index\_name" by default.  We can view our mappings by using the following curl request
+Elasticquent sets up our index as "default" by default.  We can view our mappings by using the following curl request
 
-```curl localhost:9200/my_custom_index_name/_mapping?pretty```
+```curl localhost:9200/default/_mapping?pretty```
 
 ```
 {
-  "my_custom_index_name" : {
+  "default" : {
     "mappings" : {
       "posts" : {
         "properties" : {
@@ -280,19 +280,19 @@ Elasticquent sets up our index as "my\_custom\_index\_name" by default.  We can 
 In ElasticSearch a table is called a type.  We can view all of the documents in a specific type with this query:
 
 ```
-curl 'localhost:9200/my_custom_index_name/posts/_search?pretty'
+curl 'localhost:9200/default/posts/_search?pretty'
 ```
 
 We can do a basic do a basic search by altering the above command slightly
 
 ```
-curl 'localhost:9200/my_custom_index_name/posts/_search?q=title:searchterm&pretty'
+curl 'localhost:9200/default/posts/_search?q=title:searchterm&pretty'
 ```
 
 And we can view a specific document with this
 
 ```
-curl 'localhost:9200/my_custom_index_name/posts/1?pretty'
+curl 'localhost:9200/default/posts/1?pretty'
 ```
 
 For more info on the ElasticSearch API check out the [documentation](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/docs.html)
