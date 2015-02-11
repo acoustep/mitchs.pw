@@ -393,9 +393,9 @@ Post::addAllToIndex();
 
 <h2>Useful ElasticSearch API methods</h2>
 
-<p>Elasticquent sets up our index as &ldquo;my_custom_index_name&rdquo; by default.  We can view our mappings by using the following curl request</p>
+<p>Elasticquent sets up our index as &ldquo;default&rdquo; by default.  We can view our mappings by using the following curl request</p>
 
-<p><code>curl localhost:9200/my_custom_index_name/_mapping?pretty</code></p>
+<p><code>curl localhost:9200/default/_mapping?pretty</code></p>
 <div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
 3
@@ -427,7 +427,7 @@ Post::addAllToIndex();
 29
 30
 31</pre></td><td class="code"><pre><span class="p">{</span><span class="w">
-  </span><span class="s2">"my_custom_index_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"default"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"mappings"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"posts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"properties"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -461,17 +461,17 @@ Post::addAllToIndex();
 </div>
 
 <p>In ElasticSearch a table is called a type.  We can view all of the documents in a specific type with this query:</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/_search?pretty'
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/default/posts/_search?pretty'
 </pre></td></tr></tbody></table>
 </div>
 
 <p>We can do a basic do a basic search by altering the above command slightly</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/_search?q=title:searchterm&amp;pretty'
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/default/posts/_search?q=title:searchterm&amp;pretty'
 </pre></td></tr></tbody></table>
 </div>
 
 <p>And we can view a specific document with this</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/my_custom_index_name/posts/1?pretty'
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>curl 'localhost:9200/default/posts/1?pretty'
 </pre></td></tr></tbody></table>
 </div>
 

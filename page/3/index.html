@@ -62,6 +62,54 @@
 					<h1>Latest Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/php-5-4-trait-qwerks">PHP 5.4 Trait Qwerks</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/php-5-4">PHP 5.4</a>
+        <a href="/read/categories/traits">Traits</a>
+    </div>
+		<time>Aug 18, 2014</time>
+
+		<p>Although the title may lead you to think otherwise;  I actually really like Traits.  I wish I had made the switch to 5.4 sooner! Bundle them with the shorter array syntax and I&rsquo;m a happy PHP dev.</p>
+
+<p>I recently experimented with Traits in a Laravel package. You can find the package here <a href="https://github.com/acoustep/dat-controller">DatController</a></p>
+
+<p>This blog is contains a couple of the not-so-obvious points of traits which I came accross.</p>
+
+<h4>You can not override trait properties</h4>
+
+<p>I think this is what I like the least about traits.  You can not set a default property and have a class override it.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="nx">trait</span> <span class="nx">NewTrait</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$variable</span> <span class="o">=</span> <span class="s1">'default value'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">NewClass</span> <span class="p">{</span>
+    <span class="k">use</span> <span class="nx">NewTrait</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nv">$variable</span> <span class="o">=</span> <span class="s1">'override value'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>I would love to be able to override trait properties. However, you could argue that it&rsquo;s best to use inheritence for these situations.</p>
+
+<p>
+
+		<a href="/read/php-5-4-trait-qwerks">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Laravel 4.1 one-to-one polymorphic relationships</a>
 		</h1>
     <div class="tags">
@@ -134,28 +182,6 @@
 <p>
 
 		<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/middleman">Middleman</a>
-        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/sass">SASS</a>
-    </div>
-		<time>Nov 12, 2013</time>
-
-		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
-
-<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
-
-<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
-
-<p>
-
-		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
 	</article>
 
 <div class="pagination">
