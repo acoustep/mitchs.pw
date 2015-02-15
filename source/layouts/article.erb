@@ -1,6 +1,11 @@
 <% wrap_layout :layout do %>
 	<article>
 		<h1><%= current_page.title %></h1>
+    <div class="tags">
+      <% current_page.tags.each do |tag| %>
+        <a href="<%= tag_path tag %>"><%= tag %></a>
+      <% end %>
+    </div>
 		<p><em>Posted on <%= current_page.date.strftime('%b %e, %Y') %></em></p>
 		<%= yield %>
 	</article>

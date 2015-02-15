@@ -43,8 +43,11 @@
 		<div id="aboutMe">
 	<div class="partial-container">
 		<h5>About Me</h5>
-		<p>My name is Mitch Stanley and I'm a 25 year old web developer from Birmingham, UK. I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
-		<p>In my spare time I like to read epic fantasy novels, lift weights, play guitar and play video games.</p>
+    <p>My name is Mitch Stanley and I'm a 25 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I like to read books, lift weights, play guitar, play video games and write these articles!</p>
 	</div>
 </div>
 
@@ -61,6 +64,18 @@
 				<div id="main">
 						<article>
 		<h1>January ’15: Top Developer Tools and Services</h1>
+    <div class="tags">
+        <a href="/read/categories/webdevelopment">webdevelopment</a>
+        <a href="/read/categories/learning">learning</a>
+        <a href="/read/categories/organisation">organisation</a>
+        <a href="/read/categories/tools">tools</a>
+        <a href="/read/categories/services">services</a>
+        <a href="/read/categories/balsamiq">balsamiq</a>
+        <a href="/read/categories/asana">asana</a>
+        <a href="/read/categories/toggl">toggl</a>
+        <a href="/read/categories/mailcatcher">mailcatcher</a>
+        <a href="/read/categories/gollum">gollum</a>
+    </div>
 		<p><em>Posted on Jan 15, 2015</em></p>
 		<p>Now that I&rsquo;m increasing the amount of blogs that I write I want to start giving credit to stuff that I use every day.</p>
 

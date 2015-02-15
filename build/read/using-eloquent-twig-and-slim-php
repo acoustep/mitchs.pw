@@ -43,8 +43,11 @@
 		<div id="aboutMe">
 	<div class="partial-container">
 		<h5>About Me</h5>
-		<p>My name is Mitch Stanley and I'm a 25 year old web developer from Birmingham, UK. I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
-		<p>In my spare time I like to read epic fantasy novels, lift weights, play guitar and play video games.</p>
+    <p>My name is Mitch Stanley and I'm a 25 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I like to read books, lift weights, play guitar, play video games and write these articles!</p>
 	</div>
 </div>
 
@@ -61,6 +64,13 @@
 				<div id="main">
 						<article>
 		<h1>Using Eloquent, Twig and Slim PHP</h1>
+    <div class="tags">
+        <a href="/read/categories/eloquent">Eloquent</a>
+        <a href="/read/categories/slim">Slim</a>
+        <a href="/read/categories/twig">Twig</a>
+        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/slim-twig-eloquent">slim-twig-eloquent</a>
+    </div>
 		<p><em>Posted on Aug  7, 2013</em></p>
 		<p>Originally while I was writing this blog I intended to make a step by
 step guide to putting together three of my favourite PHP tools. After a
