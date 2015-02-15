@@ -3,6 +3,11 @@ title: "January ’15: Top Developer Tools and Services"
 date: 2015-01-15 13:28 UTC
 tags: webdevelopment, learning, organisation, tools, services, balsamiq, asana, toggl, mailcatcher, gollum
 change_frequency: never
+ogp:
+  og:
+    description: "These aren't always going to be programming or web related.  Many of them are to do with organisation and learning. I may even throw in some fun stuff, too!"
+    title: 'January ’15: Top Developer Tools and Services'
+    url: 'read/january-15-top-developer-tools-and-services'
 ---
  
 Now that I'm increasing the amount of blogs that I write I want to start giving credit to stuff that I use every day.

@@ -3,6 +3,11 @@ title: Using Eloquent, Twig and Slim PHP - Revisited
 date: 2015-01-22 21:27 UTC
 tags: Slim, Twig, Eloquent, PHP, microframework, slim-twig-eloquent, Phinx, console, gulp
 change_frequency: never
+ogp:
+  og:
+    description: "It’s been about one and a half years since I made my blog post Using Eloquent, Twig and Slim PHP and a lot’s changed since then but I still love using these three tools for small websites."
+    title: 'Using Eloquent, Twig and Slim PHP - Revisited'
+    url: 'read/using-eloquent-twig-and-slim-php-revisited'
 ---
 
 It’s been about one and a half years since I made my blog post [Using Eloquent, Twig and Slim PHP](http://fullstackstanley.com/read/using-eloquent-twig-and-slim-php) and a lot’s changed since then but I still love using these three tools for small websites.

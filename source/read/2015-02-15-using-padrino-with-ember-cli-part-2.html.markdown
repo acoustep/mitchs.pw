@@ -3,6 +3,11 @@ title: Using Padrino with Ember CLI Part 2
 date: 2015-02-15 09:17 UTC
 tags: Ruby, Padrino, Ember, Ember-CLI, Javascript, Sequel, sqlite, RABL
 change_frequency: never
+ogp:
+  og:
+    description: 'Welcome to Part 2 of my Padrino and Ember series.  This article is for setting up Ember with our Padrino API...'
+    title: 'Using Padrino with Ember CLI Part 2'
+    url: 'read/using-padrino-with-ember-cli-part-2/'
 ---
 
 Welcome to Part 2 of my Padrino and Ember series.  This article is for setting up Ember with our Padrino API.  If you missed part 1, go take a look [here](/read/using-padrino-with-ember-cli-part-1). You can view the full source on [Github](https://github.com/acoustep/padrino-ember-example).

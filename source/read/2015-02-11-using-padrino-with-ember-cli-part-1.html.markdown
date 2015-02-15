@@ -3,6 +3,11 @@ title: Using Padrino with Ember CLI Part 1
 date: 2015-02-11 20:59 UTC
 tags: Ruby, Padrino, Ember, Ember-CLI, Javascript, Sequel, sqlite, RABL
 change_frequency: never
+ogp:
+  og:
+    description: 'After listening to the Ruby Rogues’ Padrino episode I was sold on the idea of using Padrino for smaller websites and simple API’s...'
+    title: 'Using Padrino with Ember CLI Part 1'
+    url: 'read/using-padrino-with-ember-cli-part-1/'
 ---
 After listening to the Ruby Rogues’ Padrino episode I was sold on the idea of using Padrino for smaller websites and simple API’s.  I know [Grape](https://github.com/intridea/grape) is also a perfect contender for building an Ember APIs but:
 

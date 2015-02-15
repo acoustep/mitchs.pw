@@ -3,6 +3,11 @@ title: Vagrant, RBENV, Rails 4 and PostgreSQL headaches
 date: 2014-01-18 00:00 UTC
 tags: Rails 4, Rbenv, PostgreSQL, Postgres, Vagrant
 change_frequency: never
+ogp:
+  og:
+    description: "Well for some reason the PG gem really doesn't like my computer anymore.  Long story short I decided that I would fire up a Ubuntu development environment on Vagrant and well, it has been a difficult ride."
+    title: 'Vagrant, RBENV, Rails 4 and PostgreSQL headaches'
+    url: 'read/vagrant-rbenv-rails-4-and-postgresql-headaches'
 ---
 
 **Forewarning:** This post is more of a rambling and future reference to myself.

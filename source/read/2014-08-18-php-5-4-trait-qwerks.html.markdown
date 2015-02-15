@@ -3,6 +3,11 @@ title: PHP 5.4 Trait Qwerks
 date: 2014-08-18 20:06 UTC
 tags: PHP, PHP 5.4, Traits
 change_frequency: never
+ogp:
+  og:
+    description: "Although the title may lead you to think otherwise;  I actually really like Traits.  I wish I had made the switch to 5.4 sooner! Bundle them with the shorter array syntax and I'm a happy PHP dev."
+    title: 'PHP 5.4 Trait Qwerks'
+    url: 'read/php-5-4-trait-qwerks'
 ---
 
 Although the title may lead you to think otherwise;  I actually really like Traits.  I wish I had made the switch to 5.4 sooner! Bundle them with the shorter array syntax and I'm a happy PHP dev.

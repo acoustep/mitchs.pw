@@ -3,7 +3,14 @@ title: Using Eloquent, Twig and Slim PHP
 date: 2013-08-07 00:00 UTC
 tags: Eloquent, Slim, Twig, PHP, slim-twig-eloquent
 change_frequency: never
+ogp:
+  og:
+    description: 'Originally while I was writing this blog I intended to make a step by step guide to putting together three of my favourite PHP tools. After a few issues and finding out that Slim Views is now a thing I decided instead to put together a git repo so anyone can get started quickly.'
+    title: "Using Eloquent, Twig and Slim PHP"
+    url: 'read/using-eloquent-twig-and-slim-php'
 ---
+
+*Note*: See the [update to this post](/read/using-eloquent-twig-and-slim-php-revisited) where I've made several changes
 
 Originally while I was writing this blog I intended to make a step by
 step guide to putting together three of my favourite PHP tools. After a

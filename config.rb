@@ -81,6 +81,18 @@ set :url_root, 'http://fullstackstanley.com'
 
 activate :search_engine_sitemap
 
+activate :ogp do |ogp|
+  #
+  # register namespace with default options
+  #
+  ogp.namespaces = {
+    og: data.ogp.og
+    # from data/ogp/og.yml
+  }
+  ogp.base_url = 'http://fullstackstanley.com/'
+  ogp.blog = true
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

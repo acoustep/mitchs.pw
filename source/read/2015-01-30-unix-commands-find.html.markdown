@@ -3,6 +3,11 @@ title: "Unix commands: Find"
 date: 2015-01-30 13:18 UTC
 tags: Unix, Linux, OSX, command line
 change_frequency: never
+ogp:
+  og:
+    description: 'After watching one of Gary Bernhardt’s Destroy All Software screencasts I thought I’d take some of his advice and learn about some basic Unix commands.  I’m going to start with find.'
+    title: 'Unix commands: Find'
+    url: 'read/unix-commands-find'
 ---
 
 After watching one of Gary Bernhardt’s Destroy All Software screencasts I thought I’d take some of his advice and learn about some basic Unix commands.  I’m going to start with ```find```.

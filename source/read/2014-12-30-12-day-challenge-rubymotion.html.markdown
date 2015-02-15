@@ -3,6 +3,11 @@ title: "12 Day Challenge: RubyMotion"
 date: 2014-12-30 20:07 UTC
 tags: Android, iOS, Ruby, RubyMotion
 change_frequency: never
+ogp:
+  og:
+    description: "I have wanted to expand my skills into mobile development for a long time now. I *love* developing for the web and I think it's only natural for any web developer to want to take a peak in to the world of mobile app development."
+    title: '12 Day Challenge: RubyMotion'
+    url: 'read/12-day-challenge-rubymotion'
 ---
 
 I have wanted to expand my skills into mobile development for a long time now. I *love* developing for the web and I think it's only natural for any web developer to want to take a peak in to the world of mobile app development.

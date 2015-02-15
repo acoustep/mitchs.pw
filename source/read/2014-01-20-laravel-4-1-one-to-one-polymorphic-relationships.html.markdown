@@ -3,6 +3,11 @@ title: Laravel 4.1 one-to-one polymorphic relationships
 date: 2014-01-20 00:00 UTC
 tags: Laravel 4.1, Laravel, PHP, Eloquent
 change_frequency: never
+ogp:
+  og:
+    description: 'To use one-to-one polymorphic relationships in Laravel 4.1  use the "morphOne" method in your models.'
+    title: 'Laravel 4.1 one-to-one polymorphic relationships'
+    url: 'read/laravel-4-1-one-to-one-polymorphic-relationships'
 ---
 
 To use one-to-one polymorphic relationships in Laravel 4.1  use the "morphOne" method in your models.
