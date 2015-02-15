@@ -62,6 +62,31 @@
 					<h1>Latest Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Vagrant, RBENV, Rails 4 and PostgreSQL headaches</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/rails-4">Rails 4</a>
+        <a href="/read/categories/rbenv">Rbenv</a>
+        <a href="/read/categories/postgresql">PostgreSQL</a>
+        <a href="/read/categories/postgres">Postgres</a>
+        <a href="/read/categories/vagrant">Vagrant</a>
+    </div>
+		<time>Jan 18, 2014</time>
+
+		<p><strong>Forewarning:</strong> This post is more of a rambling and future reference to myself.</p>
+
+<p>I&rsquo;ve been working on a project in Ruby on Rails for a little while and a few days ago I made the mistake of upgrading to OS X Mavericks with the thoughts &ldquo;What&rsquo;s the worst that could happen?&rdquo; running through my mind.</p>
+
+<p>Well for some reason the PG gem really doesn&rsquo;t like my computer anymore.  Long story short I decided that I would fire up a Ubuntu development environment on Vagrant and well, it has been a difficult ride.</p>
+
+<p>To keep it short.  First time around I had many issues.</p>
+
+<p>
+
+		<a href="/read/vagrant-rbenv-rails-4-and-postgresql-headaches">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
 		</h1>
     <div class="tags">
@@ -152,50 +177,6 @@
 <p>
 
 		<a href="/read/creating-a-twitter-feed-in-laravel-4">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/automating-configurations-with-laravel">Automating Configurations with Laravel</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/laravel-4">Laravel 4</a>
-    </div>
-		<time>Aug  7, 2013</time>
-
-		<p>One of my favourite features of Laravel is how it handles configurations for different environments.  You can have different settings for development, staging, beta, production and even separate configurations for each developer working on the project.</p>
-
-<p>With a fresh version of Laravel installed: take a look at the <code>app/bootstrap/start.php</code> file.  Near the top of the file you should see the following snippet of code:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="nv">$env</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="na">detectEnvironment</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'local'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'your-machine-name'</span><span class="p">),</span>
-<span class="p">));</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>Within the <code>detectEnvironment()</code> method you can define an array of configurations.</p>
-
-<p>If you and a friend or coworker are working on a project and using Git to keep track of changes you could use the following:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="nv">$env</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="na">detectEnvironment</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'mitch'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'mitch-machine-name'</span><span class="p">),</span>
-    <span class="s1">'tom'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'tom-machine-name'</span><span class="p">),</span>
-<span class="p">));</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>Laravel will detect which configuration to use from your computer&rsquo;s hostname.</p>
-
-<p>
-
-		<a href="/read/automating-configurations-with-laravel">Read more</a>
 	</article>
 
 <div class="pagination">

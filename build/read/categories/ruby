@@ -62,6 +62,40 @@
 					<h1>Ruby Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/using-padrino-with-ember-cli-part-2">Using Padrino with Ember CLI Part 2</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/ruby">Ruby</a>
+        <a href="/read/categories/padrino">Padrino</a>
+        <a href="/read/categories/ember">Ember</a>
+        <a href="/read/categories/ember-cli">Ember-CLI</a>
+        <a href="/read/categories/javascript">Javascript</a>
+        <a href="/read/categories/sequel">Sequel</a>
+        <a href="/read/categories/sqlite">sqlite</a>
+        <a href="/read/categories/rabl">RABL</a>
+    </div>
+		<time>Feb 15, 2015</time>
+
+		<p>Welcome to Part 2 of my Padrino and Ember series.  This article is for setting up Ember with our Padrino API.  If you missed part 1, go take a look <a href="/read/using-padrino-with-ember-cli-part-1">here</a>. You can view the full source on <a href="https://github.com/acoustep/padrino-ember-example">Github</a>.</p>
+
+<p>I am using the following library versions for this tutorial:</p>
+
+<ul>
+<li>IO.js v1.2.0</li>
+<li>NPM 2.5.1</li>
+<li>watchman 3.0.0 (Installed with homebrew)</li>
+<li>Ember 1.8.1</li>
+<li>Ember Data 1.0.0-beta.14.1</li>
+<li>jQuery 1.11.2</li>
+<li>Handlebars 1.3.0</li>
+</ul>
+
+<p>
+
+		<a href="/read/using-padrino-with-ember-cli-part-2">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/using-padrino-with-ember-cli-part-1">Using Padrino with Ember CLI Part 1</a>
 		</h1>
     <div class="tags">
@@ -85,7 +119,7 @@
  </p></li>
 </ul>
 
-<p>I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotcha’s to help you on your way.<br>
+<p>I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
 
 
 		<a href="/read/using-padrino-with-ember-cli-part-1">Read more</a>

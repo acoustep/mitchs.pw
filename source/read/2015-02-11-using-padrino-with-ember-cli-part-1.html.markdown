@@ -13,15 +13,17 @@ After listening to the Ruby Rogues’ Padrino episode I was sold on the idea of 
 * Funsies.
  
 
-I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s ```ActiveModelAdapter``` and show you a few gotcha’s to help you on your way.  
+I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s ```ActiveModelAdapter``` and show you a few gotchas to help you on your way.  
 READMORE
 ## Note
 
-This blog is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino, although if you have previous Ruby web framework experience you’ll most likely catch on quick.
+This article is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino. If you have previous Ruby web framework experience you’ll most likely catch on quick.
 
 On the Ember side of things you should be comfortable with Javascript, Ember and ideally Ember-CLI.
 
 I will try to explain everything I do but this article is more about getting the two frameworks to work together.
+
+You can view the full source for both of these articles on [Github](https://github.com/acoustep/padrino-ember-example).
 
 ## Getting Started
 
@@ -31,11 +33,11 @@ See Padrino’s [Installation Guide](http://www.padrinorb.com/guides/installatio
  
 For reference I’m using the following library versions:
 
-* Node 0.10.36 / IO.js 1.2.0
+* IO.js 1.2.0 (Also tested with Node 0.10.36)
 * NPM 2.5.1
-* Ember-cli 0.1.12
+* Ember-cli 0.1.15
 * Ember 1.8.1
-* Ember-data 1.0.0-beta.12
+* Ember-data 1.0.0-beta.14.1
 * Bower 1.3.12
 * ruby-2.1.1
 * Padrino 0.12.4
@@ -271,6 +273,12 @@ def post_params
 end
 ```
 
+If you're familiar with Active Record you should see some familiar method names.  ```all```, ```create```, ```delete``` and ```update``` are self explanatory. You may be unfamiliar with how Sequel finds specific rows, though.
+
+```Post[params[:id]]``` is the simplest way to retrieve a record by primary key.  ```params[:id]``` is just the URL id parameter. So it's more like calling ```Post[1]```.
+
+Occasionally we return a blank object ```return '{}'```.  This may seem uneeded but Ember expects a valid JSON response and if it doesn't get one it will throw a hissy fit.
+
 ### Views
 
 Now we’ll get the JSON responses working. Sequel and RABL make this nice and easy.
@@ -427,4 +435,4 @@ Before moving on to Part 2 make sure your Padrino app is up and running.  Use ``
 
 That’s it for part 1.  We’ve successfully made an API compatible with Ember’s ActiveModelAdapter. We’ve disabled CSRF where necessary and enabled CORS.
 
-See part 2 for implementing the Ember side of the project.
+[Click here to view part 2 for implementing the Ember side of the project](/read/using-padrino-with-ember-cli-part-2).

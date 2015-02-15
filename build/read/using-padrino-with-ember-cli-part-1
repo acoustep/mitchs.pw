@@ -71,16 +71,18 @@
  </p></li>
 </ul>
 
-<p>I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotcha’s to help you on your way.<br>
+<p>I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
 </p>
 
 <h2>Note</h2>
 
-<p>This blog is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino, although if you have previous Ruby web framework experience you’ll most likely catch on quick.</p>
+<p>This article is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino. If you have previous Ruby web framework experience you’ll most likely catch on quick.</p>
 
 <p>On the Ember side of things you should be comfortable with Javascript, Ember and ideally Ember-CLI.</p>
 
 <p>I will try to explain everything I do but this article is more about getting the two frameworks to work together.</p>
+
+<p>You can view the full source for both of these articles on <a href="https://github.com/acoustep/padrino-ember-example">Github</a>.</p>
 
 <h2>Getting Started</h2>
 
@@ -91,11 +93,11 @@ See Padrino’s <a href="http://www.padrinorb.com/guides/installation">Installat
 For reference I’m using the following library versions:</p>
 
 <ul>
-<li>Node 0.10.36 / IO.js 1.2.0</li>
+<li>IO.js 1.2.0 (Also tested with Node 0.10.36)</li>
 <li>NPM 2.5.1</li>
-<li>Ember-cli 0.1.12</li>
+<li>Ember-cli 0.1.15</li>
 <li>Ember 1.8.1</li>
-<li>Ember-data 1.0.0-beta.12</li>
+<li>Ember-data 1.0.0-beta.14.1</li>
 <li>Bower 1.3.12</li>
 <li>ruby-2.1.1</li>
 <li>Padrino 0.12.4</li>
@@ -425,6 +427,12 @@ bundle
 </pre></td></tr></tbody></table>
 </div>
 
+<p>If you&rsquo;re familiar with Active Record you should see some familiar method names.  <code>all</code>, <code>create</code>, <code>delete</code> and <code>update</code> are self explanatory. You may be unfamiliar with how Sequel finds specific rows, though.</p>
+
+<p><code>Post[params[:id]]</code> is the simplest way to retrieve a record by primary key.  <code>params[:id]</code> is just the URL id parameter. So it&rsquo;s more like calling <code>Post[1]</code>.</p>
+
+<p>Occasionally we return a blank object <code>return &#39;{}&#39;</code>.  This may seem uneeded but Ember expects a valid JSON response and if it doesn&rsquo;t get one it will throw a hissy fit.</p>
+
 <h3>Views</h3>
 
 <p>Now we’ll get the JSON responses working. Sequel and RABL make this nice and easy.</p>
@@ -630,7 +638,7 @@ attributes :id, :title, :content, :created_at, :updated_at
 
 <p>That’s it for part 1.  We’ve successfully made an API compatible with Ember’s ActiveModelAdapter. We’ve disabled CSRF where necessary and enabled CORS.</p>
 
-<p>See part 2 for implementing the Ember side of the project.</p>
+<p><a href="/read/using-padrino-with-ember-cli-part-2">Click here to view part 2 for implementing the Ember side of the project</a>.</p>
 
 	</article>
 	<div class="pagination">
