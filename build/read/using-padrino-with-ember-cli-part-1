@@ -485,7 +485,7 @@ attributes :id, :title, :content, :created_at, :updated_at
 
 <p>We use the <code>collection</code> method when working with multiple objects and the <code>object</code> method when specifying one object in particular.</p>
 
-<p>The collection method has two parameters, root and object<em>root. root specifies the parent key that wraps around the collection. We set object</em>root to false because by default RABL adds another key around each row.</p>
+<p>The collection method has two parameters, root and object_root. root specifies the parent key that wraps around the collection. We set object_root to false because by default RABL adds another key around each row.</p>
 
 <p>Essentially we are changing this JSON:</p>
 <div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1

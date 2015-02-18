@@ -308,7 +308,7 @@ If you’ve never used RABL before this may look quite alien to you.
 
 We use the ```collection``` method when working with multiple objects and the ```object``` method when specifying one object in particular.
 
-The collection method has two parameters, root and object_root. root specifies the parent key that wraps around the collection. We set object_root to false because by default RABL adds another key around each row.
+The collection method has two parameters, root and object\_root. root specifies the parent key that wraps around the collection. We set object\_root to false because by default RABL adds another key around each row.
 
 Essentially we are changing this JSON:
 
