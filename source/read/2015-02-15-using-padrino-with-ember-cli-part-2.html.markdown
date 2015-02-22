@@ -329,6 +329,8 @@ Here’s a preview of our posts index with a couple of posts added:
 
 ## What next?
 
+If you're interested in setting up authentication you can check part 3 of this series, [Using Padrino with Ember: Authentication](/read/using-padrino-with-ember-cli-part-3-authentication).
+
 There is a lot of room for growth. Things that are often needed in SPA’s include validation, flash messages and realtime data. 
 
 They are all very doable with Padrino and Ember but are beyond the scope of this article.
