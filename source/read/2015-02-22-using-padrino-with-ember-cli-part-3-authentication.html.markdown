@@ -10,11 +10,11 @@ ogp:
     url: 'read/using-padrino-with-ember-cli-part-3-authentication/'
 ---
 
-While thinking about what to write for this weeks article it occured that I never touched on authentication with Ember and Padrino in my previous articles. So I think this is the perfect excuse to continue with the series! Follow along for creating a Padrino backend that works with Ember-simple-auth and the authentication library Ember-simple-auth-devise.
+While thinking about what to write for this week's article it occured that I never touched on authentication with Ember and Padrino in my previous articles. So I think this is the perfect excuse to continue with the series! Follow along for creating a Padrino backend that works with Ember-simple-auth and the authentication library Ember-simple-auth-devise.
 
 READMORE
 
-If you haven't been following along you can view them here:
+If you haven't seen the rest of the series you can view them here:
 
 * [Part 1: Setting up the Padrino API](/read/using-padrino-with-ember-cli-part-1)
 * [Part 2: Setting up Ember CLI to work with Padrino](/read/using-padrino-with-ember-cli-part-2)
@@ -22,8 +22,6 @@ If you haven't been following along you can view them here:
 [You can also view the full source for the application on Github](https://github.com/acoustep/padrino-ember-example)
 
 ## Setting up the API
-
-Change in to your Padrino application within your preferred command line application.
 
 Before we start our deep dive into authentication open up your Gemfile, add bcrypt and run ```bundle install```.
 
