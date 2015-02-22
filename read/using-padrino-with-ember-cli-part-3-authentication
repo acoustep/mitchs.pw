@@ -92,11 +92,11 @@
         <a href="/read/categories/minitest">MiniTest</a>
     </div>
 		<p><em>Posted on Feb 22, 2015</em></p>
-		<p>While thinking about what to write for this weeks article it occured that I never touched on authentication with Ember and Padrino in my previous articles. So I think this is the perfect excuse to continue with the series! Follow along for creating a Padrino backend that works with Ember-simple-auth and the authentication library Ember-simple-auth-devise.</p>
+		<p>While thinking about what to write for this week&rsquo;s article it occured that I never touched on authentication with Ember and Padrino in my previous articles. So I think this is the perfect excuse to continue with the series! Follow along for creating a Padrino backend that works with Ember-simple-auth and the authentication library Ember-simple-auth-devise.</p>
 
 <p></p>
 
-<p>If you haven&rsquo;t been following along you can view them here:</p>
+<p>If you haven&rsquo;t seen the rest of the series you can view them here:</p>
 
 <ul>
 <li><a href="/read/using-padrino-with-ember-cli-part-1">Part 1: Setting up the Padrino API</a></li>
@@ -106,8 +106,6 @@
 <p><a href="https://github.com/acoustep/padrino-ember-example">You can also view the full source for the application on Github</a></p>
 
 <h2>Setting up the API</h2>
-
-<p>Change in to your Padrino application within your preferred command line application.</p>
 
 <p>Before we start our deep dive into authentication open up your Gemfile, add bcrypt and run <code>bundle install</code>.</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">gem</span> <span class="s1">'bcrypt-ruby'</span><span class="p">,</span> <span class="s1">'~&gt; 3.1.5'</span>
