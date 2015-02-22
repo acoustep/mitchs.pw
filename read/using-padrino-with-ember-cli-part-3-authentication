@@ -1,0 +1,847 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Mitch Stanley">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>FullStack Stanley | Using Padrino with Ember CLI Part 3: Authentication</title>
+
+      <meta name="twitter:card" content="summary">
+      <meta property="og:description" content="Welcome to Part 3 of my Padrino and Ember series.  This article is for setting up Ember with our Padrino API...">
+      <meta property="og:title" content="Using Padrino with Ember CLI Part 3: Authentication">
+      <meta property="og:url" content="http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-3-authentication">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2015-02-22T11:53:00Z">
+      <meta property="article:tag" content="Ruby">
+      <meta property="article:tag" content="Padrino">
+      <meta property="article:tag" content="Ember">
+      <meta property="article:tag" content="Ember-CLI">
+      <meta property="article:tag" content="Javascript">
+      <meta property="article:tag" content="Sequel">
+      <meta property="article:tag" content="sqlite">
+      <meta property="article:tag" content="RABL">
+      <meta property="article:tag" content="MiniTest">
+
+      <link href="../stylesheets/application-30aaea03.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42788138-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+
+    <body class="read read_using-padrino-with-ember-cli-part-3-authentication">
+      <div class="wrapper-for-content-outside-of-footer">
+        <header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="about" href="#top">About Me</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+      <li class="nav-link right"><a target="_blank" href="http://fullstackstanley.us9.list-manage1.com/subscribe?u=f65caf2e9010cf2ce0fa854ab&amp;id=f053565052">Monthly Newsletter</a></li>
+		</ul>
+	</div>
+</header>
+
+        <a name="top"></a>
+        <div id="aboutMe">
+	<div class="partial-container">
+		<h5>About Me</h5>
+    <p>My name is Mitch Stanley and I'm a 25 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I like to read books, lift weights, play guitar, play video games and write these articles!</p>
+	</div>
+</div>
+
+
+        <div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+        <div id="container">
+          <div id="main">
+            	<article>
+		<h1>Using Padrino with Ember CLI Part 3: Authentication</h1>
+    <div class="tags">
+        <a href="/read/categories/ruby">Ruby</a>
+        <a href="/read/categories/padrino">Padrino</a>
+        <a href="/read/categories/ember">Ember</a>
+        <a href="/read/categories/ember-cli">Ember-CLI</a>
+        <a href="/read/categories/javascript">Javascript</a>
+        <a href="/read/categories/sequel">Sequel</a>
+        <a href="/read/categories/sqlite">sqlite</a>
+        <a href="/read/categories/rabl">RABL</a>
+        <a href="/read/categories/minitest">MiniTest</a>
+    </div>
+		<p><em>Posted on Feb 22, 2015</em></p>
+		<p>While thinking about what to write for this weeks article it occured that I never touched on authentication with Ember and Padrino in my previous articles. So I think this is the perfect excuse to continue with the series! Follow along for creating a Padrino backend that works with Ember-simple-auth and the authentication library Ember-simple-auth-devise.</p>
+
+<p></p>
+
+<p>If you haven&rsquo;t been following along you can view them here:</p>
+
+<ul>
+<li><a href="/read/using-padrino-with-ember-cli-part-1">Part 1: Setting up the Padrino API</a></li>
+<li><a href="/read/using-padrino-with-ember-cli-part-2">Part 2: Setting up Ember CLI to work with Padrino</a></li>
+</ul>
+
+<p><a href="https://github.com/acoustep/padrino-ember-example">You can also view the full source for the application on Github</a></p>
+
+<h2>Setting up the API</h2>
+
+<p>Change in to your Padrino application within your preferred command line application.</p>
+
+<p>Before we start our deep dive into authentication open up your Gemfile, add bcrypt and run <code>bundle install</code>.</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">gem</span> <span class="s1">'bcrypt-ruby'</span><span class="p">,</span> <span class="s1">'~&gt; 3.1.5'</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We&rsquo;ll start by generating the <code>User</code> model which will have 6 fields: <code>id</code>, <code>email</code>, <code>password</code>, <code>authentication_token</code>, <code>created_at</code> and <code>updated_at</code></p>
+
+<p><code>padrino g model User email:string password:string authentication_token:string created_at:datetime updated_at:datetime</code></p>
+
+<p>Now we can run the migration:</p>
+
+<p><code>rake sq:migrate:up</code></p>
+
+<p>We need to make some changes to the model. Open  <code>models/user.rb</code> and add the following code  </p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></td><td class="code"><pre><span class="nb">require</span> <span class="s1">'bcrypt'</span>
+<span class="nb">require</span> <span class="s1">'securerandom'</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">Sequel</span><span class="o">::</span><span class="no">Model</span>
+  <span class="no">Sequel</span><span class="o">::</span><span class="no">Model</span><span class="p">.</span><span class="nf">plugin</span> <span class="ss">:timestamps</span>
+
+  <span class="kp">attr_reader</span> <span class="ss">:readable_token</span>
+
+  <span class="k">def</span> <span class="nf">before_create</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">password</span> <span class="o">=</span> <span class="no">BCrypt</span><span class="o">::</span><span class="no">Password</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">password</span><span class="p">)</span>
+    <span class="n">generate_authentication_token</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">sign_in</span> <span class="n">credentials</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">first</span><span class="p">(</span><span class="ss">email: </span><span class="n">credentials</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">"email"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="n">user</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="no">BCrypt</span><span class="o">::</span><span class="no">Password</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">password</span><span class="p">)</span> <span class="o">!=</span> <span class="n">credentials</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">"password"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="n">user</span><span class="p">.</span><span class="nf">generate_authentication_token</span>
+    <span class="n">user</span><span class="p">.</span><span class="nf">save</span>
+    <span class="k">return</span> <span class="n">user</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">generate_authentication_token</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="kp">false</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">authentication_token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">urlsafe_base64</span><span class="p">(</span><span class="kp">nil</span><span class="p">,</span><span class="kp">false</span><span class="p">)</span>
+    <span class="vi">@readable_token</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">authentication_token</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">authentication_token</span> <span class="o">=</span> <span class="no">BCrypt</span><span class="o">::</span><span class="no">Password</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Just like the <code>Post</code> model we need to include the timestamps plugin so that our <code>created_at</code> and <code>updated_at</code> fields update appropriately.</p>
+
+<p>Second, we need to add a <code>before_create</code> hook which generates an authentication token and hashes our passwords for us.</p>
+
+<p>Third, we have added a static method for signing in.  This will take one parameter which is a hash of email and password. It will return an instance of <code>User</code> if valid and <code>false</code> otherwise.</p>
+
+<p>Lastly, we&rsquo;ve added a <code>generate_authentication_token</code> which handles the token generation.  </p>
+
+<p>Because we should never store the token directly in the database we have to hash it. That puts us in a predicament.  How do we read the token but also make sure it&rsquo;s hashed in the database? We could do a <code>before_save</code> hook which automatically hashes unhashed tokens but what if we want to access the token after a save? We would be forced to invalidate a user&rsquo;s session and things start to get messy.</p>
+
+<p>My solution is to create an instance variable named <code>readable_token</code> which gets a copy of the token before it&rsquo;s hashed.  This property is not placed in the database but is accessible after a token is generated for the remainder of the session.</p>
+
+<p>This means 3 things:</p>
+
+<ul>
+<li>The database always has the correct token because it&rsquo;s always saved straight after generation.</li>
+<li>We have access to the token after generation which let&rsquo;s us use the token for the remainder of the session.</li>
+<li>If a user sends a separate request we will not have access to the readable token. This encourages us to check authorisation requests against the database hash rather than trying to do a sneaky shortcut and comparing it to the readable token.</li>
+</ul>
+
+<p>For token generation we&rsquo;re using <code>SecureRandom.urlsafe_base64(nil, false)</code>.  According to <a href="http://stackoverflow.com/questions/6021372/best-way-to-create-unique-token-in-rails">this StackOverflow thread</a> Rails has now deprecated this method in favour of base58. </p>
+
+<p>I&rsquo;ve tried to get base58 working but failed miserably.  At the time of writing I believe base58 is in the Rails/ActiveSupport master branch where as Padrino uses ActiveSupport 4.2.  I may come back to this in the future.</p>
+
+<p>Let&rsquo;s seed a couple of users into our database to test everything&rsquo;s working. By default the Padrino seed command looks for a db/seed.rb file and runs it. I prefer to keep separate files for each model. So in db/seeds.rb put the following</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="no">Dir</span><span class="p">[</span><span class="n">__dir__</span> <span class="o">+</span> <span class="s1">'/seeds/**/*.rb'</span><span class="p">].</span><span class="nf">each</span> <span class="p">{</span><span class="o">|</span><span class="n">file</span><span class="o">|</span> <span class="nb">require</span> <span class="n">file</span><span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>And then create <code>db/seeds/user.rb</code>.  In this file we&rsquo;ll truncate the database and create two users.</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="no">User</span><span class="p">.</span><span class="nf">truncate</span>
+
+<span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="ss">email: </span><span class="s2">"admin@admin.co.uk"</span><span class="p">,</span>
+  <span class="ss">password: </span><span class="s2">"testpassword"</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="ss">email: </span><span class="s2">"example@example.co.uk"</span><span class="p">,</span>
+  <span class="ss">password: </span><span class="s2">"testpassword"</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><strong>Tip:</strong> Other Sequel methods such as <code>multi_insert</code> will ignore the <code>before_create</code> hook which means we don&rsquo;t get a hashed password or authentication token.</p>
+
+<p>When we run <code>padrino rake seed</code> we can see the data that&rsquo;s been inserted into the database including our hashed passwords and authentication tokens</p>
+
+<p>It&rsquo;s time to move on to the controller <code>app/controllers/users.rb</code>. </p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td class="code"><pre><span class="no">Api</span><span class="o">::</span><span class="no">App</span><span class="p">.</span><span class="nf">controllers</span> <span class="s2">"api/v1/users"</span> <span class="k">do</span>
+
+  <span class="n">post</span> <span class="p">:</span><span class="n">sign_in</span> <span class="k">do</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">sign_in</span> <span class="n">params</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">"user"</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="k">if</span> <span class="n">user</span>
+      <span class="vi">@status</span> <span class="o">=</span> <span class="mi">201</span>
+    <span class="k">else</span>
+      <span class="vi">@message</span> <span class="o">=</span> <span class="s2">"Invalid login credentials"</span> <span class="k">unless</span> <span class="n">user</span>
+      <span class="vi">@status</span> <span class="o">=</span> <span class="mi">401</span>
+    <span class="k">end</span>
+
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+    <span class="n">status</span> <span class="vi">@status</span>
+    <span class="n">render</span> <span class="s2">"users/sign_in"</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Ember will be sending a <code>user</code> object which contains <code>email</code> and <code>password</code> key values.</p>
+
+<p>If the user exists we want the request to return a status of 201 for successful creation.  If the credentials are invalid we set a message which will be passed to our RABL template.</p>
+
+<p>Let&rsquo;s place the RABL template in <code>app/views/users/sign_in.rabl</code></p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="n">object</span> <span class="vi">@user</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+<span class="n">attributes</span> <span class="p">:</span><span class="n">readable_token</span> <span class="o">=&gt;</span> <span class="ss">:authentication_token</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="ss">:email</span>
+<span class="n">node</span> <span class="p">(</span><span class="ss">:message</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="vi">@message</span> <span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We want to use the user object but we don&rsquo;t want the default behaviour of wrapping &ldquo;user&rdquo; around our attributes so we set it to <code>false</code>.</p>
+
+<p>Also notice how we&rsquo;re mapping <code>readable_token</code> to <code>authentication_token</code> for Ember.</p>
+
+<p>The <code>node</code> block let&rsquo;s us add another attribute not associated with the user.  This message will host our error message to show the user.</p>
+
+<p>Here&rsquo;s a couple of screenshots of how we can interact with the API via Postman APP and the structure of the JSON returned.</p>
+
+<h3>Success</h3>
+
+<p><img alt="Success" src="http://i.imgur.com/toncsAo.png" /></p>
+
+<h3>Failed</h3>
+
+<p><img alt="Failed" src="http://i.imgur.com/eEwOUD0.png" /></p>
+
+<h2>Testing</h2>
+
+<p>So far we&rsquo;ve done a shameful amount of testing. Well no more! I think at least for authentication it&rsquo;s important we have a few tests in place for peace of mind.</p>
+
+<p>When we first generated the project we included MiniTest which Padrino has kindly set up for us. </p>
+
+<p>When we run <code>padrino rake test</code> we get a couple of failures due to some helper tests. Go in to <code>test/app/helpers</code> and remove the two files <code>posts_helper_test.rb</code> and <code>users_helper_tests.rb</code>.  Running <code>padrino rake test</code>  now brings us back to green.</p>
+
+<p>Here is our <code>test/app/controllers/users_controller_test.rb</code></p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td><td class="code"><pre><span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/../../test_config.rb'</span><span class="p">)</span>
+
+<span class="n">describe</span> <span class="s2">"/users"</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+      <span class="ss">email: </span><span class="s2">"admin@admin.co.uk"</span><span class="p">,</span>
+      <span class="ss">password: </span><span class="s2">"testpassword"</span><span class="p">,</span>
+    <span class="p">})</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"should authenticate valid credentials"</span> <span class="k">do</span>
+    <span class="n">post</span> <span class="s2">"api/v1/users/sign_in"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"user"</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"admin@admin.co.uk"</span><span class="p">,</span> <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"testpassword"</span><span class="p">}}</span>
+    <span class="n">json_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+    <span class="n">assert_equal</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">json_response</span><span class="p">[</span><span class="s2">"message"</span><span class="p">]</span>
+    <span class="n">assert_equal</span> <span class="s2">"admin@admin.co.uk"</span><span class="p">,</span> <span class="n">json_response</span><span class="p">[</span><span class="s2">"email"</span><span class="p">]</span>
+    <span class="n">assert_includes</span> <span class="n">json_response</span><span class="p">,</span> <span class="s2">"authentication_token"</span>
+    <span class="n">assert_equal</span> <span class="mi">201</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"should authenticate valid credentials"</span> <span class="k">do</span>
+    <span class="n">post</span> <span class="s2">"api/v1/users/sign_in"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"user"</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"admin@admin.co.uk"</span><span class="p">,</span> <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"wrongpassword"</span><span class="p">}}</span>
+    <span class="n">json_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">body</span>
+    <span class="n">refute_nil</span> <span class="n">json_response</span><span class="p">[</span><span class="s2">"message"</span><span class="p">]</span>
+    <span class="n">refute_includes</span> <span class="n">json_response</span><span class="p">,</span> <span class="s2">"email"</span>
+    <span class="n">assert_equal</span> <span class="mi">401</span><span class="p">,</span> <span class="n">last_response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>The before block creates a valid User for us to test. From there we have two tests: one for testing valid credentials and one for testing invalid credentials. We test that the correct status and appropriate values are returned.</p>
+
+<p>The <code>test/app/models/user_test.rb</code> is a little longer but still rather simple</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></td><td class="code"><pre><span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/../test_config.rb'</span><span class="p">)</span>
+
+<span class="n">describe</span> <span class="s2">"User Model"</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+      <span class="ss">email: </span><span class="s2">"admin@admin.co.uk"</span><span class="p">,</span>
+      <span class="ss">password: </span><span class="s2">"testpassword"</span><span class="p">,</span>
+    <span class="p">})</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'can construct a new instance'</span> <span class="k">do</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span>
+    <span class="n">refute_nil</span> <span class="n">user</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'generates an authentication_token when created'</span> <span class="k">do</span>
+    <span class="n">refute_nil</span> <span class="vi">@user</span><span class="p">,</span> <span class="s2">"authentication_token"</span>
+    <span class="n">refute_nil</span> <span class="vi">@user</span><span class="p">,</span> <span class="s2">"readable_token"</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'generates a new authentication_token when signed in'</span> <span class="k">do</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"admin@admin.co.uk"</span><span class="p">,</span> <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"testpassword"</span><span class="p">}</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">sign_in</span> <span class="n">params</span>
+
+    <span class="n">readable_token</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">readable_token</span>
+    <span class="n">authentication_token</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">authentication_token</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">sign_in</span> <span class="n">params</span>
+
+    <span class="n">refute_equal</span> <span class="n">readable_token</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">readable_token</span>
+    <span class="n">refute_equal</span> <span class="n">authentication_token</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">authentication_token</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'returns false with invalid credentials'</span> <span class="k">do</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"email"</span> <span class="o">=&gt;</span> <span class="s2">"admin@admin.co.uk"</span><span class="p">,</span> <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="s2">"badpassword"</span><span class="p">}</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">sign_in</span> <span class="n">params</span>
+
+    <span class="n">assert_equal</span> <span class="kp">false</span><span class="p">,</span> <span class="n">user</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"returns false when credentials aren't set"</span> <span class="k">do</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">sign_in</span> <span class="n">params</span>
+
+    <span class="n">assert_equal</span> <span class="kp">false</span><span class="p">,</span> <span class="n">user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>With this set of tests we&rsquo;re mostly focusing on the behaviour of the authentication token.  </p>
+
+<p>Noteably, on lines 21 to 32 we&rsquo;re checking that signing in a second time regenerates the authentication token.</p>
+
+<p>If you&rsquo;re using the Github repo or you want to see green colours fly by then make sure you install <a href="https://github.com/kern/minitest-reporters">minitest-reports</a>.</p>
+
+<p>At this point we have some basic tests in place and <code>padrino rake test</code> should return green.  Our journey with Padrino is complete but Ember is calling us&hellip;</p>
+
+<h2>Ember</h2>
+
+<p>Change directory in to your Ember app and run the following commands.</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre>ember install:addon ember-cli-simple-auth
+ember install:addon ember-cli-simple-auth-devise
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Ember simple auth requires an authenticator.  We could create a custom one but this article is already long enough and Devise does the job. We&rsquo;re already simulating a Rails CRUD app. Why not simulate a Rails authentication library, too? Besides, it&rsquo;s pretty flexible.</p>
+
+<p>If we go in to <code>config/environment.js</code> we can customise our authentication library to work with our API.  Let&rsquo;s add some code just above the <code>return ENV</code>:</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre>  <span class="nx">ENV</span><span class="p">[</span><span class="s1">'simple-auth-devise'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">serverTokenEndpoint</span><span class="p">:</span> <span class="s1">'/api/v1/users/sign_in'</span><span class="p">,</span>
+    <span class="na">tokenAttributeName</span><span class="p">:</span> <span class="s1">'authentication_token'</span><span class="p">,</span>
+    <span class="na">identificationAttributeName</span><span class="p">:</span> <span class="s1">'email'</span><span class="p">,</span>
+  <span class="p">};</span>
+  <span class="nx">ENV</span><span class="p">[</span><span class="s1">'simple-auth'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">routeAfterAuthentication</span><span class="p">:</span> <span class="s1">'posts.index'</span><span class="p">,</span>
+    <span class="na">routeIfAlreadyAuthenticated</span><span class="p">:</span> <span class="s1">'posts.index'</span>
+  <span class="p">};</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<ul>
+<li><code>serverTokenEndpoint</code> is our API end point for signing in.</li>
+<li><code>tokenAttributeName</code> is the name of our authentication token.</li>
+<li> <code>identificationAttributeName</code> is the field we&rsquo;re sending back with the token to identify the user. In this case we&rsquo;re using the email.</li>
+<li> <code>routeAfterAuthentication</code> and <code>routeIfAlreadyExists</code> is where to redirect to when necessary. By default this is <code>index</code> but since we made the route of our app <code>posts</code> we have to change it.</li>
+</ul>
+
+<p>Time to whip out some more ember-cli commands. This time we need to make a login controller and two routes.</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>ember g controller login
+ember g route application
+ember g route login
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We&rsquo;ll make a login form with help from <a href="https://github.com/simplabs/ember-simple-auth/blob/master/examples/2-errors.html">this error message example</a>.</p>
+
+<p>In <code>app/controllers/login.js</code></p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">LoginControllerMixin</span> <span class="nx">from</span> <span class="s1">'simple-auth/mixins/login-controller-mixin'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">LoginControllerMixin</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">authenticator</span><span class="p">:</span> <span class="s1">'simple-auth-authenticator:devise'</span><span class="p">,</span>
+  <span class="na">actions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// display an error when authentication fails</span>
+    <span class="na">authenticate</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'errorMessage'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We add the <code>LoginControllerMixin</code> so that this controller will have the methods for authenticating.  We override the authenticate action so that we can set our custom error message in the template.</p>
+
+<p>In <code>app/routes/application.js</code> we need to include the <code>ApplicationRouteMixin</code></p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">ApplicationRouteMixin</span> <span class="nx">from</span> <span class="s1">'simple-auth/mixins/application-route-mixin'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">ApplicationRouteMixin</span><span class="p">);</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Now we need to change the <code>setupController</code> inside of <code>app/routes/login.js</code> to remove previous error messages. If we dont then when a user fails logging in, goes to another route and then returns to login they will see the previous error message. </p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="na">setupController</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">controller</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">controller</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'errorMessage'</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>It&rsquo;s time we made a navigation bar.  Make the partial <code>app/templates/-navigation.hbs</code></p>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td><td class="code"><pre><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-default"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Collect the nav links, forms, and other content for toggling --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"collapse navbar-collapse"</span> <span class="na">id=</span><span class="s">"bs-example-navbar-collapse-1"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"nav navbar-nav"</span><span class="nt">&gt;</span>
+          {{#link-to 'posts.index' tagName='li'}}
+            {{#link-to 'posts.index'}}
+              Posts
+            {{/link-to}}
+          {{/link-to}}
+        {{#if session.isAuthenticated}}
+          <span class="nt">&lt;li&gt;&lt;a</span> <span class="err">{{</span> <span class="na">action</span> <span class="err">'</span><span class="na">invalidateSession</span><span class="err">'</span> <span class="err">}}</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        {{else}}
+        {{#link-to 'login' tagName='li'}}
+          {{#link-to 'login'}}
+            Login
+          {{/link-to}}
+        {{/link-to}}
+        {{/if}}
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- /.navbar-collapse --&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>We have an if statement (<code>if session.isAuthenticated</code>) which let&rsquo;s us show different links depending on whether the user is logged in.</p>
+
+<p>Notice the nested <code>link-to</code> tags. Ember adds an active class to the <code>link-to</code> helpers that match the current route but Bootstrap expects this on the list element rather than the anchor tag.  The nested <code>link-to</code> resolves this issue for us nicely.</p>
+
+<p>Time for us to update our <code>app/templates/application.hbs</code> to include our new partial</p>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre></td><td class="code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Welcome to Ember with Padrino<span class="nt">&lt;/h1&gt;</span>
+    {{partial "navigation"}}
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+    {{outlet}}
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><img alt="Screenshot of the new posts page" src="http://i.imgur.com/174LkRt.png" /></p>
+
+<p>Finally we can create our Login form. We&rsquo;re almost at the finish line guys!</p>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td><td class="code"><pre><span class="nt">&lt;h2&gt;</span>Login<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;form</span> <span class="err">{{</span><span class="na">action</span> <span class="err">'</span><span class="na">authenticate</span><span class="err">'</span> <span class="na">on=</span><span class="s">'submit'</span><span class="err">}}</span> <span class="na">class=</span><span class="s">"horizontal"</span><span class="nt">&gt;</span>
+  {{#if errorMessage}}
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-danger"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;strong&gt;</span>Login failed:<span class="nt">&lt;/strong&gt;</span> <span class="nt">&lt;code&gt;</span>{{errorMessage}}<span class="nt">&lt;/code&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  {{/if}}
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"identification"</span> <span class="na">class=</span><span class="s">"control-label"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+    {{input value=identification placeholder='Enter Email' classNames="form-control"}}
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"control-label"</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span>
+  {{input value=password placeholder='Enter Password' type='password' classNames="form-control"}}
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><img alt="Screenshot of the login form" src="http://i.imgur.com/SfdqI4y.png" /></p>
+
+<p>Any method route that requires authentication can now include the <code>AuthenticationRouteMixin</code> mixin.</p>
+
+<p>As an example.  Change the <code>app/routes/posts/new.js</code> to the following</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">AuthenticatedRouteMixin</span> <span class="nx">from</span> <span class="s1">'simple-auth/mixins/authenticated-route-mixin'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">AuthenticatedRouteMixin</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">model</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">createRecord</span><span class="p">(</span><span class="s1">'post'</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">deactivate</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">modelFor</span><span class="p">(</span><span class="s1">'posts/new'</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'isNew'</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">model</span><span class="p">.</span><span class="nx">destroyRecord</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">actions</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">save</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">modelFor</span><span class="p">(</span><span class="s1">'posts/new'</span><span class="p">).</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">transitionTo</span><span class="p">(</span><span class="s1">'posts.index'</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Now if we try to access the <code>posts/new</code> page without logging in we will be redirected to the login form.</p>
+
+<h2>Is this production ready?</h2>
+
+<p><img alt="No" src="http://i.imgur.com/BilqB9d.gif" /></p>
+
+<p>This article is merely proof of concept. There are a few reasons I would not recommend using this for anything you need to keep secure.</p>
+
+<p>This post only covers authentication and not authorization. The authentication part of ember-simple-auth only covers the retrieval of a valid token from a successful log in. It will not check future requests for validity! That&rsquo;s where authorisation comes in which is not covered in this article.</p>
+
+<p>I&rsquo;ve also gone and rolled my own authentication in Padrino which is not ideal. I have not covered validation of users, making sure that email addresses are unique etc. Your best bet is to try to get Warden working with Padrino for a proper log in system.</p>
+
+<p>If you&rsquo;re serious about securing your API, read <a href="http://stackoverflow.com/questions/18605294/is-devises-token-authenticatable-secure/18695244#18695244">this StackOverflow post</a> which gives you a list of best practices for securing your tokens.</p>
+
+<h2>Summary</h2>
+
+<p>This was a lot longer than I predicted. I guess I can only blame myself for trying to include both Padrino and Ember in one article!</p>
+
+<p>I have covered so much in this article and while I can&rsquo;t speak for you, I can say it&rsquo;s been quite the learning experience for myself.  </p>
+
+<p>We&rsquo;ve covered the security precautions and ramifications of using Ember-simple-auth for authentication, how to implement a Padrino API compatible with the Ember-simple-auth-devise authentication library and giving users feedback on their incorrect logins.</p>
+
+<p>We also touched on using MiniTest with Padrino, generating secure tokens in Ruby and restricting access to specific routes with Ember-simple-auth.</p>
+
+	</article>
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+          </div>
+        </div>
+        <div class="push"></div>
+      </div>
+
+      <footer class="footer-2">
+        <div class="partial-container">
+          <ul>
+            <li><a class="about" href="#top">About</a></li>
+            <li><a class="contact" href="#">Contact</a></li>
+          </ul>
+
+          <div class="footer-secondary-links">
+            <ul class="footer-social">
+              <li>
+                <a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+              </li>
+              <li>
+                <a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+    </body>
+  </html>

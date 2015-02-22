@@ -70,6 +70,28 @@
             <h1>Latest Articles</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/simple-search-with-laravel-and-elasticsearch">Simple Search with Laravel and ElasticSearch</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/laravel-4-2">Laravel 4.2</a>
+        <a href="/read/categories/elasticsearch">ElasticSearch</a>
+        <a href="/read/categories/elasticsearch-1-4">ElasticSearch 1.4</a>
+        <a href="/read/categories/php">PHP</a>
+        <a href="/read/categories/search">Search</a>
+    </div>
+		<time>Jan 10, 2015</time>
+
+		<p>I was recently asked to make a search engine for a client&rsquo;s website. Normally I would go down the MySQL fulltext search route but I was feeling rather adventurous at the time.  I had no experience with ElasticSearch, Apache Solr or any other search system prior to this so I decided to pick ElasticSearch and dive in head first. This tutorial is a result of some of the things I picked up while learning it.</p>
+
+<p>I aim to show you how to set up the <a href="https://github.com/adamfairholm/Elasticquent">Elasticquent</a> Laravel package and some basic ways to fine tune your search engine.</p>
+
+<p>
+
+		<a href="/read/simple-search-with-laravel-and-elasticsearch">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/12-day-challenge-rubymotion">12 Day Challenge: RubyMotion</a>
 		</h1>
     <div class="tags">
@@ -141,56 +163,6 @@
 <p>
 
 		<a href="/read/php-5-4-trait-qwerks">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Laravel 4.1 one-to-one polymorphic relationships</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/laravel-4-1">Laravel 4.1</a>
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/php">PHP</a>
-        <a href="/read/categories/eloquent">Eloquent</a>
-    </div>
-		<time>Jan 20, 2014</time>
-
-		<p>To use one-to-one polymorphic relationships in Laravel 4.1  use the &ldquo;morphOne&rdquo; method in your models.</p>
-
-<p>For example: I have two tables, pages and products.  I want to be able to add one featured image to each of these.</p>
-
-<p>The Product model would look like this:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>The Page model would be:</p>
-<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
-<span class="k">class</span> <span class="nc">Page</span> <span class="k">extends</span> <span class="nx">Eloquent</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">image</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">morphOne</span><span class="p">(</span><span class="s1">'FeaturedImage'</span><span class="p">,</span> <span class="s1">'imageable'</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>
-
-		<a href="/read/laravel-4-1-one-to-one-polymorphic-relationships">Read more</a>
 	</article>
 
 <div class="pagination">

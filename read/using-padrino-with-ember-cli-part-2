@@ -549,6 +549,8 @@ ember g route posts/edit
 
 <h2>What next?</h2>
 
+<p>If you&rsquo;re interested in setting up authentication you can check part 3 of this series, <a href="/read/using-padrino-with-ember-cli-part-3-authentication">Using Padrino with Ember: Authentication</a>.</p>
+
 <p>There is a lot of room for growth. Things that are often needed in SPA’s include validation, flash messages and realtime data. </p>
 
 <p>They are all very doable with Padrino and Ember but are beyond the scope of this article.</p>
