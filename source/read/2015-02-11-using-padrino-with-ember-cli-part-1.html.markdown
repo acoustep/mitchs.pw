@@ -17,7 +17,6 @@ After listening to the Ruby Rogues’ Padrino episode I was sold on the idea of 
 
 * Funsies.
  
-
 I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s ```ActiveModelAdapter``` and show you a few gotchas to help you on your way.  
 READMORE
 ## Note
@@ -47,7 +46,7 @@ For reference I’m using the following library versions:
 * ruby-2.1.1
 * Padrino 0.12.4
 
-For a directory structure to this article We want 3 directories.
+For a directory structure to this article we want 3 directories.
  
 
 ```
@@ -55,11 +54,11 @@ For a directory structure to this article We want 3 directories.
  |- API
  |- App
 ```
- 
+
 Make ```Blog``` main directory and change in to it.
- 
+
 ```mkdir Blog && cd Blog```
- 
+
 ## Setting up Padrino
 
 One of the features of Padrino I love the most is the ability to swap different libraries to your preference. For instance, you have the choice to use your preferred ORM. If you know Rails then you will most likely be comfortable with ActiveRecord. 
@@ -108,9 +107,9 @@ Take a look at the [Mounting Applications](http://www.padrinorb.com/guides/mount
 
 ## The Model
 
-Keeping things simple, We’ll have one CRUD API for managing blog posts using using the default sqlite database.
+Keeping things simple, we’ll have one CRUD API for managing blog posts using using the default sqlite database.
 
-We’ll make the model called ```Post``` that has 5 fields, id, title, content, created_at and updated_at
+We’ll make the model called ```Post``` that has 5 fields, ```id```, ```title```, ```content```, ```created_at``` and ```updated_at```
 
 ```
 padrino g model Post title:string content:text created_at:datetime updated_at:datetime
@@ -144,7 +143,7 @@ When using Sequel you can migrate your database to the latest migration with thi
 rake sq:migrate:up
 ```
 
-To make our timestamp columns behave like Ruby on Rails We  need to add the Sequel timestamp plugin in our ```config/database.rb```.
+To make our timestamp columns behave like Ruby on Rails we need to add the Sequel timestamp plugin in our ```config/database.rb```.
 
 ```ruby
 Sequel::Model.plugin(:timestamps)
@@ -185,37 +184,33 @@ Let’s make it so api/v1 is prepended and for familiarity we’ll also modify o
 
 In ```app/controllers/post.rb``` change it to the following:
 
+**Edit:** Big thanks to [Nathan Esquenazi](https://twitter.com/nesquena) for showing me a much cleaner way of doing it. For reference you can see my previous code [here](https://github.com/acoustep/padrino-ember-example/blob/1a0cadc73e4532cca781f2655106f4d878662575/API/app/controllers/posts.rb)
+
 ```ruby
-Api::App.controllers :posts do
-  
-  get :index, map: "api/v1/posts" do
-
+Api::App.controllers :posts, map: "api/v1/posts" do
+ 
+  get :index, map: "" do
+ 
   end
-
-  post :create, map: "api/v1/posts" do
-
+ 
+  post :create, map: "" do
+ 
   end
-
-  get :show, map: "api/v1/posts/:id" do
-
+ 
+  get :show, map: ":id" do
+ 
   end
-
-  patch :update, map: "api/v1/posts/:id" do
-
+ 
+  patch :update, map: ":id" do
+ 
   end
-
-  delete :destroy, map: "api/v1/posts/:id" do
-
+ 
+  delete :destroy, map: ":id" do
+ 
   end
-
+ 
 end
 ```
-
-As we can see there is a lot of repetition with ```:map``` and ```api/v1/posts```. One advantage of mounting a separate app at api/v1 is that you don’t have to add ```api/v1``` throughout your controller.  
-
-We _could_ use ```with: :id``` instead of ```map``` in your methods, however, they will not work the same way as Rail’s URLs.  As an example, the update URL will look more like ```api/v1/posts/update/:id``` which is not what we want. 
-
-You could also optionally change the controller to ```Api::App.controllers “api/v1/posts” do``` but ```map``` ignores this setting. You may want to keep it in as a way of self-documenting your code but otherwise it’s just unneeded repetition.
 
 If you run ```rake routes``` now you should see the following:
 
@@ -231,14 +226,14 @@ Much better. Now let’s fill in the details
 
 ```ruby
 require 'json'
-Api::App.controllers :posts do
-
-  get :index, map: "api/v1/posts" do
+Api::App.controllers :posts, map: "api/v1/posts" do
+  
+  get :index, map: "" do
     @posts = Post.all
     render "posts/index"
   end
 
-  post :create, map: "api/v1/posts" do
+  post :create, map: "" do
     parameters = post_params
     if parameters["post"].nil?
       return '{}'
@@ -247,28 +242,27 @@ Api::App.controllers :posts do
     render "posts/show"
   end
 
-  get :show, map: "api/v1/posts/:id" do
+  get :show, map: ":id" do
     @post = Post[params[:id]]
     render "posts/show"
   end
 
-  put :update, map: "api/v1/posts/:id" do
+  put :update, map: ":id" do
     @post = Post[params[:id]]
 
     if @post.nil?
       return '{}'
     end
+
     parameters = post_params
     @post.update parameters["post"]
-    # redirect "/api/v1/posts/#{params[:id]}"
     render "posts/show"
 
   end
 
-  delete :destroy, map: "api/v1/posts/:id" do
+  delete :destroy, map: ":id" do
     @post = Post[params[:id]]
     @post.delete unless @post.nil?
-    return '{}'
   end
 
 end
@@ -276,13 +270,20 @@ end
 def post_params
   JSON.parse(request.body.read)
 end
+
 ```
 
 If you're familiar with Active Record you should see some familiar method names.  ```all```, ```create```, ```delete``` and ```update``` are self explanatory. You may be unfamiliar with how Sequel finds specific rows, though.
 
 ```Post[params[:id]]``` is the simplest way to retrieve a record by primary key.  ```params[:id]``` is just the URL id parameter. So it's more like calling ```Post[1]```.
 
-Occasionally we return a blank object ```return '{}'```.  This may seem uneeded but Ember expects a valid JSON response and if it doesn't get one it will throw a hissy fit.
+Occasionally we return blank objects with 
+
+```
+return '{}'
+```
+
+This may seem unneeded but Ember expects a valid JSON response and if it doesn't get one it will throw a hissy fit.
 
 ### Views
 
@@ -293,7 +294,7 @@ Create these two files:
 ### app/views/index.rabl
 
 ```ruby
-collection @posts, root: "posts”, object_root: false
+collection @posts, root: "posts", object_root: false
 attributes :id, :title, :content, :created_at, :updated_at
 ```
 
@@ -308,7 +309,7 @@ If you’ve never used RABL before this may look quite alien to you.
 
 We use the ```collection``` method when working with multiple objects and the ```object``` method when specifying one object in particular.
 
-The collection method has two parameters, root and object\_root. root specifies the parent key that wraps around the collection. We set object\_root to false because by default RABL adds another key around each row.
+The collection method has two parameters, ```root``` and ```object_root```. ```root``` specifies the parent key that wraps around the collection. We set ```object_root``` to false because by default RABL adds another key around each row.
 
 Essentially we are changing this JSON:
 
@@ -366,7 +367,7 @@ If your app is currently running make sure you restart it now with ```bundle exe
 
 #### Disabling CSRF for your API
 
-Firstly, if you’re using Better Errors, go to ```app/config/app.rb``` and set the following
+If you’re using Better Errors, go to ```app/config/app.rb``` and set the following
 
 ```ruby
 set :protect_from_csrf, except: %r{/__better_errors/\\w+/\\w+\\z} if Padrino.env == :development
@@ -378,14 +379,14 @@ In ```app/controllers/posts.rb``` we need to disable CSRF for any requests that 
 
 ```ruby
 require 'json'
-Api::App.controllers :posts do
+Api::App.controllers :posts, map: "api/v1/posts" do
   
-  get :index, map: "api/v1/posts" do
+  get :index, map: "" do
     @posts = Post.all
     render "posts/index"
   end
 
-  post :create, map: "api/v1/posts", csrf_protection: false do
+  post :create, map: "", csrf_protection: false do
     parameters = JSON.parse(request.body.read)
     if parameters["post"].nil?
       return '{}'
@@ -394,18 +395,18 @@ Api::App.controllers :posts do
     render "posts/show"
   end
 
-  get :show, map: "api/v1/posts/:id" do
+  get :show, map: ":id" do
     @post = Post[params[:id]]
     render "posts/show"
   end
 
-  patch :update, map: "api/v1/posts/:id", csrf_protection: false do
+  put :update, map: ":id", csrf_protection: false do
     @post.update params
     render "posts/show"
 
   end
 
-  delete :destroy, map: "api/v1/posts/:id", csrf_protection: false do
+  delete :destroy, map: ":id", csrf_protection: false do
     @post = Post[params[:id]]
     @post.delete unless @post.nil?
   end
@@ -428,7 +429,7 @@ use Rack::Cors do
 end
 ```
 
-If you look at the Rack/CORS documentation, you can specify specific URLs that are allowed to access your API by updating the origins method.
+If you look at the Rack/CORS documentation, you can specify URLs that are allowed to access your API by updating the origins method.
 
 ```ruby
 origins 'localhost:4200' # Ember CLI App
