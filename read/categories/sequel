@@ -145,10 +145,8 @@
 <li><p>I am already familiar with Sinatra so the learning curve shouldn’t be as steep.</p></li>
 <li><p>I wanted to get to know Padrino.</p></li>
 <li><p>Funsies.
- </p></li>
-</ul>
-
-<p>I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
+ 
+I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
 
 
 		<a href="/read/using-padrino-with-ember-cli-part-1">Read more</a>
