@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/unix">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/browser-extensions">
 
       <link href="../../stylesheets/application-9b65009b.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_unix">
+    <body class="read read_categories read_categories_browser-extensions">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,26 +51,27 @@
 
         <div id="container">
           <div id="main">
-            <h1>Unix Blogs</h1>
+            <h1>browser extensions Blogs</h1>
 	<article class="blurb">
 		<h1>
-			<a href="/read/unix-commands-find">Unix commands: Find</a>
+			<a href="/read/february-15-top-developer-tools-and-services">February '15: Top Developer Tools and Services</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/unix">Unix</a>
-        <a href="/read/categories/linux">Linux</a>
-        <a href="/read/categories/osx">OSX</a>
-        <a href="/read/categories/command-line">command line</a>
+        <a href="/read/categories/webdevelopment">webdevelopment</a>
+        <a href="/read/categories/learning">learning</a>
+        <a href="/read/categories/organisation">organisation</a>
+        <a href="/read/categories/tools">tools</a>
+        <a href="/read/categories/browser-extensions">browser extensions</a>
     </div>
-		<time>Jan 30, 2015</time>
+		<time>Feb 28, 2015</time>
 
-		<p>After watching one of Gary Bernhardt’s Destroy All Software screencasts I thought I’d take some of his advice and learn about some basic Unix commands.  I’m going to start with <code>find</code>.</p>
+		<p>Here we are at the last week of February and I haven&rsquo;t done my monthly edition of Top Developer Tools and Services. Shame on me.</p>
 
-<p>This post will be a small collection of useful commands I’ve found.</p>
+<p>I&rsquo;ve spent many nights pondering over what I should put on this month&rsquo;s list and what I should omit for another month.  I have just this moment decided to limit this edition to browser extensions.</p>
 
 <p>
 
-		<a href="/read/unix-commands-find">Read more</a>
+		<a href="/read/february-15-top-developer-tools-and-services">Read more</a>
 	</article>
 
 <div class="pagination">

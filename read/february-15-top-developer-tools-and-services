@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Mitch Stanley">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>FullStack Stanley | February '15: Top Developer Tools and Services</title>
+
+      <meta name="twitter:card" content="summary">
+      <meta property="og:description" content="Here we are at the last week of February and I haven't done my monthly edition of Top Developer Tools and Services. Shame on me.">
+      <meta property="og:title" content="February '15: Top Developer Tools and Services">
+      <meta property="og:url" content="http://fullstackstanley.com/read/february-15-top-developer-tools-and-services">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2015-02-28T10:41:00Z">
+      <meta property="article:tag" content="webdevelopment">
+      <meta property="article:tag" content="learning">
+      <meta property="article:tag" content="organisation">
+      <meta property="article:tag" content="tools">
+      <meta property="article:tag" content="browser extensions">
+
+      <link href="../stylesheets/application-9b65009b.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42788138-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+
+    <body class="read read_february-15-top-developer-tools-and-services">
+      <div class="wrapper-for-content-outside-of-footer">
+        <header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+        <a name="top"></a>
+        <div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+        <div id="container">
+          <div id="main">
+            	<article>
+		<h1>February '15: Top Developer Tools and Services</h1>
+    <div class="tags">
+        <a href="/read/categories/webdevelopment">webdevelopment</a>
+        <a href="/read/categories/learning">learning</a>
+        <a href="/read/categories/organisation">organisation</a>
+        <a href="/read/categories/tools">tools</a>
+        <a href="/read/categories/browser-extensions">browser extensions</a>
+    </div>
+		<p><em>Posted on Feb 28, 2015</em></p>
+		<p>Here we are at the last week of February and I haven&rsquo;t done my monthly edition of Top Developer Tools and Services. Shame on me.</p>
+
+<p>I&rsquo;ve spent many nights pondering over what I should put on this month&rsquo;s list and what I should omit for another month.  I have just this moment decided to limit this edition to browser extensions.</p>
+
+<p></p>
+
+<p>Although I am an Opera/Chrome user I hardly feel it&rsquo;s fair to leave out Firefox users so I will try to post alternatives just for you guys as well.</p>
+
+<p>If I had to pick five extensions I couldn&rsquo;t live without, five extensions to be stuck on an island with, they would be these listed below.</p>
+
+<h2>LastPass</h2>
+
+<p>LastPass is my life saver for managing passwords.  </p>
+
+<p>There are so many websites that require authentication now.  To think just one small website that doesn&rsquo;t adhere to modern password hashing practices could lead to you losing your email accounts, spamming your friends on social media and fraudulent purchases seems completely unfair. </p>
+
+<p>For this reason LastPass absolutely has to be on my list.</p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/en-us/firefox/addon/lastpass-password-manager/">Firefox</a></li>
+</ul>
+
+<h2>µBlock/µMatrix</h2>
+
+<p>µBlock is a lightweight ad blocker that works really well.  I&rsquo;m really glad this extension came along as I always get confused as to which variation of AdBlock I&rsquo;m supposed to be using. They all seem to let various ads through anyway.</p>
+
+<p>µBlock is for people that want an ad blocker that just works and µMatrix allows more refined control.</p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/µblock/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en">µBlock - Chrome</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/µmatrix/ogfcmafjalglgifnmanfmnieipoejdcf?hl=en">µMatrix - Chrome</a></li>
+<li><a href="https://github.com/gorhill/uBlock">µBlock - Firefox</a></li>
+</ul>
+
+<h2>StayFocusd</h2>
+
+<p>This little extension pushes me to work on my own projects outside of work - or at least stop me from browsing Reddit all night on my computer. </p>
+
+<p>Jokes aside, I really do see an increase in my productivity in my personal projects thanks to this extension.</p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/stayfocusd/laankejkbhbdhmipfmgcngdelahlfoji?hl=en">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/en-us/firefox/addon/leechblock/">Firefox - LeechBlock</a></li>
+</ul>
+
+<h2>JsonView / Var_dumpling</h2>
+
+<p>I group these together as they do pretty much the same thing for different languages.  JSON viewer for seeing nicely highlighted JSON and var_dumpling for for formatting PHP <code>var_dump</code>s.  </p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc/reviews?hl=en">Chrome-  JSONView</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/vardumpling/aikblkmigebodlhkdepmfmgdgmbokkdn?hl=en">Chrome - var_dumpling</a></li>
+<li><a href="https://addons.mozilla.org/en-Us/firefox/addon/jsonview/">Firefox - JSONView</a></li>
+<li><a href="https://github.com/alexnaspo/var_dumpling">Firefox - var_dumpling</a></li>
+</ul>
+
+<h2>Postman</h2>
+
+<p>I&rsquo;ve mentioned this extension in several articles already and I seriously love it.  If you create, maintain or consume API&rsquo;s you need this extension in your life.</p>
+
+<p>Unfortunately, this extension doesn&rsquo;t work with Opera (my current browser) but I love it that much that I will open Chrome just to use it.</p>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/en-us/firefox/addon/restclient/">Firefox - RESTClient</a></li>
+<li><a href="https://addons.opera.com/en-gb/extensions/details/restman/?display=en">Opera - RestMan</a></li>
+</ul>
+
+<h2>Bonus: Opera extension for Chrome</h2>
+
+<p>Opera 12 was possibly the best browser of it&rsquo;s time.  This browser had functionality that Chrome couldn&rsquo;t dream of and Firefox had half baked extensions for. Then Opera 15 was announced and I was essentially forced to switch to Chrome due to the lack of features.</p>
+
+<p>Don&rsquo;t get me wrong - I actually really like Chrome now. It has some incredible developer tools. But I&rsquo;ve always keeped my eye on Opera&rsquo;s development.  Recently I decided to make the switch back to Opera (At the time of writing they are now on Opera 27) and quite frankly I couldn&rsquo;t have done it without <a href="https://addons.opera.com/en-gb/extensions/details/download-chrome-extension-9/">Download Chrome Extension</a>.  </p>
+
+<p>This extension lets you download Chrome extensions from the Chrome store just like you were on Chrome itself!  I have only had one issue and that&rsquo;s with Postman App which I now open Chrome to use when I need to.</p>
+
+	</article>
+  <hr>
+  <h2>About the Author</h2>
+  <div id="about-me">
+	<div class="partial-container">
+    <p>My name is Mitch Stanley and I'm a 25 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I do many things. I like to read books, lift weights, play guitar, play video games and write these articles!</p>
+	</div>
+</div>
+
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+          </div>
+        </div>
+        <div class="push"></div>
+      </div>
+
+      <footer class="footer-2">
+        <div class="partial-container">
+          <ul>
+            <li><a class="contact" href="#">Contact</a></li>
+          </ul>
+
+          <div class="footer-secondary-links">
+            <ul class="footer-social">
+              <li>
+                <a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+              </li>
+              <li>
+                <a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+    </body>
+  </html>
