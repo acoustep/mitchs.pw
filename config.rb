@@ -20,7 +20,7 @@ activate :blog do |blog|
 	blog.permalink = "{title}"
 	blog.layout = "article"
 	blog.paginate = true
-	blog.per_page = 3
+	blog.per_page = 15
   blog.tag_template = "tags.html"
   blog.taglink = "/categories/{tag}"
 end

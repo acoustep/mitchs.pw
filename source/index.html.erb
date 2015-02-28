@@ -6,25 +6,28 @@ ogp:
   og:
     description: "My name is Mitch Stanley and I'm a programmer from the UK.  I write Articles dedicated to front and back end development."
 ---
-
-<h1>Latest Articles</h1>
-<% page_articles.each do |article| %>
-	<article class="blurb">
-		<h1>
-			<a href="<%= article.url %>"><%= article.title %></a>
-		</h1>
-    <div class="tags">
-      <% article.tags.each do |tag| %>
-        <a href="<%= tag_path tag %>"><%= tag %></a>
-      <% end %>
-    </div>
-		<time><%= article.date.strftime('%b %e, %Y') %></time>
-
-		<%= article.summary %>
-
-		<a href="<%= article.url %>">Read more</a>
-	</article>
-<% end %>
+<h1>FullStack Stanley</h1>
+<%= partial "partials/about" %>
+<h1>Article Archive</h1>
+<% last_date = false %>
+<div class="article-archive">
+  <% page_articles.each do |article| %>
+    <% if !last_date || last_date != article.date.strftime('%b %Y') %>
+      <h2><%= article.date.strftime('%b %Y') %></h2>
+    <% end %>
+    <article class="blurb">
+      <h3>
+        <a href="<%= article.url %>"><%= article.title %></a>
+      </h3>
+      <div class="tags">
+        <% article.tags.each do |tag| %>
+          <a href="<%= tag_path tag %>"><%= tag %></a>
+        <% end %>
+      </div>
+    </article>
+    <% last_date = article.date.strftime('%b %Y') %>
+  <% end %>
+</div>
 
 <div class="pagination">
 	<ul>

@@ -22,17 +22,24 @@ body {
 		padding-left:0em;
 		padding-right:0em;
 	}
+  .article-archive {
+    h2 {
+      font-size: 25px;
+      margin-top: 10px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+  }
 	article {
 		@include span-columns(12);
+    float:none;
 		p {
 			font-size:1.2em;
 		}
     &.blurb {
-      border-bottom: solid 1px lighten(#000, 70);
-      // box-shadow: 0 1px 1px -1px red;
-      @include box-shadow(lighten(#000, 70) 0 1px 1px -1px);
-      padding-bottom:20px;
-      margin-bottom: 20px;
+      margin-bottom:10px;
+      display:block;
     }
 		h2 {
 			margin-bottom: 5px;
