@@ -18,7 +18,9 @@ After listening to the Ruby Rogues’ Padrino episode I was sold on the idea of 
 * Funsies.
  
 I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s ```ActiveModelAdapter``` and show you a few gotchas to help you on your way.  
+
 READMORE
+
 ## Note
 
 This article is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino. If you have previous Ruby web framework experience you’ll most likely catch on quick.

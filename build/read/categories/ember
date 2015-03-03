@@ -54,6 +54,28 @@
             <h1>Ember Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/using-padrino-with-ember-cli-part-4-authorisation">Using Padrino with Ember CLI Part 4: Authorisation</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/ruby">Ruby</a>
+        <a href="/read/categories/padrino">Padrino</a>
+        <a href="/read/categories/ember">Ember</a>
+        <a href="/read/categories/ember-cli">Ember-CLI</a>
+        <a href="/read/categories/javascript">Javascript</a>
+        <a href="/read/categories/sequel">Sequel</a>
+        <a href="/read/categories/sqlite">sqlite</a>
+        <a href="/read/categories/rabl">RABL</a>
+    </div>
+		<time>Mar  3, 2015</time>
+
+		<p>In the last article I went through how to implement authorisation with Ember-simple-auth and Padrino. The next logical step is to implement authorisation with the same toolset.</p>
+
+<p>
+
+		<a href="/read/using-padrino-with-ember-cli-part-4-authorisation">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/using-padrino-with-ember-cli-part-3-authentication">Using Padrino with Ember CLI Part 3: Authentication</a>
 		</h1>
     <div class="tags">
@@ -132,8 +154,10 @@
 <li><p>I wanted to get to know Padrino.</p></li>
 <li><p>Funsies.
  
-I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
+I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.  </p></li>
+</ul>
 
+<p>
 
 		<a href="/read/using-padrino-with-ember-cli-part-1">Read more</a>
 	</article>

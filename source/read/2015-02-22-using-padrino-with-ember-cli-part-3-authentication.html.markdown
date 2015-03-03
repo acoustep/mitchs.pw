@@ -6,7 +6,7 @@ change_frequency: never
 ogp:
   og:
     description: 'Welcome to Part 3 of my Padrino and Ember series.  This article is for setting up Ember with our Padrino API...'
-    title: 'Using Padrino with Ember CLI Part 2'
+    title: 'Using Padrino with Ember CLI Part 3: Authentication'
     url: 'read/using-padrino-with-ember-cli-part-3-authentication/'
 ---
 
@@ -18,6 +18,7 @@ If you haven't seen the rest of the series you can view them here:
 
 * [Part 1: Setting up the Padrino API](/read/using-padrino-with-ember-cli-part-1)
 * [Part 2: Setting up Ember CLI to work with Padrino](/read/using-padrino-with-ember-cli-part-2)
+* [Part 4: Authorisation](/read/using-padrino-with-ember-cli-part-4-authorisation)
 
 [You can also view the full source for the application on Github](https://github.com/acoustep/padrino-ember-example)
 
@@ -486,4 +487,5 @@ We've covered the security precautions and ramifications of using Ember-simple-a
 
 We also touched on using MiniTest with Padrino, generating secure tokens in Ruby and restricting access to specific routes with Ember-simple-auth.
 
+Next up: [Part 4: Authorization](/read/using-padrino-with-ember-cli-part-4-authorisation)
 
