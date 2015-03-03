@@ -83,11 +83,12 @@
 <li><p>I wanted to get to know Padrino.</p></li>
 <li><p>Funsies.
  
-I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.<br>
-</p>
-
-<h2>Note</h2></li>
+I’m going to show you how to quickly set up both together, build a restful API compatible with Ember’s <code>ActiveModelAdapter</code> and show you a few gotchas to help you on your way.  </p></li>
 </ul>
+
+<p></p>
+
+<h2>Note</h2>
 
 <p>This article is aimed at people familiar with Ruby and have some understanding of the MVC pattern (ideally with Padrino or Rails). This article is not a guide for starting out with Padrino. If you have previous Ruby web framework experience you’ll most likely catch on quick.</p>
 

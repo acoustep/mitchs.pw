@@ -87,6 +87,7 @@
 <ul>
 <li><a href="/read/using-padrino-with-ember-cli-part-1">Part 1: Setting up the Padrino API</a></li>
 <li><a href="/read/using-padrino-with-ember-cli-part-2">Part 2: Setting up Ember CLI to work with Padrino</a></li>
+<li><a href="/read/using-padrino-with-ember-cli-part-4-authorisation">Part 4: Authorisation</a></li>
 </ul>
 
 <p><a href="https://github.com/acoustep/padrino-ember-example">You can also view the full source for the application on Github</a></p>
@@ -779,6 +780,8 @@ ember g route login
 <p>We&rsquo;ve covered the security precautions and ramifications of using Ember-simple-auth for authentication, how to implement a Padrino API compatible with the Ember-simple-auth-devise authentication library and giving users feedback on their incorrect logins.</p>
 
 <p>We also touched on using MiniTest with Padrino, generating secure tokens in Ruby and restricting access to specific routes with Ember-simple-auth.</p>
+
+<p>Next up: <a href="/read/using-padrino-with-ember-cli-part-4-authorisation">Part 4: Authorization</a></p>
 
 	</article>
   <hr>
