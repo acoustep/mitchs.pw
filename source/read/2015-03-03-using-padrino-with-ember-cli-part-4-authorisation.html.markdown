@@ -19,6 +19,7 @@ If you haven't seen the rest of the series you can view them here:
 * [Part 1: Setting up the Padrino API](/read/using-padrino-with-ember-cli-part-1)
 * [Part 2: Setting up Ember CLI to work with Padrino](/read/using-padrino-with-ember-cli-part-2)
 * [Part 3: Authentication](/read/using-padrino-with-ember-cli-part-3-authentication)
+* [Part 5: Realtime](/read/using-padrino-with-ember-cli-part-5-realtime)
 
 [You can also view the full source for the application on Github](https://github.com/acoustep/padrino-ember-example)
 
