@@ -54,6 +54,24 @@
             <h1>Laravel Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/bootstrap-2-pagination-in-laravel-5">Bootstrap 2 pagination in Laravel 5</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/laravel-5">Laravel 5</a>
+        <a href="/read/categories/bootstrap-2">Bootstrap 2</a>
+        <a href="/read/categories/twitter-bootstrap">Twitter Bootstrap</a>
+    </div>
+		<time>Mar 21, 2015</time>
+
+		<p>I recently had to help port a website that used Twitter Bootstrap 2 to Laravel 5 and discovered that changing the pagination template is completely different in Laravel 5.</p>
+
+<p>
+
+		<a href="/read/bootstrap-2-pagination-in-laravel-5">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/simple-search-with-laravel-and-elasticsearch">Simple Search with Laravel and ElasticSearch</a>
 		</h1>
     <div class="tags">
