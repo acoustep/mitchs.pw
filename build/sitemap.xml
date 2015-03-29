@@ -133,6 +133,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://fullstackstanley.com/read/realtime-chat-with-laravel-ember-js-and-pusher</loc>
+    <lastmod>2015-03-29T20:27:28+01:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://fullstackstanley.com/page/2/</loc>
     <lastmod>2015-02-28T11:21:19+00:00</lastmod>
     <changefreq>weekly</changefreq>

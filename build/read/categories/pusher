@@ -54,6 +54,33 @@
             <h1>Pusher Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/realtime-chat-with-laravel-ember-js-and-pusher">Realtime chat with Laravel, Ember JS and Pusher</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/laravel-5">Laravel 5</a>
+        <a href="/read/categories/ember-js">Ember JS</a>
+        <a href="/read/categories/pusher">Pusher</a>
+        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
+    </div>
+		<time>Mar 29, 2015</time>
+
+		<p>I&rsquo;ve been hearing a lot of noise about <a href="https://www.firebase.com/">Firebase</a> recently. Lots of good noise.  When I first started making this article I wanted to make use of <a href="http://firehose.io/">Firehose</a> which is an open source alternative to Firebase. </p>
+
+<p>Setting up the API with Laravel was a breeze.  The only stumbling block was with my Ubuntu Vagrant box which installed a version of Redis which was too old (Firehose requries 2.6+ where as Ubuntu&rsquo;s package manager only has 2.2).   This was a pretty simple to fix and if you <em>are</em> interested in Firehose then you can find instructions for getting the latest Redis <a href="http://codecuriosity.com/blog/2013/10/29/install-redis-on-ubuntu/">here</a>.</p>
+
+<p>Anyway I started building my Ember application and I hit a brick wall.  Firehose touts Ember support out of the box but I can see literally no documentation on how to get started with it.</p>
+
+<p>I decided to switch to Pusher which I&rsquo;m already familiar with.  Unfortunately Pusher isn&rsquo;t open source but it does have a reasonable free package.  This allowed me to continue the use of my Laravel application where as switching to Firebase would not.  Also, there is already a pretty amazing Firebase Ember tutorial <a href="https://www.firebase.com/blog/2015-03-13-ember-cli-in-9-minutes.html">here</a> so it seems pointless to do the same thing.</p>
+
+<p>This article will show you a very bare bones chat system with Laravel 5, Ember JS 1.10 and Pusher.</p>
+
+<p>
+
+		<a href="/read/realtime-chat-with-laravel-ember-js-and-pusher">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/using-padrino-with-ember-cli-part-5-realtime">Using Padrino with Ember CLI Part 5: Realtime</a>
 		</h1>
     <div class="tags">
