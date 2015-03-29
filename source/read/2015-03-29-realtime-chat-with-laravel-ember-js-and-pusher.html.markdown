@@ -476,11 +476,16 @@ export default Ember.Component.extend({
 And for the template in ```app/templates/components/message-row.hbs```
 
 ```html
-[{{message.createdAt}}] {{message.name}}: {{message.messageContent}}
+[{{message.createdAt}}] {{message.name}}: {{message.body}}
 ```
 
 Components are partials with no context.  You can adjust their settings in ```app/components/*.js``` and adjust the templates in ```app/templates/components/*.hbs```.
 
+If you haven't already then fire up Ember! Note the proxy argument which allows you to use Ember with your Laravel API.
+
+```
+ember server --proxy http://realtime.dev
+```
 
 ## Preview
 
