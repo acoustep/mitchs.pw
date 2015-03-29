@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/laravel-5">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/ember-js">
 
       <link href="../../stylesheets/application-9b65009b.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_laravel-5">
+    <body class="read read_categories read_categories_ember-js">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,7 +51,7 @@
 
         <div id="container">
           <div id="main">
-            <h1>Laravel 5 Blogs</h1>
+            <h1>Ember JS Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/realtime-chat-with-laravel-ember-js-and-pusher">Realtime chat with Laravel, Ember JS and Pusher</a>
@@ -78,24 +78,6 @@
 <p>
 
 		<a href="/read/realtime-chat-with-laravel-ember-js-and-pusher">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/bootstrap-2-pagination-in-laravel-5">Bootstrap 2 pagination in Laravel 5</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/laravel-5">Laravel 5</a>
-        <a href="/read/categories/bootstrap-2">Bootstrap 2</a>
-        <a href="/read/categories/twitter-bootstrap">Twitter Bootstrap</a>
-    </div>
-		<time>Mar 21, 2015</time>
-
-		<p>I recently had to help port a website that used Twitter Bootstrap 2 to Laravel 5 and discovered that changing the pagination template is completely different in Laravel 5.</p>
-
-<p>
-
-		<a href="/read/bootstrap-2-pagination-in-laravel-5">Read more</a>
 	</article>
 
 <div class="pagination">
