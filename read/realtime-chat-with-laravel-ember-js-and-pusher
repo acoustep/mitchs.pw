@@ -707,11 +707,16 @@ npm install --save-dev ember-cli-content-security-policy
 </div>
 
 <p>And for the template in <code>app/templates/components/message-row.hbs</code></p>
-<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>[{{message.createdAt}}] {{message.name}}: {{message.messageContent}}
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>[{{message.createdAt}}] {{message.name}}: {{message.body}}
 </pre></td></tr></tbody></table>
 </div>
 
 <p>Components are partials with no context.  You can adjust their settings in <code>app/components/*.js</code> and adjust the templates in <code>app/templates/components/*.hbs</code>.</p>
+
+<p>If you haven&rsquo;t already then fire up Ember! Note the proxy argument which allows you to use Ember with your Laravel API.</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>ember server --proxy http://realtime.dev
+</pre></td></tr></tbody></table>
+</div>
 
 <h2>Preview</h2>
 
