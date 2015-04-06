@@ -94,3 +94,9 @@ code {
   
   }
 }
+
+@media only screen and (max-width: 768px) {
+  #container article p {
+    font-size: 1.7em;
+  }
+}

@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Mitch Stanley">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>FullStack Stanley | Making moderation easy</title>
+
+      <meta name="twitter:card" content="summary">
+      <meta property="og:description" content="">
+      <meta property="og:title" content="Making moderation easy">
+      <meta property="og:url" content="http://fullstackstanley.com/read/making-moderation-easy">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2015-04-06T09:27:00Z">
+      <meta property="article:tag" content="Laravel">
+      <meta property="article:tag" content="Laravel 4.2">
+      <meta property="article:tag" content="Eurekar">
+      <meta property="article:tag" content="Moderation">
+
+      <link href="../stylesheets/application-4d950142.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42788138-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+
+    <body class="read read_making-moderation-easy">
+      <div class="wrapper-for-content-outside-of-footer">
+        <header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+        <a name="top"></a>
+        <div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+        <div id="container">
+          <div id="main">
+            	<article>
+		<h1>Making moderation easy</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/laravel-4-2">Laravel 4.2</a>
+        <a href="/read/categories/eurekar">Eurekar</a>
+        <a href="/read/categories/moderation">Moderation</a>
+    </div>
+		<p><em>Posted on Apr  6, 2015</em></p>
+		<p>For just over a year I&rsquo;ve been working on a website called <a href="http://eurekar.co.uk">Eurekar</a>. To describe it briefly, it&rsquo;s a cool little website which has news articles for cars, a fairly complex article search and another search for UK car dealerships.</p>
+
+<p>I have built an insane amount of content management systems in Laravel but what makes Eurekar unique is that the content is pulled from an external XML feed rather than created first hand in the CMS.</p>
+
+<p></p>
+
+<p>My first thoughts that were that having the content brought in from an external system would make things easier.  If the content is made elsewhere then there is no need for an administration area. Unfortunately, due to the feed being out of my control the opposite is true and moderation has become more crucial than ever.</p>
+
+<p>Some of the hurdles this brings include:</p>
+
+<ul>
+<li>Keeping the website&rsquo;s content up to date with the feed.</li>
+<li>XML data not having the ideal structure.</li>
+<li>Difficulty importing certain characters from the XML into MySQL.</li>
+<li>Parsing XML data in general.</li>
+</ul>
+
+<p>There is two other issues that were by the far the most difficult to deal with. </p>
+
+<ol>
+<li>We often get articles with the same images because different authors can write articles about the same cars.  Because of this they use same press release images.  It can look silly having the same thumbnail show up 2-3 times in a list of articles so it&rsquo;s important that they show different images.</li>
+<li>On a similar note, on certain pages such as the home page we didn&rsquo;t want multiple articles showing for the same cars so as to show a wider variety.</li>
+</ol>
+
+<p>As all of these issues cropped up it gradually became clear that being able to moderate the website easily was incredibly important.</p>
+
+<h2>Editing Article Content</h2>
+
+<p>The XML feed is fetched every 30 minutes with a cron job that uses PHP&rsquo;s SimpleXML extension to parse it.  We have to run a bunch of character replacements on this feed so that we don&rsquo;t get any issues with certain symbols. Even with this in place the £ symbol occasionally manages to elude me which is why I wanted editing articles to be incredibly quick and simple.</p>
+
+<p>If you take a look at this page as an example <a href="http://eurekar.co.uk/articles/2015-04-03/mercedes-scores-a-triple">Mercedes scores a triple</a> Below is a screen shot of how it looks when logged in as an administrator.</p>
+
+<p><img alt="Quick edit" src="http://i.imgur.com/EvJxSGp.png" /></p>
+
+<p>On the left side there are 2 buttons: Quick Edit and Full Edit.  Full Edit takes you to the admin area for editing all of the content of the article. Then there&rsquo;s quick edit which uses jQuery to bring up the right side of the image. Here a user can edit the title and the content on the same page which is perfect for fixing minor grammatical errors.  The save button returns the administrator back to the normal page after the content is updated.</p>
+
+<h2>Editing Image Order</h2>
+
+<p>Very often an image of a car boot gets uploaded first from the feed and therefore becomes the image that shows up on all of the article thumbnails.  Obviously this isn&rsquo;t ideal. A car boot is not what our readers are initially interested in.  What make matters more difficult is that articles sometimes have the same images and we wanted to avoid showing duplicates images on pages which listed articles.</p>
+
+<p>There are two parts to this solution. The easiest part was allowing administrators to reorder images.</p>
+
+<p><img alt="Image reorder" src="http://i.imgur.com/1TCGmuD.png" /></p>
+
+<p>The above screenshot is how the image gallery looks as an administrator.  The green button uses HTML5 drag and drop to sort image ordering and is updated via an AJAX request when an image is dropped from the mouse drag.  The pause button toggles the image being viewable as a thumbnail on a list of articles (I&rsquo;ll get to why this is important in a moment).  The bin button deletes the image entirely which is useful when a low quality image is uploaded.</p>
+
+<p>Now to the more challenging problem: preventing duplicate images from being  shown on a list of articles.  Eurekar has many sections which list articles. Some articles might have the same preferred first image (If the images came from the same press release) but they may not always appear in the same sections.  </p>
+
+<p>In an ideal situation the next article which wants to use the same image needs to skip to the next image in it&rsquo;s gallery.  This is why image reordering and the pause toggle button from earlier are important.  This is how we can make sure the best images get rotated on the website.</p>
+
+<p>This is probably the most irregular code I&rsquo;ve had to create in Laravel and in honesty I am not 100% happy with how I implemented it. Here&rsquo;s a snippet of code which generates JSON for our &ldquo;View More&rdquo;  AJAX requests. This code sits in a repository and is called by methods for different sections of the website.</p>
+<div class="highlight php"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></td><td class="code"><pre>
+<span class="cp">&lt;?php</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">generateJSON</span><span class="p">(</span><span class="nv">$articles</span><span class="p">,</span> <span class="nv">$hide_from</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="nv">$c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Illuminate\Database\Eloquent\Collection</span><span class="p">;</span>
+  <span class="nv">$image_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nv">$used_images</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">foreach</span><span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span> <span class="k">as</span> <span class="nv">$image</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$image</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">,</span> <span class="nv">$used_images</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$image_index</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$used_images</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$image</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nv">$image_index</span> <span class="o">&gt;=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">foreach</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span><span class="o">-&gt;</span><span class="na">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$image_index</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$image</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nv">$key</span> <span class="o">=</span> <span class="nb">array_search</span><span class="p">(</span><span class="nv">$image</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">,</span> <span class="nv">$used_images</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nb">unset</span><span class="p">(</span><span class="nv">$used_images</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="nv">$image_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="nv">$blurb</span> <span class="o">=</span> <span class="nx">word_slice</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">,</span> <span class="mi">490</span><span class="p">);</span>
+    <span class="nv">$c</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">([</span>
+      <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+      <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span>
+      <span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">slug</span><span class="p">,</span>
+      <span class="s1">'url'</span> <span class="o">=&gt;</span> <span class="nx">route</span><span class="p">(</span><span class="s1">'articles.show'</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">slug</span><span class="p">),</span>
+      <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">,</span>
+      <span class="s1">'blurb'</span> <span class="o">=&gt;</span> <span class="nv">$blurb</span><span class="p">,</span>
+      <span class="s1">'published_at'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">published_at</span><span class="o">-&gt;</span><span class="na">toDateTimeString</span><span class="p">(),</span>
+      <span class="s1">'filename'</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span><span class="p">[</span><span class="nv">$image_index</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">,</span>
+      <span class="s1">'full_image'</span> <span class="o">=&gt;</span> <span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'assets.aws'</span><span class="p">)</span><span class="o">.</span><span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'assets.image-medium'</span><span class="p">)</span><span class="o">.</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span><span class="p">[</span><span class="nv">$image_index</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">,</span>
+      <span class="s1">'thumbnail'</span> <span class="o">=&gt;</span> <span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'assets.aws'</span><span class="p">)</span><span class="o">.</span><span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'assets.image-small'</span><span class="p">)</span><span class="o">.</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">images</span><span class="p">[</span><span class="nv">$image_index</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">filename</span><span class="p">,</span>
+      <span class="s1">'hide_from'</span> <span class="o">=&gt;</span> <span class="nv">$hide_from</span><span class="p">,</span>
+    <span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">[</span>
+    <span class="s1">'total'</span> <span class="o">=&gt;</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">getTotal</span><span class="p">(),</span> 
+    <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">getFrom</span><span class="p">(),</span>
+    <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">getTo</span><span class="p">(),</span>
+    <span class="s1">'articles'</span> <span class="o">=&gt;</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),</span>
+  <span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>A paginated collection of articles is passed through to the method as well as a second paramater which isn&rsquo;t important to this problem - it is just a value which I need to pass to the JSON.</p>
+
+<p>On line 4 I made a custom collection with <code>\Illuminate\Database\Eloquent\Collection</code> which is going to hold all of the data for the JSON API.</p>
+
+<p>On lines 5-6 I&rsquo;ve initiated 2 variables: <code>image_index</code> and <code>used_images</code> which will be a list of images that have been used so that I can keep track of when I need to show a the next image.</p>
+
+<p>Through lines 7-38 I&rsquo;m looping through all of the articles and then looping through every image in each article. If the image exists in the <code>used_images</code> array then I skip to the next image.  If it doesn&rsquo;t exist then I add it to <code>used_images</code> and break the images loop.</p>
+
+<p>The next if statement checks if the <code>image_index</code> is more than the amount of images available. This means there&rsquo;s no more images left to go through so I use <code>array_search</code> to remove all of the current articles images from the <code>used_images</code> array and set the index back to the beginning. This resets the images used for a certain selection and allows them to be rotated through again.</p>
+
+<p>After all that hard work all that&rsquo;s left is to add the article, its main image and a few other useful attributes to the custom collection which will then be sent off as a JSON response.</p>
+
+<h2>Editing article listings</h2>
+
+<p>Lastly we wanted to be able to show more variety on certain pages of the website. This problem arose due to author&rsquo;s releasing articles about the same car at the same time. Meaning we occasionally get 3 Suzuki Celerio articles hogging the front page which isn&rsquo;t ideal.  The only circumstance where we want 3 or more Suzuki Celerios to show in a list of articles is if a user searched for that car model specifically.</p>
+
+<p>My solution for this is to have hide buttons for each article in an article list.  Take for example the home page latest news shown below:</p>
+
+<p><img alt="Hiding news" src="http://i.imgur.com/XTul45t.png" /></p>
+
+<p>Each section of the website has a boolean field which dictates whether it can be shown on its page. When hide is pressed in a section then it can no longer be in the article listing for that section. There is a separate admin page to revert this change incase of hider&rsquo;s remorse.</p>
+
+<h2>Final Thoughts</h2>
+
+<p>There&rsquo;s a lot of work that goes into making a good admin area and what I&rsquo;ve shown you is just a tiny glimpse of the overall system.</p>
+
+<p>I realise there is a severe lack of code in this article but I hope that you&rsquo;ve  at least found it insightful and that I&rsquo;ve given you some ideas to work in to your own systems.</p>
+
+	</article>
+  <hr>
+  <h2>About the Author</h2>
+  <div id="about-me">
+	<div class="partial-container">
+    <p>Hi, I'm Mitch and I'm a 26 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I do many things. I like to read books, lift weights, play guitar, play video games and write these articles!</p>
+	</div>
+</div>
+
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+          </div>
+        </div>
+        <div class="push"></div>
+      </div>
+
+      <footer class="footer-2">
+        <div class="partial-container">
+          <ul>
+            <li><a class="contact" href="#">Contact</a></li>
+          </ul>
+
+          <div class="footer-secondary-links">
+            <ul class="footer-social">
+              <li>
+                <a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+              </li>
+              <li>
+                <a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+    </body>
+  </html>
