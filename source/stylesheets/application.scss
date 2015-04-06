@@ -24,11 +24,11 @@ body {
 	}
   .article-archive {
     h2 {
-      font-size: 25px;
+      font-size: 1.2em;
       margin-top: 10px;
     }
     h3 {
-      font-size: 16px;
+      font-size: 1.1em;
     }
   }
 	article {
@@ -60,6 +60,11 @@ code {
 	background-color:#f8f8f8;
 	color:#d14;
 	font-size: 1.3em;
+  white-space: pre-wrap;       /* CSS 3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
 }
 
 #aboutMe, #contact {
@@ -95,8 +100,26 @@ code {
   }
 }
 
-@media only screen and (max-width: 768px) {
-  #container article p {
-    font-size: 1.7em;
+@media only screen and (-moz-min-device-pixel-ratio: 2), 
+       only screen and (-o-min-device-pixel-ratio: 2/1), 
+       only screen and (-webkit-min-device-pixel-ratio: 2), 
+       only screen and (min-device-pixel-ratio: 2) {
+  #main {
+    font-size: 2em;
+  }
+  #container .article-archive h2 {
+    margin-top:30px;
+  }
+  code {
+    overflow:scroll;
+  }
+  .nav-link {
+    a {
+      line-height: 100px;
+      font-size:3em;
+    }
+  }
+  .centered-navigation {
+   height: 100px;
   }
 }
