@@ -27,7 +27,7 @@
       <meta property="article:tag" content="mailcatcher">
       <meta property="article:tag" content="gollum">
 
-      <link href="../stylesheets/application-9b65009b.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/application-4d950142.css" rel="stylesheet" type="text/css" />
       <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -139,7 +139,7 @@
   <h2>About the Author</h2>
   <div id="about-me">
 	<div class="partial-container">
-    <p>My name is Mitch Stanley and I'm a 25 year old programmer from the UK.</p>
+    <p>Hi, I'm Mitch and I'm a 26 year old programmer from the UK.</p>
     
     <p>I work for a web design agency in Telford called The Studio 4 where I build web applications with many different languages and tools.</p>
 
