@@ -68,7 +68,9 @@
     </div>
 		<time>Mar 12, 2015</time>
 
-		<p>In the final installment of my Padrino + Ember series I&rsquo;d like to show you how to get some basic realtime functionality within our application.  We&rsquo;ll be using <a href="http://pusher.com">Pusher</a> to send and receive messages. They have a pretty reasonable free package which includes 100k messages per day, 20 max connections and SSL if you need it.</p>
+		<p><em><strong>Note</strong>: This article was updated on 8th April 2015 thanks to <a href="https://twitter.com/leggetter">Phil</a> from <a href="https://twitter.com/pusher">Pusher</a> with a better solution for preventing duplicate data.  You can see the content of the original post <a href="https://github.com/acoustep/mitchs.pw/blob/68f30561cd725758eccd103b3de98eb24f982bf9/source/read/2015-03-12-using-padrino-with-ember-cli-part-5-realtime.html.markdown">here</a>.</em></p>
+
+<p>In the final installment of my Padrino + Ember series I&rsquo;d like to show you how to get some basic realtime functionality within our application.  We&rsquo;ll be using <a href="http://pusher.com">Pusher</a> to send and receive messages. They have a pretty reasonable free package which includes 100k messages per day, 20 max connections and SSL if you need it.</p>
 
 <p>
 
