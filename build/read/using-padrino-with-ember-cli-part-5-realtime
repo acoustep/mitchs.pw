@@ -76,7 +76,9 @@
         <a href="/read/categories/pusher">Pusher</a>
     </div>
 		<p><em>Posted on Mar 12, 2015</em></p>
-		<p>In the final installment of my Padrino + Ember series I&rsquo;d like to show you how to get some basic realtime functionality within our application.  We&rsquo;ll be using <a href="http://pusher.com">Pusher</a> to send and receive messages. They have a pretty reasonable free package which includes 100k messages per day, 20 max connections and SSL if you need it.</p>
+		<p><em><strong>Note</strong>: This article was updated on 8th April 2015 thanks to <a href="https://twitter.com/leggetter">Phil</a> from <a href="https://twitter.com/pusher">Pusher</a> with a better solution for preventing duplicate data.  You can see the content of the original post <a href="https://github.com/acoustep/mitchs.pw/blob/68f30561cd725758eccd103b3de98eb24f982bf9/source/read/2015-03-12-using-padrino-with-ember-cli-part-5-realtime.html.markdown">here</a>.</em></p>
+
+<p>In the final installment of my Padrino + Ember series I&rsquo;d like to show you how to get some basic realtime functionality within our application.  We&rsquo;ll be using <a href="http://pusher.com">Pusher</a> to send and receive messages. They have a pretty reasonable free package which includes 100k messages per day, 20 max connections and SSL if you need it.</p>
 
 <p></p>
 
@@ -113,24 +115,74 @@
 </pre></td></tr></tbody></table>
 </div>
 
-<p>Our Pusher channel will be called <code>posts</code> and the event that will trigger will be called <code>new-post</code>.</p>
-
-<p>Let&rsquo;s place the Pusher trigger inside an <code>after_create</code> hook inside of <code>models/posts.rb</code> to ensure that it gets triggered whenever <code>Post.create</code> is used.</p>
+<p>Here are the changes to the posts controller</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
 3
 4
 5
 6
-7</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">Sequel</span><span class="o">::</span><span class="no">Model</span>
-  <span class="no">Sequel</span><span class="o">::</span><span class="no">Model</span><span class="p">.</span><span class="nf">plugin</span> <span class="ss">:timestamps</span>
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></td><td class="code"><pre><span class="c1"># app/controllers/posts.rb</span>
+  <span class="c1"># ...</span>
+  <span class="n">post</span> <span class="p">:</span><span class="n">create</span><span class="p">,</span> <span class="ss">map: </span><span class="s2">""</span> <span class="k">do</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">post_params</span>
+    <span class="k">if</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">"post"</span><span class="p">].</span><span class="nf">nil?</span>
+      <span class="k">return</span> <span class="s1">'{}'</span>
+    <span class="k">end</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">create</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">"post"</span><span class="p">].</span><span class="nf">except</span><span class="p">(</span><span class="s2">"socket_id"</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">after_create</span>
-    <span class="no">Pusher</span><span class="p">[</span><span class="s1">'posts'</span><span class="p">].</span><span class="nf">trigger</span><span class="p">(</span><span class="s1">'new-post'</span><span class="p">,</span>  <span class="p">{</span><span class="ss">post: </span><span class="nb">self</span><span class="p">.</span><span class="nf">values</span><span class="p">})</span>
+    <span class="no">Pusher</span><span class="p">[</span><span class="s1">'posts'</span><span class="p">].</span><span class="nf">trigger</span><span class="p">(</span><span class="s1">'new-post'</span><span class="p">,</span>  <span class="p">{</span><span class="ss">post: </span><span class="vi">@post</span><span class="p">.</span><span class="nf">values</span><span class="p">},</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">"post"</span><span class="p">][</span><span class="s2">"socket_id"</span><span class="p">])</span>
+
+    <span class="n">render</span> <span class="s2">"posts/show"</span>
   <span class="k">end</span>
-<span class="k">end</span>
+
+  <span class="c1"># ...</span>
+
+  <span class="n">put</span> <span class="p">:</span><span class="n">update</span><span class="p">,</span> <span class="ss">map: </span><span class="s2">":id"</span> <span class="k">do</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]]</span>
+
+    <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="k">return</span> <span class="s1">'{}'</span>
+    <span class="k">end</span>
+
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">post_params</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">update</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">"post"</span><span class="p">].</span><span class="nf">except</span><span class="p">(</span><span class="s2">"socket_id"</span><span class="p">)</span>
+    <span class="n">render</span> <span class="s2">"posts/show"</span>
+
+  <span class="k">end</span>
+  <span class="c1"># ...</span>
 </pre></td></tr></tbody></table>
 </div>
+
+<p>We&rsquo;re going to be sending a new parameter called <code>socket_id</code> to our Padrino API from the Ember application.  <code>socket_id</code> is generated from Pusher in the Ember application and is unique for each user.</p>
+
+<p>Notice on lines 8 and 25 we exclude <code>socket_id</code> as we don&rsquo;t have a <code>socket_id</code> field in our posts table to insert.</p>
+
+<p>On line 10 we send the data to Pusher to tell applications that there is a new blog post. The key, <code>posts</code>, is the channel. The first parameter <code>new-post</code> is the event, the second parameter is the data to send and the third parameter is client&rsquo;s socket id.</p>
+
+<p>Sending the client&rsquo;s socket id means that Pusher will not send the event back to the user which created it. This will prevent duplicate data from showing in the poster&rsquo;s Ember application.</p>
 
 <p>That&rsquo;s it for Padrino. It&rsquo;s really that simple!</p>
 
@@ -221,10 +273,7 @@
 13
 14
 15
-16
-17
-18
-19</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+16</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Bindings</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ember-pusher/bindings'</span><span class="p">;</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Bindings</span><span class="p">,</span> <span class="p">{</span>
@@ -236,10 +285,7 @@
   <span class="p">},</span>
   <span class="na">actions</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">newPost</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-      <span class="nx">Ember</span><span class="p">.</span><span class="nx">run</span><span class="p">.</span><span class="nx">later</span><span class="p">((</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-          <span class="nx">_this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">normalize</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">));</span>
-      <span class="p">}),</span> <span class="mi">2000</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">normalize</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">));</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">});</span>
@@ -248,13 +294,7 @@
 
 <p>We will switch the controller to an ArrayController so we can sort by <code>id</code> descending (so that newer posts appear at the top). Using the pusher library we subscribe to the posts channel and the <code>new-post</code> event. Note that when there is a <code>new-post</code> event an action is called with the camel-case version of the name. In this case <code>new-post</code> becomes <code>newPost</code>.</p>
 
-<p>Inside the action we&rsquo;ve use <code>Ember.run.later</code> to wait 2 seconds after the event is triggered. I&rsquo;ll get to why in a second. Inside it we use <code>store.push</code> which will find the post if it&rsquo;s already there or create it otherwise.  </p>
-
-<p>It may not be obvious at first but if we have two users on our application and one of them creates a post both will receive the Pusher event. This means that the code that pulls in the new post needs to work in the situation where there is already a post and this is exactly what <code>store.push</code> is for.</p>
-
-<p>Unfortunately from my experience this is not enough to prevent duplicates. I still find them occasionally on the application that creates a post. I believe this is because the event is firing before the data is registered in Ember Data. </p>
-
-<p>This is why we wrap it in <code>Ember.run.later</code>.   Note that the more time you can afford to delay the less likely that you will receive duplicates.</p>
+<p>Inside of the <code>newPost</code> action we use <code>store.push</code> which will find the post if it&rsquo;s already there or create it otherwise.  </p>
 
 <p>Here is the newly updated <code>posts/index.hbs</code></p>
 <div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
@@ -317,10 +357,68 @@
 
 <p>Note that we&rsquo;re looping through <code>arrangedContent</code> now so that we that the data is ordered by ID descending.</p>
 
-<p>At this point posts will get pushed to the on top until we hit an id of 10 which mysteriously goes to the bottom of the collection.  This is because Ember&rsquo;s sort works with strings not integers. The simplest solution is to switch <code>id</code> out for <code>createdAt</code> in your posts/index controller.</p>
+<p>At this point posts will get pushed to the on top until we hit an id of 10 which mysteriously goes to the bottom of the collection.  This is because Ember&rsquo;s sort works with strings not integers. The simplest solution is to switch <code>id</code> out for <code>createdAt</code> in your <code>posts/index</code> controller.</p>
 <div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nx">sortProperties</span><span class="err">:</span> <span class="p">[</span><span class="s1">'createdAt'</span><span class="p">],</span>
 </pre></td></tr></tbody></table>
 </div>
+
+<p>As mentioned in the Padrino part of the article we need to add a new parameter, <code>socketId</code> to the <code>post</code> model.</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="c1">// app/models/post.js</span>
+<span class="kr">import</span> <span class="nx">DS</span> <span class="nx">from</span> <span class="s1">'ember-data'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="na">title</span><span class="p">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'string'</span><span class="p">),</span>
+  <span class="na">content</span><span class="p">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'string'</span><span class="p">),</span>
+  <span class="na">createdAt</span><span class="p">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'string'</span><span class="p">),</span>
+  <span class="na">updatedAt</span><span class="p">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'string'</span><span class="p">),</span>
+  <span class="na">socketId</span><span class="p">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'string'</span><span class="p">)</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>socketId</code> will need to be sent when we create a new post. To do this we need to edit the <code>save</code> action in <code>app/routes/posts/new.js</code>.</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre>  <span class="c1">// ...</span>
+  <span class="nl">actions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">save</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">post</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">modelFor</span><span class="p">(</span><span class="s1">'posts/new'</span><span class="p">)</span>
+
+      <span class="nx">post</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'socketId'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pusher</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'socketId'</span><span class="p">));</span>
+
+      <span class="nx">post</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">transitionTo</span><span class="p">(</span><span class="s1">'posts.index'</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Notice how we get the model and assign the pusher <code>socketId</code> before saving it to the server.</p>
 
 <h3>Notification messages</h3>
 
@@ -363,10 +461,7 @@
 32
 33
 34
-35
-36
-37
-38</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
+35</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">'ember'</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Bindings</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ember-pusher/bindings'</span><span class="p">;</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Bindings</span><span class="p">,</span> <span class="p">{</span>
@@ -389,12 +484,9 @@
   <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPosts.@each'</span><span class="p">),</span>
   <span class="nx">actions</span><span class="err">:</span> <span class="p">{</span>
     <span class="nl">newPost</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-      <span class="nx">Ember</span><span class="p">.</span><span class="nx">run</span><span class="p">.</span><span class="nx">later</span><span class="p">((</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">_this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">hasRecordForId</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
-          <span class="nx">_this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPosts'</span><span class="p">).</span><span class="nx">pushObject</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">);</span>
-        <span class="p">}</span>
-      <span class="p">}),</span> <span class="mi">2000</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">hasRecordForId</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPosts'</span><span class="p">).</span><span class="nx">pushObject</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">);</span>
+      <span class="p">}</span>
     <span class="p">},</span>
     <span class="nx">refresh</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPosts'</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
@@ -409,17 +501,17 @@
 
 <p>On line 11 we have a new property <code>newPosts</code> which by default is an empty array. Every time a new post is sent to Ember we will store it in here.</p>
 
-<p>On line 12-14 we have a computed property called <code>newPostCount</code> which counts the number of posts we have stored in the <code>newPosts</code>array.</p>
+<p>On line 12-14 we have a computed property called <code>newPostCount</code> which counts the number of posts we have stored in the <code>newPosts</code> array.</p>
 
 <p>On lines 15-17 we have a computed property called <code>newPostsExist</code> which returns a boolean value for our template.  The double exclamation mark converts the <code>newPosts</code> length to false if it&rsquo;s 0 and true otherwise.</p>
 
 <p>Lines 18-21 sets up the message we want to display to the user when a new post is available. This will be either &ldquo;1 New Post&rdquo; or &ldquo;x New Posts&rdquo;.</p>
 
-<p>In the <code>newPost</code> action on lines 23-30 instead of pushing the post into the store we put it in the <code>newPosts</code> array for later.</p>
+<p>In the <code>newPost</code> action on lines 23-27 instead of pushing the post into the store we put it in the <code>newPosts</code> array for later.</p>
 
-<p>The refresh action on lines 31-37 will be a click event in our template which takes each post and pushes them into our store.</p>
+<p>The refresh action on lines 28-33 will be a click event in our template which takes each post and pushes them into our store.</p>
 
-<p>Each computed property has the following code <code>newPosts.@each</code>.  This allows them to watch for when the array has items added or removed.  This is ideal so that we can tell the user how many new posts there are.</p>
+<p>Each computed property has the following code: <code>newPosts.@each</code>.  This allows them to watch for when the array has items added or removed.  This is ideal so that we can tell the user how many new posts there are.</p>
 
 <p>Here is the new template in <code>app/templates/posts/index.hbs</code></p>
 <div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
@@ -508,8 +600,6 @@
 <h2>Summary</h2>
 
 <p>In this post we&rsquo;ve covered 2 ways of using Pusher to handle notifications. One where new posts get added directly to the store and another where we hold on to changes and let the user handle updates.  </p>
-
-<p>We&rsquo;ve also touched on some of the issues that push notifications bring.  This includes using <code>store.push</code> and <code>Ember.run.later</code> to prevent duplicate rows.</p>
 
 <p>I hope you have enjoyed this series and learned how awesome it is to use Padrino with Ember. Don&rsquo;t forget to check out the full source on <a href="https://github.com/acoustep/padrino-ember-example">Github</a>!</p>
 

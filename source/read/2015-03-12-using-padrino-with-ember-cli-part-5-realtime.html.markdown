@@ -10,6 +10,8 @@ ogp:
     url: 'read/using-padrino-with-ember-cli-part-5-realtime/'
 ---
 
+_**Note**: This article was updated on 8th April 2015 thanks to [Phil](https://twitter.com/leggetter) from [Pusher](https://twitter.com/pusher) with a better solution for preventing duplicate data.  You can see the content of the original post [here](https://github.com/acoustep/mitchs.pw/blob/68f30561cd725758eccd103b3de98eb24f982bf9/source/read/2015-03-12-using-padrino-with-ember-cli-part-5-realtime.html.markdown)._
+
 In the final installment of my Padrino + Ember series I'd like to show you how to get some basic realtime functionality within our application.  We'll be using [Pusher](http://pusher.com) to send and receive messages. They have a pretty reasonable free package which includes 100k messages per day, 20 max connections and SSL if you need it.
 
 READMORE
@@ -44,19 +46,47 @@ Inside your App class in ```app/app.rb``` add the following configuration block 
   end
 ```
 
-Our Pusher channel will be called ```posts``` and the event that will trigger will be called ```new-post```.
-
-Let's place the Pusher trigger inside an ```after_create``` hook inside of ```models/posts.rb``` to ensure that it gets triggered whenever ```Post.create``` is used.
+Here are the changes to the posts controller
 
 ```ruby
-class Post < Sequel::Model
-  Sequel::Model.plugin :timestamps
+# app/controllers/posts.rb
+  # ...
+  post :create, map: "" do
+    parameters = post_params
+    if parameters["post"].nil?
+      return '{}'
+    end
+    @post = Post.create parameters["post"].except("socket_id")
 
-  def after_create
-    Pusher['posts'].trigger('new-post',  {post: self.values})
+    Pusher['posts'].trigger('new-post',  {post: @post.values}, parameters["post"]["socket_id"])
+
+    render "posts/show"
   end
-end
+
+  # ...
+
+  put :update, map: ":id" do
+    @post = Post[params[:id]]
+
+    if @post.nil?
+      return '{}'
+    end
+
+    parameters = post_params
+    @post.update parameters["post"].except("socket_id")
+    render "posts/show"
+
+  end
+  # ...
 ```
+
+We're going to be sending a new parameter called ```socket_id``` to our Padrino API from the Ember application.  ```socket_id``` is generated from Pusher in the Ember application and is unique for each user.
+
+Notice on lines 8 and 25 we exclude ```socket_id``` as we don't have a ```socket_id``` field in our posts table to insert.
+
+On line 10 we send the data to Pusher to tell applications that there is a new blog post. The key, ```posts```, is the channel. The first parameter ```new-post``` is the event, the second parameter is the data to send and the third parameter is client's socket id.
+
+Sending the client's socket id means that Pusher will not send the event back to the user which created it. This will prevent duplicate data from showing in the poster's Ember application.
 
 That's it for Padrino. It's really that simple!
 
@@ -134,10 +164,7 @@ export default Ember.ArrayController.extend(Bindings, {
   },
   actions: {
     newPost: function(message) {
-      var _this = this;
-      Ember.run.later((function() {
-          _this.store.push('post', _this.store.normalize('post', message.post));
-      }), 2000);
+      this.store.push('post', this.store.normalize('post', message.post));
     }
   }
 });
@@ -145,13 +172,7 @@ export default Ember.ArrayController.extend(Bindings, {
 
 We will switch the controller to an ArrayController so we can sort by ```id``` descending (so that newer posts appear at the top). Using the pusher library we subscribe to the posts channel and the ```new-post``` event. Note that when there is a ```new-post``` event an action is called with the camel-case version of the name. In this case ```new-post``` becomes ```newPost```.
 
-Inside the action we've use ```Ember.run.later``` to wait 2 seconds after the event is triggered. I'll get to why in a second. Inside it we use ```store.push``` which will find the post if it's already there or create it otherwise.  
-
-It may not be obvious at first but if we have two users on our application and one of them creates a post both will receive the Pusher event. This means that the code that pulls in the new post needs to work in the situation where there is already a post and this is exactly what ```store.push``` is for.
-
-Unfortunately from my experience this is not enough to prevent duplicates. I still find them occasionally on the application that creates a post. I believe this is because the event is firing before the data is registered in Ember Data. 
-
-This is why we wrap it in ```Ember.run.later```.   Note that the more time you can afford to delay the less likely that you will receive duplicates.
+Inside of the ```newPost``` action we use ```store.push``` which will find the post if it's already there or create it otherwise.  
 
 Here is the newly updated ```posts/index.hbs```
 
@@ -188,11 +209,48 @@ Here is the newly updated ```posts/index.hbs```
 
 Note that we're looping through ```arrangedContent``` now so that we that the data is ordered by ID descending.
 
-At this point posts will get pushed to the on top until we hit an id of 10 which mysteriously goes to the bottom of the collection.  This is because Ember's sort works with strings not integers. The simplest solution is to switch ```id``` out for ```createdAt``` in your posts/index controller.
+At this point posts will get pushed to the on top until we hit an id of 10 which mysteriously goes to the bottom of the collection.  This is because Ember's sort works with strings not integers. The simplest solution is to switch ```id``` out for ```createdAt``` in your ```posts/index``` controller.
 
 ```js
 sortProperties: ['createdAt'],
 ```
+
+As mentioned in the Padrino part of the article we need to add a new parameter, ```socketId``` to the ```post``` model.
+
+```js
+// app/models/post.js
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  title: DS.attr('string'),
+  content: DS.attr('string'),
+  createdAt: DS.attr('string'),
+  updatedAt: DS.attr('string'),
+  socketId: DS.attr('string')
+});
+```
+
+```socketId``` will need to be sent when we create a new post. To do this we need to edit the ```save``` action in ```app/routes/posts/new.js```.
+
+```js
+  // ...
+  actions: {
+    save: function() {
+      var _this = this;
+      var post = this.modelFor('posts/new')
+      
+      post.set('socketId', this.pusher.get('socketId'));
+
+      post.save().then(function() {
+        _this.transitionTo('posts.index');
+      });
+    }
+  }
+  // ...
+
+```
+
+Notice how we get the model and assign the pusher ```socketId``` before saving it to the server.
 
 ### Notification messages
 
@@ -226,12 +284,9 @@ export default Ember.ArrayController.extend(Bindings, {
   }.property('newPosts.@each'),
   actions: {
     newPost: function(message) {
-      var _this = this;
-      Ember.run.later((function() {
-        if(!_this.store.hasRecordForId('post', message.post.id)) {
-          _this.get('newPosts').pushObject(message.post);
-        }
-      }), 2000);
+      if(!this.store.hasRecordForId('post', message.post.id)) {
+        this.get('newPosts').pushObject(message.post);
+      }
     },
     refresh: function() {
       this.get('newPosts').forEach(function(post) {
@@ -245,17 +300,18 @@ export default Ember.ArrayController.extend(Bindings, {
 
 On line 11 we have a new property ```newPosts``` which by default is an empty array. Every time a new post is sent to Ember we will store it in here.
 
-On line 12-14 we have a computed property called ```newPostCount``` which counts the number of posts we have stored in the ```newPosts```array.
+On line 12-14 we have a computed property called ```newPostCount``` which counts the number of posts we have stored in the ```newPosts``` array.
 
 On lines 15-17 we have a computed property called ```newPostsExist``` which returns a boolean value for our template.  The double exclamation mark converts the ```newPosts``` length to false if it's 0 and true otherwise.
 
 Lines 18-21 sets up the message we want to display to the user when a new post is available. This will be either "1 New Post" or "x New Posts".
 
-In the ```newPost``` action on lines 23-30 instead of pushing the post into the store we put it in the ```newPosts``` array for later.
+In the ```newPost``` action on lines 23-27 instead of pushing the post into the store we put it in the ```newPosts``` array for later.
 
-The refresh action on lines 31-37 will be a click event in our template which takes each post and pushes them into our store.
+The refresh action on lines 28-33 will be a click event in our template which takes each post and pushes them into our store.
 
-Each computed property has the following code ```newPosts.@each```.  This allows them to watch for when the array has items added or removed.  This is ideal so that we can tell the user how many new posts there are.
+Each computed property has the following code: ```newPosts.@each```.  This allows them to watch for when the array has items added or removed.  This is ideal so that we can tell the user how many new posts there are.
+
 
 Here is the new template in ```app/templates/posts/index.hbs```
 
@@ -312,7 +368,5 @@ Feel free to add some CSS or use anchor tags so that the cursor changes on hover
 ## Summary
 
 In this post we've covered 2 ways of using Pusher to handle notifications. One where new posts get added directly to the store and another where we hold on to changes and let the user handle updates.  
-
-We've also touched on some of the issues that push notifications bring.  This includes using ```store.push``` and ```Ember.run.later``` to prevent duplicate rows.
 
 I hope you have enjoyed this series and learned how awesome it is to use Padrino with Ember. Don't forget to check out the full source on [Github](https://github.com/acoustep/padrino-ember-example)!
