@@ -473,15 +473,15 @@
   <span class="p">},</span>
   <span class="na">newPosts</span><span class="p">:</span> <span class="p">[],</span>
   <span class="na">newPostCount</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPosts'</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
-  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPosts.@each'</span><span class="p">),</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPosts.length'</span><span class="p">);</span>
+  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPosts.length'</span><span class="p">),</span>
   <span class="nx">newPostsExist</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPostCount'</span><span class="p">);</span>
-  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPosts.@each'</span><span class="p">),</span>
+  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPostCount'</span><span class="p">),</span>
   <span class="nx">newPostMessage</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">wording</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPostCount'</span><span class="p">)</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">?</span> <span class="s2">"New Posts"</span> <span class="p">:</span> <span class="s2">"New Post"</span><span class="p">;</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'newPostCount'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">wording</span><span class="p">;</span>
-  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPosts.@each'</span><span class="p">),</span>
+  <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'newPostCount'</span><span class="p">),</span>
   <span class="nx">actions</span><span class="err">:</span> <span class="p">{</span>
     <span class="nl">newPost</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">store</span><span class="p">.</span><span class="nx">hasRecordForId</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
