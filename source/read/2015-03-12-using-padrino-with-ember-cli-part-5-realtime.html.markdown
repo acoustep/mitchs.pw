@@ -310,7 +310,7 @@ In the ```newPost``` action on lines 23-27 instead of pushing the post into the 
 
 The refresh action on lines 28-33 will be a click event in our template which takes each post and pushes them into our store.
 
-Each computed property has the following code: ```newPosts.@each```.  This allows them to watch for when the array has items added or removed.  This is ideal so that we can tell the user how many new posts there are.
+The ```newPostCount``` computed property has the following code: ```newPosts.length```.  This allows it to watch for when the ```newPosts``` array has changed in length.  With this we can update the user with how many new posts there are automatically.
 
 
 Here is the new template in ```app/templates/posts/index.hbs```
