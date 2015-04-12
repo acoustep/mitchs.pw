@@ -13,7 +13,7 @@
       <meta name="twitter:card" content="summary">
       <meta property="og:url" content="http://fullstackstanley.com/read/categories/sass">
 
-      <link href="../../stylesheets/application-0178d91a.css" rel="stylesheet" type="text/css" />
+      <link href="../../stylesheets/application-feb6d2e3.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -52,6 +52,23 @@
         <div id="container">
           <div id="main">
             <h1>SASS Blogs</h1>
+	<article class="blurb">
+		<h1>
+			<a href="/read/laravel-elixir-with-bootstrap-sass-and-font-awesome">Laravel Elixir with Bootstrap SASS and Font Awesome</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/laravel">Laravel</a>
+        <a href="/read/categories/laravel-elixir">Laravel Elixir</a>
+        <a href="/read/categories/bootstrap">Bootstrap</a>
+        <a href="/read/categories/font-awesome">Font Awesome</a>
+        <a href="/read/categories/sass">SASS</a>
+    </div>
+		<time>Apr 12, 2015</time>
+
+		<p>This is my current Gulpfile for Laravel Elixir which is heavily influenced from <a href="https://gist.github.com/ericbarnes/c3ab73520bae8f1a83a2">this gist</a> and the comments within it.  All I’ve done is added Font Awesome, set it compile all scripts in <code>resources/javascripts</code> which is where I keep my own Javascript...</p>
+
+		<a href="/read/laravel-elixir-with-bootstrap-sass-and-font-awesome">Read more</a>
+	</article>
 	<article class="blurb">
 		<h1>
 			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
