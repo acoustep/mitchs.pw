@@ -13,6 +13,10 @@ body {
 	margin: 0;
 }
 
+a {
+  text-decoration:underline;
+}
+
 #container {
 	@include outer-container;
 	padding-top:1em;
