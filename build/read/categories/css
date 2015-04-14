@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/sass">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/css">
 
       <link href="../../stylesheets/application-feb6d2e3.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_sass">
+    <body class="read read_categories read_categories_css">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,7 +51,7 @@
 
         <div id="container">
           <div id="main">
-            <h1>SASS Blogs</h1>
+            <h1>CSS Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/why-you-should-use-bootstrap-with-a-css-preprocessor">Why you should use Bootstrap with a CSS Preprocessor</a>
@@ -68,45 +68,6 @@
 <p>Using a preprocessor such as SASS lets you make...</p>
 
 		<a href="/read/why-you-should-use-bootstrap-with-a-css-preprocessor">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/laravel-elixir-with-bootstrap-sass-and-font-awesome">Laravel Elixir with Bootstrap SASS and Font Awesome</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/laravel-elixir">Laravel Elixir</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/font-awesome">Font Awesome</a>
-        <a href="/read/categories/sass">SASS</a>
-    </div>
-		<time>Apr 12, 2015</time>
-
-		<p>This is my current Gulpfile for Laravel Elixir which is heavily influenced from <a href="https://gist.github.com/ericbarnes/c3ab73520bae8f1a83a2">this gist</a> and the comments within it.  All I’ve done is added Font Awesome, set it compile all scripts in <code>resources/javascripts</code> which is where I keep my own Javascript...</p>
-
-		<a href="/read/laravel-elixir-with-bootstrap-sass-and-font-awesome">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/middleman">Middleman</a>
-        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/sass">SASS</a>
-    </div>
-		<time>Nov 12, 2013</time>
-
-		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
-
-<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
-
-<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
-
-<p>
-
-		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
 	</article>
 
 <div class="pagination">

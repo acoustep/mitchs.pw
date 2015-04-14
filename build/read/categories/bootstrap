@@ -54,6 +54,23 @@
             <h1>Bootstrap Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/why-you-should-use-bootstrap-with-a-css-preprocessor">Why you should use Bootstrap with a CSS Preprocessor</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/bootstrap">Bootstrap</a>
+        <a href="/read/categories/css">CSS</a>
+        <a href="/read/categories/sass">SASS</a>
+    </div>
+		<time>Apr 13, 2015</time>
+
+		<p>It’s all too easy to import Twitter Bootstrap from <a href="http://www.bootstrapcdn.com/">BootstrapCDN</a>, overwrite the styles in your own CSS and just stick an <code>!important</code> on anything that doesn’t work the first time you try to change it.  </p>
+
+<p>Using a preprocessor such as SASS lets you make...</p>
+
+		<a href="/read/why-you-should-use-bootstrap-with-a-css-preprocessor">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/laravel-elixir-with-bootstrap-sass-and-font-awesome">Laravel Elixir with Bootstrap SASS and Font Awesome</a>
 		</h1>
     <div class="tags">
