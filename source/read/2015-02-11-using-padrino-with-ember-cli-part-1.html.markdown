@@ -359,7 +359,7 @@ You have 2 options. Disable CSRF entirely or, if your Padrino app is more than j
 
 #### Disabling CSRF Entirely
 
-Go to ```app/config/app.rb``` and set the following
+Go to ```app/config/apps.rb``` and set the following
 
 ```ruby
 set :protect_from_csrf, false
@@ -369,7 +369,7 @@ If your app is currently running make sure you restart it now with ```bundle exe
 
 #### Disabling CSRF for your API
 
-If you’re using Better Errors, go to ```app/config/app.rb``` and set the following
+If you’re using Better Errors, go to ```app/config/apps.rb``` and set the following
 
 ```ruby
 set :protect_from_csrf, except: %r{/__better_errors/\\w+/\\w+\\z} if Padrino.env == :development
