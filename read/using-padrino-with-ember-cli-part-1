@@ -534,7 +534,7 @@ bundle
 
 <h4>Disabling CSRF Entirely</h4>
 
-<p>Go to <code>app/config/app.rb</code> and set the following</p>
+<p>Go to <code>app/config/apps.rb</code> and set the following</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">set</span> <span class="p">:</span><span class="n">protect_from_csrf</span><span class="p">,</span> <span class="kp">false</span>
 </pre></td></tr></tbody></table>
 </div>
@@ -543,7 +543,7 @@ bundle
 
 <h4>Disabling CSRF for your API</h4>
 
-<p>If you’re using Better Errors, go to <code>app/config/app.rb</code> and set the following</p>
+<p>If you’re using Better Errors, go to <code>app/config/apps.rb</code> and set the following</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">set</span> <span class="p">:</span><span class="n">protect_from_csrf</span><span class="p">,</span> <span class="ss">except: </span><span class="sr">%r{/__better_errors/</span><span class="se">\\</span><span class="sr">w+/</span><span class="se">\\</span><span class="sr">w+</span><span class="se">\\</span><span class="sr">z}</span> <span class="k">if</span> <span class="no">Padrino</span><span class="p">.</span><span class="nf">env</span> <span class="o">==</span> <span class="ss">:development</span>
 </pre></td></tr></tbody></table>
 </div>
