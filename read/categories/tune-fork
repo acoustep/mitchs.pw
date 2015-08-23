@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/gollum">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/tune-fork">
 
       <link href="../../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_gollum">
+    <body class="read read_categories read_categories_tune-fork">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,40 +51,24 @@
 
         <div id="container">
           <div id="main">
-            <h1>gollum Blogs</h1>
+            <h1>tune fork Blogs</h1>
 	<article class="blurb">
 		<h1>
-			<a href="/read/january-15-top-developer-tools-and-services">January ’15: Top Developer Tools and Services</a>
+			<a href="/read/my-first-ios-app-with-rubymotion-in-2015">My first iOS app with RubyMotion in 2015</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/webdevelopment">webdevelopment</a>
-        <a href="/read/categories/learning">learning</a>
-        <a href="/read/categories/organisation">organisation</a>
-        <a href="/read/categories/tools">tools</a>
-        <a href="/read/categories/services">services</a>
-        <a href="/read/categories/balsamiq">balsamiq</a>
-        <a href="/read/categories/asana">asana</a>
-        <a href="/read/categories/toggl">toggl</a>
-        <a href="/read/categories/mailcatcher">mailcatcher</a>
-        <a href="/read/categories/gollum">gollum</a>
+        <a href="/read/categories/rubymotion">rubymotion</a>
+        <a href="/read/categories/ruby">ruby</a>
+        <a href="/read/categories/ios">ios</a>
+        <a href="/read/categories/tune-fork">tune fork</a>
+        <a href="/read/categories/redpotion">redpotion</a>
+        <a href="/read/categories/promotion">promotion</a>
     </div>
-		<time>Jan 15, 2015</time>
+		<time>Aug 23, 2015</time>
 
-		<p>Now that I&rsquo;m increasing the amount of blogs that I write I want to start giving credit to stuff that I use every day.</p>
+		<p>So, I’ve taken to learning RubyMotion specifically to make iOS applications.  This blog is all about my experience as a fresh iOS developer with no prior experience with Objective C or Swift.  I’ll go through the benefits, the bottlenecks and what...</p>
 
-<p>These aren&rsquo;t always going to be programming or web related.  Many of them are to do with organisation and learning. I may even throw in some fun stuff, too!</p>
-
-<h2><a href="http://mailcatcher.me/">Mailcatcher</a></h2>
-
-<p>First off the bat: Mailcatcher. A Ruby gem for testing emails on your local machine. It works by catching the emails sent through a local SMTP server and comes with a simple-but-awesome GUI for previewing your emails.</p>
-
-<p>As a bonus it already comes installed with <a href="https://puphpet.com/">PuPHPet</a> which I use to set up my PHP stacks.</p>
-
-<p>If you don’t use PHP or PuPHPet it’s still a breeze to install. So if you’re a developer that makes applications with emails I really recommend you give it a shot.</p>
-
-<p>
-
-		<a href="/read/january-15-top-developer-tools-and-services">Read more</a>
+		<a href="/read/my-first-ios-app-with-rubymotion-in-2015">Read more</a>
 	</article>
 
 <div class="pagination">
