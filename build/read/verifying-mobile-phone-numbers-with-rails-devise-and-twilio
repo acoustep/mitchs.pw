@@ -21,7 +21,7 @@
       <meta property="article:tag" content="Twilio">
       <meta property="article:tag" content="Rails 4.2">
 
-      <link href="../stylesheets/application-feb6d2e3.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
       <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -186,8 +186,8 @@
 
 <p>In  <code>app/models/user.rb</code> add the following validation.</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2</pre></td><td class="code"><pre>  <span class="n">validates_uniqueness_of</span> <span class="p">:</span><span class="n">mobile_number</span>
-  <span class="n">validates</span> <span class="p">:</span><span class="n">mobile_number</span><span class="p">,</span> <span class="ss">phone: </span><span class="p">{</span> <span class="ss">possible: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">allow_blank: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">types: </span><span class="p">[</span><span class="ss">:mobile</span><span class="p">]</span> <span class="p">}</span>
+2</pre></td><td class="code"><pre>  <span class="n">validates_uniqueness_of</span> <span class="ss">:mobile_number</span>
+  <span class="n">validates</span> <span class="ss">:mobile_number</span><span class="p">,</span> <span class="ss">phone: </span><span class="p">{</span> <span class="ss">possible: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">allow_blank: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">types: </span><span class="p">[</span><span class="ss">:mobile</span><span class="p">]</span> <span class="p">}</span>
 </pre></td></tr></tbody></table>
 </div>
 
@@ -214,7 +214,7 @@
 <p>You can remove all of the newly generated controllers except <code>app/controllers/acme/registrations_controller.rb</code>.</p>
 
 <p>Amend your devise route in <code>config/routes.rb</code> like so:</p>
-<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>  <span class="n">devise_for</span> <span class="p">:</span><span class="n">users</span><span class="p">,</span> <span class="ss">:controllers</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:registrations</span> <span class="o">=&gt;</span> <span class="s2">"acme/registrations"</span><span class="p">}</span>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>  <span class="n">devise_for</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:controllers</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:registrations</span> <span class="o">=&gt;</span> <span class="s2">"acme/registrations"</span><span class="p">}</span>
 </pre></td></tr></tbody></table>
 </div>
 
@@ -226,7 +226,7 @@
 5
 6
 7</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">Acme</span><span class="o">::</span><span class="no">RegistrationsController</span> <span class="o">&lt;</span> <span class="no">Devise</span><span class="o">::</span><span class="no">RegistrationsController</span>
-  <span class="n">before_filter</span> <span class="p">:</span><span class="n">configure_account_update_params</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:update</span><span class="p">]</span>
+  <span class="n">before_filter</span> <span class="ss">:configure_account_update_params</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:update</span><span class="p">]</span>
 
   <span class="k">def</span> <span class="nf">configure_account_update_params</span>
     <span class="n">devise_parameter_sanitizer</span><span class="p">.</span><span class="nf">for</span><span class="p">(</span><span class="ss">:account_update</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="ss">:mobile_number</span>
@@ -493,7 +493,7 @@ TWILIO_PHONE_NUMBER="+15005550006"
 <p>It&rsquo;s also a good idea to stop the code from showing in the log files.</p>
 <div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2</pre></td><td class="code"><pre><span class="c1"># app/models/user.rb</span>
-<span class="n">filter_parameter_logging</span> <span class="p">:</span><span class="n">verification_code</span>
+<span class="n">filter_parameter_logging</span> <span class="ss">:verification_code</span>
 </pre></td></tr></tbody></table>
 </div>
 
@@ -542,7 +542,7 @@ TWILIO_PHONE_NUMBER="+15005550006"
 
 <span class="c1"># app/jobs/send_verification_code_job.rb</span>
 <span class="k">class</span> <span class="nc">SendVerificationCodeJob</span> <span class="o">&lt;</span> <span class="no">ActiveJob</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">queue_as</span> <span class="p">:</span><span class="n">default</span>
+  <span class="n">queue_as</span> <span class="ss">:default</span>
 
   <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
     <span class="c1"># generate verification code</span>
@@ -626,5 +626,13 @@ TWILIO_PHONE_NUMBER="+15005550006"
       </footer>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+      <script>
+      (function(d, t) {
+          var g = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+          g.src = 'http://assets.gfycat.com/js/gfyajax-0.517d.js';
+          s.parentNode.insertBefore(g, s);
+      }(document, 'script'));
+      </script>
     </body>
   </html>

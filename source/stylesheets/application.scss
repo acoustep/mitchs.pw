@@ -38,7 +38,7 @@ a {
 	article {
 		@include span-columns(12);
     float:none;
-		p {
+		p, li {
 			font-size:1.2em;
 		}
     &.blurb {
