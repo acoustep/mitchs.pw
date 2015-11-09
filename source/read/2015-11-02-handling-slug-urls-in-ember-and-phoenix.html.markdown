@@ -10,17 +10,21 @@ ogp:
     url: 'read/handling-slug-urls-in-ember-and-phoenix'
 ---
 
-I've recently started playing around with the PEEP stack (Postgres Elixir Ember Phoenix). One of the first things I wanted achieve is using slugs instead of ids in the URLs.
+I've recently started playing around with the PEEP stack (Postgres Elixir Ember Phoenix). One of the first things I wanted achieve is using SEO-friendly slugs instead of ids in Ember application's URLs.
 
-This article presumes you know how to set up a fresh Ember project and a fresh Phoenix application as I will be diving head first into the code. 
+This article presumes you know how to set up a fresh Ember project and a fresh Phoenix application as we will be diving head first into the code. 
 
 ### Version info:
+
+These are the tools I'm using for this application.
   
 * Node 4.2.1
 * Ember 1.13.8 / 2.0.2
 * Elixir 1.0.5
 * Phoenix 1.0.3
 * PostgreSQL 9.4.5
+
+### Notes
 
 There is no special configuration required for each to work together. Although, I recommend launching Ember with the proxy argument as shown below.
 
@@ -32,11 +36,13 @@ This means you don't have to worry about Content Security Policy between Ember a
 
 If you haven't already, check out Maxwell Holder's [Build a Blog with Phoenix and Ember.js](http://maxwellholder.com/blog/build-a-blog-with-phoenix-and-ember). This article really helped me get started with using Ember and Phoenix together.
 
-I'll be demonstrating how to set up a product index which links through to product pages with a slug instead of an ID. This includes querying the slug on the API as well.
+I'll be demonstrating how to set up 2 pages: a page with a list of products and a page for individual products which have a slug instead of an ID. This includes querying the slug on the API as well.
 
 ## Show me the code!
 
-The code is available on Github: https://github.com/acoustep/ember-phoenix-slug-example
+The code is available on [Github](https://github.com/acoustep/ember-phoenix-slug-example).
+
+Now on to the tutorial!
 
 ## Setting up Phoenix
 
@@ -48,7 +54,9 @@ Phoenix provders a really useful generator for APIs. Run the following command t
 mix phoenix.gen.json Product products name:string slug:string blurb:text preview:string featured:boolean
 ```
 
-The above command generates the view, controller, migration and model files.
+The above command generates the view, controller, migration and model files. 
+
+The fields include a name, a slug, a blurb for a short product description, preview which will be a link to an image and featured which is a boolean which states if the product is featured or not.
 
 To make this accessible we need to add resource to the router.
 
@@ -86,7 +94,9 @@ Phoenix wraps JSON objects and collections with the "data" attribute but Ember (
 
 Phoenix makes this really easy to change.
 
-In product view change the render map ```data``` keyword in both the ```index``` and ```show``` ```render``` methods.
+In ```product_view.ex``` change ```data``` in both the ```index``` and ```show``` ```render``` methods.
+
+The ```render``` method which pattern matches ```index.json``` should change ```data``` to ```products``` and the ```render``` method which pattern matches ```show.json``` should change ```data``` to ```product```.
 
 ```elixir
 # web/views/product_view.ex
@@ -115,7 +125,7 @@ end
 
 ### Just add slugs
 
-To search for slugs instead of the id primary key, we need to replace the Repo.get with a query that uses Repo.one or Repo.one! in the product controller - using the exclamation marked versopn will throw an error if nothing is found. I recommend this route as you can configure Ember to redirect elsewhere in this situation.
+To search for ```slug``` instead of the ```id``` primary key, we need to replace the ```Repo.get``` with a query that uses ```Repo.one``` or ```Repo.one!``` in the product controller - using the exclamation marked version will throw an error if nothing is found. I recommend this route as you can configure Ember to redirect elsewhere in this situation.
 
 ```elixir
 def show(conn, %{"id" => slug}) do
@@ -128,17 +138,15 @@ end
 ```
 [Git commit](https://github.com/acoustep/ember-phoenix-slug-example/commit/d45d0fb8b9eff63784af5e11fd836e3b87858458)
 
-On line 1 ```id``` has been altered to say ```slug```, this is just so we're clear that we're dealing with a slug. The map key is still ```id``` as the product resource route added previously is set up to pattern match for ```id```. To change it to ```slug``` requires adding a separate route.
+On line 1 ```id``` has been altered to say ```slug```, this is just so we're clear that we're dealing with a slug. The map key is still ```id```, though, as the product resource route added previously is set up to pattern match for ```id```. To change it to ```slug``` requires adding a separate route.
 
 Lines 2 to 4 is the query to find the slug in the database.
 
-Line 5 uses Repo.one! to fetch the first match for the query or throw an error.
+Line 5 uses ```Repo.one!``` to fetch the first match for the query or throw an error.
 
 ### CORS in production
 
-Although using ember serve --proxy will solve this issue in development, it's worth adding this library now
-
-(Corsica)[https://github.com/whatyouhide/corsica]
+Although using ember serve --proxy will solve this issue in development, it's worth adding [Corsica]( https://github.com/whatyouhide/corsica ) for production environments.
 
 After following the installation instructions modify the API pipeline in the router:
 
@@ -158,7 +166,7 @@ Make sure that you restart your Phoenix server after installing Corsica.
 mix phoenix.server
 ```
 
-Before you continue to the Ember section make sure you have some data in the database!
+Before you continue to the Ember section make sure you have some data in the database! For this example I've used a lorem ipsum generator and [Fill Murray](http://www.fillmurray.com/) for the preview column.
 
 ## Ember
 
@@ -168,7 +176,7 @@ Let's use Twitter Bootstrap to make the application look presentable.
 ember install ember-bootstrap
 ```
 
-Note that because I have named my app "App" I have had to rename my app.css to style.css
+Note that because I have named my app "App" I have had to rename my ```app.css``` to ```style.css```.
 
 Modify the application template to use the bootstrap grid
 
@@ -195,7 +203,7 @@ Make sure you restart the Ember server after installing the addon.
 ember serve --proxy=http://localhost:4000
 ```
 
-Before we can hook up ember to the API, we need to generate the application adapter to add the 'api' namespace that we've set up in Phoenix.
+Before we can hook up Ember to the API, we need to generate the application adapter to add the 'api' namespace that we've set up in Phoenix.
 
 ```bash
 ember g adapter application
@@ -275,7 +283,7 @@ Next we need to generate the product route.
 
 ### Product page
 
-As of now Ember will through an error due to using a product route which doesn't exist yet. Let's fix that.
+As of now Ember will throw an error due to using a product route which doesn't exist yet. Let's fix that.
 
 ```bash
 ember g route product
@@ -296,9 +304,9 @@ export default Ember.Route.extend({
 });
 ```
 
-On line 6 we try to find the product by the product_slug.
+On line 6 we try to find the product by the ```product_slug```.
 
-The serialize method needs to be implemented when an attribute other than id is used for the id. We are telling the Ember that when a product object is passed through the link-to method to use the slug. product_slug will match in the route we are creating below (On line 10):
+The ```serialize``` method needs to be implemented when an attribute other than ```id``` is used for the primary key. We are telling the Ember that when a product object is passed through the ```link-to``` method to use the ```slug``` instead. ```product_slug``` will match in the route we are creating below (On line 10):
 
 ```js
 // app/router.js
@@ -330,7 +338,7 @@ The template:
 
 ### Error page
 
-If the slug can't be found then Phoenix will return a 404 error. The easiest way to handle this in Ember is create a product-error template which Ember will show automatically.
+If the slug can't be found then Phoenix will return a 404 error. The easiest way to handle this in Ember is create a ```product-error``` template which Ember will show automatically.
 
 ```hbs
 {{!-- app/templates/product-error.hbs --}} 
@@ -341,6 +349,51 @@ If the slug can't be found then Phoenix will return a 404 error. The easiest way
 
 [Git commit](https://github.com/acoustep/ember-phoenix-slug-example/commit/4aac158851145c73a24b47ffedf3baae46d37ffd)
 
+# Setting slug as the primary key
+
+Right now the application works, however, while refreshing an individual product page if you Ember tries to find a product with an ```id``` of ```slug```, then a ```slug``` of ```slug```. This results in two separate objects rather than one.
+
+This sounds rather confusing and is best illustrated through Ember inspector:
+
+![Extra object](http://i.imgur.com/2l8qD9T.png "Extra object")
+
+To get around this we can change the product model primary key to slug by generating a product serializer and updating the ```primaryKey``` property.
+
+```bash
+ember g serializer product
+```
+
+```js
+// app/serializers/product.js
+import DS from 'ember-data';
+
+export default DS.RESTSerializer.extend({
+  primaryKey: 'slug'
+});
+```
+
+By doing this the slug attribute on each product object gets moved to the id field and leaves slug as undefined. We will need to update the product route to reflect this change.
+
+```js
+// app/routes/product.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model: function(params) {
+    this.set('product', this.modelFor('product'));
+    return this.store.find('product', params.product_slug);
+  },
+  serialize: function(model, params) {
+    return { product_slug: model.get('id') };
+  }
+});
+```
+
+[Git commit](https://github.com/acoustep/ember-phoenix-slug-example/commit/871e667e8cf84605f3bb1b4d2bb5a7dca914a614)
+
+Notice now on line 10 how ```model.get()``` is looking for id rather than ```slug```.
+
+Alternatively, we could remove the ```serialize``` method and update the ```router.js``` to look for ```:id``` rather than ```:product_slug```.
 
 ## Preview
 
