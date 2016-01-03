@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/phoenix">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/vue-js">
 
       <link href="../../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_phoenix">
+    <body class="read read_categories read_categories_vue-js">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,7 +51,7 @@
 
         <div id="container">
           <div id="main">
-            <h1>Phoenix Blogs</h1>
+            <h1>Vue.js Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/realtime-chat-with-vue-js-and-phoenix">Realtime chat with Vue.js and Phoenix</a>
@@ -69,23 +69,6 @@
 <p>Sometimes all I want is a component or two on a page...</p>
 
 		<a href="/read/realtime-chat-with-vue-js-and-phoenix">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/handling-slug-urls-in-ember-and-phoenix">Handling slug URLs in Ember and Phoenix</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/elixir">Elixir</a>
-        <a href="/read/categories/phoenix">Phoenix</a>
-        <a href="/read/categories/ember-js">Ember JS</a>
-    </div>
-		<time>Nov  2, 2015</time>
-
-		<p>I’ve recently started playing around with the PEEP stack (Postgres Elixir Ember Phoenix). One of the first things I wanted achieve is using SEO-friendly slugs instead of ids in Ember application’s URLs.</p>
-
-<p>This article presumes you know how to set up...</p>
-
-		<a href="/read/handling-slug-urls-in-ember-and-phoenix">Read more</a>
 	</article>
 
 <div class="pagination">
