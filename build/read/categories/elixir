@@ -54,6 +54,24 @@
             <h1>Elixir Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/realtime-chat-with-vue-js-and-phoenix">Realtime chat with Vue.js and Phoenix</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/elixir">Elixir</a>
+        <a href="/read/categories/phoenix">Phoenix</a>
+        <a href="/read/categories/vue-js">Vue.js</a>
+        <a href="/read/categories/javascript">Javascript</a>
+    </div>
+		<time>Jan  3, 2016</time>
+
+		<p>Vue.js is a javascript framework for “Reactive Components for Modern Web Interfaces”.  Vue.js allows for you to make small components on your page as well as full-blown single page applications. </p>
+
+<p>Sometimes all I want is a component or two on a page...</p>
+
+		<a href="/read/realtime-chat-with-vue-js-and-phoenix">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/handling-slug-urls-in-ember-and-phoenix">Handling slug URLs in Ember and Phoenix</a>
 		</h1>
     <div class="tags">
