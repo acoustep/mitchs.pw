@@ -2,187 +2,187 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://fullstackstanley.com/about/</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/contact/</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:28:24+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/automating-configurations-with-laravel</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-eloquent-twig-and-slim-php</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/creating-a-twitter-feed-in-laravel-4</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/middleman-template-bootstrap3-sass-and-slim</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/vagrant-rbenv-rails-4-and-postgresql-headaches</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/laravel-4-1-one-to-one-polymorphic-relationships</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/php-5-4-trait-qwerks</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/12-day-challenge-rubymotion</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/simple-search-with-laravel-and-elasticsearch</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/january-15-top-developer-tools-and-services</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-eloquent-twig-and-slim-php-revisited</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/unix-commands-find</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-1</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-2</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-3-authentication</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/february-15-top-developer-tools-and-services</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-4-authorisation</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-padrino-with-ember-cli-part-5-realtime</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/bootstrap-2-pagination-in-laravel-5</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/realtime-chat-with-laravel-ember-js-and-pusher</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/making-moderation-easy</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/laravel-elixir-with-bootstrap-sass-and-font-awesome</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/why-you-should-use-bootstrap-with-a-css-preprocessor</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/verifying-mobile-phone-numbers-with-rails-devise-and-twilio</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/my-first-ios-app-with-rubymotion-in-2015</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/handling-slug-urls-in-ember-and-phoenix</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/realtime-chat-with-vue-js-and-phoenix</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:26:39+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://fullstackstanley.com/page/2/</loc>
-    <lastmod>2016-08-15T19:07:41+01:00</lastmod>
+    <lastmod>2016-08-20T14:28:24+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
