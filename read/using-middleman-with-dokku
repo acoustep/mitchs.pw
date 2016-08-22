@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Mitch Stanley">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>FullStack Stanley | Using Middleman with Dokku</title>
+
+      <meta name="twitter:card" content="summary">
+      <meta property="og:description" content="Realtime chat with Vue.js and Phoenix">
+      <meta property="og:title" content="Using Middleman with Dokku">
+      <meta property="og:url" content="http://fullstackstanley.com/read/using-middleman-with-dokku">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2016-08-20T13:39:00Z">
+      <meta property="article:tag" content="Middleman">
+      <meta property="article:tag" content="Dokku">
+      <meta property="article:tag" content="Static websites">
+
+      <link href="../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42788138-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+
+    <body class="read read_using-middleman-with-dokku">
+      <div class="wrapper-for-content-outside-of-footer">
+        <header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+        <a name="top"></a>
+        <div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+        <div id="container">
+          <div id="main">
+            	<article>
+		<h1>Using Middleman with Dokku</h1>
+    <div class="tags">
+        <a href="/read/categories/middleman">Middleman</a>
+        <a href="/read/categories/dokku">Dokku</a>
+        <a href="/read/categories/static-websites">Static websites</a>
+    </div>
+		<p><em>Posted on Aug 20, 2016</em></p>
+		<p>I Recently started using Dokku for my websites, which has been great for using various versions of languages and frameworks and keeping different versions of dependencies separate.</p>
+
+<p>I wanted to host my blog - which is a static site built with <a href="https://middlemanapp.com">Middleman</a> - on the same server and came accross <a href="http://thepugautomatic.com/2016/01/static-sites-alongside-dokku-on-digital-ocean/">this article</a> which I feel is the perfect solution for most static sites, but I needed to add on to it for my own convenience with Middleman.</p>
+
+<p>There&rsquo;s the option of using the <a href="https://github.com/middleman-contrib/middleman-deploy">middleman-deploy</a> gem, but since there is a fair amount of issues with this gem I decided to try an alternate solution.</p>
+
+<p>As with the previously linked article mentioned, I have made a separate nginx configuration slightly modified to work with Middleman&rsquo;s pretty URL option.</p>
+
+<p>In my <code>/etc/nginx/conf.d/static.conf</code> file I have the following:</p>
+<div class="highlight nginx"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td class="code"><pre><span class="k">server</span> <span class="p">{</span>
+  <span class="kn">server_name</span> <span class="p">~</span><span class="sr">^(?&lt;domain&gt;.+)$;</span>
+  <span class="s">root</span> <span class="n">/home/static/sites/</span><span class="nv">$domain</span><span class="p">;</span>
+  <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+  <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="c1"># this makesure pretty urls works with html files without the extension
+</span>    <span class="kn">default_type</span> <span class="s">"text/html"</span><span class="p">;</span>
+    <span class="kn">add_header</span> <span class="s">X-Frame-Options</span> <span class="s">SAMEORIGIN</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kn">location</span> <span class="p">~</span> <span class="sr">/\.git</span> <span class="p">{</span>
+    <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kn">access_log</span> <span class="n">/var/log/nginx/</span><span class="nv">$domain-static-access</span><span class="s">.log</span><span class="p">;</span>
+
+  <span class="c1"># error_log can't contain variables, so we'll have to share: http://serverfault.com/a/644898
+</span>  <span class="kn">error_log</span> <span class="n">/var/log/nginx/static-error.log</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>I made sure my build directory is included in git and then pushed it to Github as a subtree.</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>git subtree push --prefix build origin production
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In my <code>static</code> website directory on my server I clone the repository and switch to production.</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre>git clone git@github.com:username/example.git
+git checkout production
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Below is an example of commands I can use to push changes up to production!</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre><span class="c"># Your usual git commit workflow</span>
+middleman build
+git add .
+git commit -m <span class="s2">"your commit"</span>
+git push origin master
+<span class="c"># Push update to the production build subtree</span>
+git subtree push --prefix build origin production
+<span class="c"># SSH into your server, change into the repo directory and run git pull</span>
+<span class="nb">echo</span> <span class="s2">"cd sites/example.com &amp;&amp; git pull"</span> | ssh static@example.com /bin/bash
+</pre></td></tr></tbody></table>
+</div>
+
+<p>After restarting nginx with <code>sudo service nginx restart</code> everything should work!</p>
+
+	</article>
+  <hr>
+  <h2>About the Author</h2>
+  <div id="about-me">
+	<div class="partial-container">
+    <p>Hi, I'm Mitch and I'm a 27 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called The Studio 4. I build web applications with many different languages and tools.</p>
+
+		<p>In my spare time I do many things. I like to read books, lift weights, go bouldering, play board/video games and write these articles!</p>
+	</div>
+</div>
+
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+          </div>
+        </div>
+        <div class="push"></div>
+      </div>
+
+      <footer class="footer-2">
+        <div class="partial-container">
+          <ul>
+            <li><a class="contact" href="#">Contact</a></li>
+          </ul>
+
+          <div class="footer-secondary-links">
+            <ul class="footer-social">
+              <li>
+                <a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+              </li>
+              <li>
+                <a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../javascripts/application-678994e1.js" type="text/javascript"></script>
+      <script>
+      (function(d, t) {
+          var g = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+          g.src = 'http://assets.gfycat.com/js/gfyajax-0.517d.js';
+          s.parentNode.insertBefore(g, s);
+      }(document, 'script'));
+      </script>
+    </body>
+  </html>
