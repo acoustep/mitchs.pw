@@ -11,7 +11,7 @@
     <title>FullStack Stanley</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/middleman">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/static-websites">
 
       <link href="../../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_middleman">
+    <body class="read read_categories read_categories_static-websites">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -51,7 +51,7 @@
 
         <div id="container">
           <div id="main">
-            <h1>Middleman Blogs</h1>
+            <h1>Static websites Blogs</h1>
 	<article class="blurb">
 		<h1>
 			<a href="/read/using-middleman-with-dokku">Using Middleman with Dokku</a>
@@ -68,28 +68,6 @@
 <p>I wanted to host my blog - which is a static site built with <a href="https://middlemanapp.com">Middleman</a></p>
 
 		<a href="/read/using-middleman-with-dokku">Read more</a>
-	</article>
-	<article class="blurb">
-		<h1>
-			<a href="/read/middleman-template-bootstrap3-sass-and-slim">Middleman Template: bootstrap3, SASS and Slim</a>
-		</h1>
-    <div class="tags">
-        <a href="/read/categories/middleman">Middleman</a>
-        <a href="/read/categories/bootstrap-3">Bootstrap 3</a>
-        <a href="/read/categories/bootstrap">Bootstrap</a>
-        <a href="/read/categories/sass">SASS</a>
-    </div>
-		<time>Nov 12, 2013</time>
-
-		<p>As quoted from their website, Middleman is &ldquo;A static site generator using all the shortcuts and tools in modern web development&rdquo;.</p>
-
-<p>I really love using Middleman for simple static websites.  Everything I use in my front end stack (SASS and coffeescript) just works out of the box.</p>
-
-<p>Using two commands <code>middleman</code> while developing a website locally and then <code>middleman build</code> when I&rsquo;m ready to push the static content to my server. It really saves a lot of time.</p>
-
-<p>
-
-		<a href="/read/middleman-template-bootstrap3-sass-and-slim">Read more</a>
 	</article>
 
 <div class="pagination">
