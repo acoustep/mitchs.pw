@@ -5,9 +5,9 @@ tags: Middleman, Dokku, Static websites
 change_frequency: never
 ogp:
   og:
-    description: "Realtime chat with Vue.js and Phoenix"
-    title: "Realtime chat with Vue.js and Phoenix"
-    url: 'read/realtime-chat-with-vue-js-and-phoenix'
+    description: "Using Middleman with Dokku"
+    title: "Using Middleman with Dokku"
+    url: 'read/using-middleman-with-dokku'
 ---
 
 I Recently started using Dokku for my websites, which has been great for using various versions of languages and frameworks and keeping different versions of dependencies separate.
