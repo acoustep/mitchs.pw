@@ -182,7 +182,13 @@
   </url>
   <url>
     <loc>http://fullstackstanley.com/read/using-middleman-with-dokku</loc>
-    <lastmod>2016-08-22T20:33:57+01:00</lastmod>
+    <lastmod>2016-08-25T14:24:49+01:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://fullstackstanley.com/read/using-brunch-with-middleman</loc>
+    <lastmod>2016-08-26T17:50:10+01:00</lastmod>
     <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>

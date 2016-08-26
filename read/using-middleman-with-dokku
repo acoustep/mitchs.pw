@@ -11,7 +11,7 @@
     <title>FullStack Stanley | Using Middleman with Dokku</title>
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:description" content="Realtime chat with Vue.js and Phoenix">
+      <meta property="og:description" content="Using Middleman with Dokku">
       <meta property="og:title" content="Using Middleman with Dokku">
       <meta property="og:url" content="http://fullstackstanley.com/read/using-middleman-with-dokku">
       <meta property="og:type" content="article">
