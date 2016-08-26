@@ -34,11 +34,11 @@ First of all, here's my ```package.json``` file - note that Bourbon, Bourbon Nea
     "copycat-brunch": "^1.1.0",
     "sass-brunch": "^1.9.2",
     "javascript-brunch": "~2.0.0",
-    "uglify-js-brunch": "~2.0.1"
+    "uglify-js-brunch": "~2.0.1",
     "node-bourbon": "^4.2.8",
     "bourbon-neat": "^1.8.0",
     "font-awesome": "^4.6.3",
-    "turbolinks": "^5.0.0",
+    "turbolinks": "^5.0.0"
   },
   "dependencies": {
     "babel-brunch": "^6.0.6"
