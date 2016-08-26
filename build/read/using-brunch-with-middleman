@@ -66,7 +66,7 @@
 		<p><em>Posted on Aug 25, 2016</em></p>
 		<p>I recently started a new blog in an area unrelated to Web Development and was pleased to find that with the release of Middleman v4 you can now specify your own external asset pipeline.</p>
 
-<p>I decided to give Brunch a shot - since I already use it with Elixir and the Phoenix Framework. I was pleasantly surprised by how easy it was to get everything set up.</p>
+<p>I decided to give Brunch a shot - since I already use it with Elixir&rsquo;s Phoenix Framework and I was pleasantly surprised by how easy it was to get everything set up.</p>
 
 <p>First of all, here&rsquo;s my <code>package.json</code> file - note that Bourbon, Bourbon Neat, Turbolinks, and Font Awesome are all optional but will help provide an example of how to set up various libraries with Brunch and Middleman.</p>
 <div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
@@ -318,7 +318,7 @@
 </pre></td></tr></tbody></table>
 </div>
 
-<p>Here&rsquo;s how my SASS <code>source/stylesheets/site.css.scss</code> looks. Note that <code>$icon-font-path</code> is important for font Awesome to find the fonts in the appropriate directory.</p>
+<p>Here&rsquo;s how my SASS <code>source/stylesheets/site.css.scss</code> looks. Note that <code>$icon-font-path</code> is important for Font Awesome to find the fonts in the appropriate directory.</p>
 <div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
 3

@@ -12,7 +12,7 @@ ogp:
 
 I recently started a new blog in an area unrelated to Web Development and was pleased to find that with the release of Middleman v4 you can now specify your own external asset pipeline.
 
-I decided to give Brunch a shot - since I already use it with Elixir and the Phoenix Framework. I was pleasantly surprised by how easy it was to get everything set up.
+I decided to give Brunch a shot - since I already use it with Elixir's Phoenix Framework and I was pleasantly surprised by how easy it was to get everything set up.
 
 First of all, here's my ```package.json``` file - note that Bourbon, Bourbon Neat, Turbolinks, and Font Awesome are all optional but will help provide an example of how to set up various libraries with Brunch and Middleman.
 
@@ -158,7 +158,7 @@ activate :external_pipeline,
   latency: 1
 ```
 
-Here's how my SASS ```source/stylesheets/site.css.scss``` looks. Note that ```$icon-font-path``` is important for font Awesome to find the fonts in the appropriate directory.
+Here's how my SASS ```source/stylesheets/site.css.scss``` looks. Note that ```$icon-font-path``` is important for Font Awesome to find the fonts in the appropriate directory.
 
 ```sass
 @charset "utf-8";
