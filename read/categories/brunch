@@ -62,9 +62,9 @@
     </div>
 		<time>Aug 25, 2016</time>
 
-		<p>I recently started a new blog in an area unrelated to Web Development and was pleased to find that with the release of Middleman v4 you can now specify your own external asset pipeline.</p>
+		<p><em>Update:</em> I’ve just released a Middleman template that does the hardwork for you. Check it out on my Github: <a href="https://github.com/acoustep/middleman-brunch">https://github.com/acoustep/middleman-brunch</a>. Read on for an explanation of how it works.</p>
 
-<p>I decided to give Brunch a shot - since I already use it with...</p>
+<p>I recently started a new blog in an area unrelated...</p>
 
 		<a href="/read/using-brunch-with-middleman">Read more</a>
 	</article>
