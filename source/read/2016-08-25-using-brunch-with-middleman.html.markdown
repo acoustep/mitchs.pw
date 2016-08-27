@@ -10,6 +10,8 @@ ogp:
     url: 'read/using-brunch-with-middleman'
 ---
 
+*Update:* I've just released a Middleman template that does the hardwork for you. Check it out on my Github: [https://github.com/acoustep/middleman-brunch](https://github.com/acoustep/middleman-brunch). Read on for an explanation of how it works.
+
 I recently started a new blog in an area unrelated to Web Development and was pleased to find that with the release of Middleman v4 you can now specify your own external asset pipeline.
 
 I decided to give Brunch a shot - since I already use it with Elixir's Phoenix Framework and I was pleasantly surprised by how easy it was to get everything set up.
