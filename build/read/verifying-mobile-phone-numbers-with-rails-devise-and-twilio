@@ -9,6 +9,7 @@
 
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>FullStack Stanley | Verifying mobile phone numbers with Rails, Devise and Twilio</title>
+      <meta name="description" content="">
 
       <meta name="twitter:card" content="summary">
       <meta property="og:description" content="Verifying mobile phone numbers with Rails, Devise and Twilio">
@@ -573,11 +574,11 @@ TWILIO_PHONE_NUMBER="+15005550006"
   <h2>About the Author</h2>
   <div id="about-me">
 	<div class="partial-container">
-    <p>Hi, I'm Mitch and I'm a 27 year old programmer from the UK.</p>
+    <p>Hi, I'm Mitch and I'm a 28 year old programmer from the UK.</p>
     
-    <p>I work for a web design agency in Telford called The Studio 4. I build web applications with many different languages and tools.</p>
+    <p>I work for a web design agency in Telford called <a href="https://isev.co.uk" target="_blank">isev</a>. We build cool products like <a href="https://pukkateam.com">PukkaTeam</a> for remote workers.</p>
 
-		<p>In my spare time I do many things. I like to read books, lift weights, go bouldering, play board/video games and write these articles!</p>
+		<p>In my spare time I do many things. I like reading books, lifting weights, bouldering, boardgaming, Zelda and writing these articles!</p>
 	</div>
 </div>
 

@@ -12,7 +12,7 @@
       <meta name="description" content="">
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/elasticsearch">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/webpack">
 
       <link href="../../stylesheets/application-4816ef59.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_elasticsearch">
+    <body class="read read_categories read_categories_webpack">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -52,28 +52,26 @@
 
         <div id="container">
           <div id="main">
-            <h1>ElasticSearch Blogs</h1>
+            <h1>webpack Blogs</h1>
 	<article class="blurb">
 		<h1>
-			<a href="/read/simple-search-with-laravel-and-elasticsearch">Simple Search with Laravel and ElasticSearch</a>
+			<a href="/read/using-rails-5-1-with-elm">Using Rails 5.1 with Elm</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/laravel">Laravel</a>
-        <a href="/read/categories/laravel-4-2">Laravel 4.2</a>
-        <a href="/read/categories/elasticsearch">ElasticSearch</a>
-        <a href="/read/categories/elasticsearch-1-4">ElasticSearch 1.4</a>
-        <a href="/read/categories/php">PHP</a>
-        <a href="/read/categories/search">Search</a>
+        <a href="/read/categories/rails">rails</a>
+        <a href="/read/categories/elm">elm</a>
+        <a href="/read/categories/webpack">webpack</a>
+        <a href="/read/categories/yarn">yarn</a>
     </div>
-		<time>Jan 10, 2015</time>
+		<time>Apr 28, 2017</time>
 
-		<p>I was recently asked to make a search engine for a client&rsquo;s website. Normally I would go down the MySQL fulltext search route but I was feeling rather adventurous at the time.  I had no experience with ElasticSearch, Apache Solr or any other search system prior to this so I decided to pick ElasticSearch and dive in head first. This tutorial is a result of some of the things I picked up while learning it.</p>
+		<p>Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more.</p>
 
-<p>I aim to show you how to set up the <a href="https://github.com/adamfairholm/Elasticquent">Elasticquent</a> Laravel package and some basic ways to fine tune your search engine.</p>
+<p>After a bit of playing around, here’s how I’ve set up Elm with Webpack.</p>
 
-<p>
+<p>First make sure you have Rails 5.1 installed and Elm 0.18.  This...</p>
 
-		<a href="/read/simple-search-with-laravel-and-elasticsearch">Read more</a>
+		<a href="/read/using-rails-5-1-with-elm">Read more</a>
 	</article>
 
 <div class="pagination">

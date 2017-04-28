@@ -9,6 +9,7 @@
 
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>FullStack Stanley<%= if current_page.data.title then " | #{current_page.data.title}" end %></title>
+      <meta name="description" content="<%= if current_page.data.description then current_page.data.description end %>">
 
       <meta name="twitter:card" content="summary">
       <% ogp_tags do |name, value| %>
