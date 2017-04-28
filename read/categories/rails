@@ -9,6 +9,7 @@
 
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>FullStack Stanley</title>
+      <meta name="description" content="">
 
       <meta name="twitter:card" content="summary">
       <meta property="og:url" content="http://fullstackstanley.com/read/categories/rails">
@@ -51,24 +52,26 @@
 
         <div id="container">
           <div id="main">
-            <h1>Rails Blogs</h1>
+            <h1>rails Blogs</h1>
 	<article class="blurb">
 		<h1>
-			<a href="/read/verifying-mobile-phone-numbers-with-rails-devise-and-twilio">Verifying mobile phone numbers with Rails, Devise and Twilio</a>
+			<a href="/read/using-rails-5-1-with-elm">Using Rails 5.1 with Elm</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/rails">Rails</a>
-        <a href="/read/categories/devise">Devise</a>
-        <a href="/read/categories/twilio">Twilio</a>
-        <a href="/read/categories/rails-4-2">Rails 4.2</a>
+        <a href="/read/categories/rails">rails</a>
+        <a href="/read/categories/elm">elm</a>
+        <a href="/read/categories/webpack">webpack</a>
+        <a href="/read/categories/yarn">yarn</a>
     </div>
-		<time>May 13, 2015</time>
+		<time>Apr 28, 2017</time>
 
-		<p>This article will cover setting up a new Rails (4.2) application with Devise and allow users to add their mobile phone number to their account.</p>
+		<p>Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more.</p>
 
-<p>We’ll use the <a href="https://github.com/daddyz/phonelib">phonelib</a> gem to validate numbers and then send a 6 digit code via <a href="https://www.twilio.com/">Twilio</a> to the user’s mobile...</p>
+<p>After a bit of playing around, here’s how I’ve set up Elm with Webpack.</p>
 
-		<a href="/read/verifying-mobile-phone-numbers-with-rails-devise-and-twilio">Read more</a>
+<p>First make sure you have Rails 5.1 installed and Elm 0.18.  This...</p>
+
+		<a href="/read/using-rails-5-1-with-elm">Read more</a>
 	</article>
 
 <div class="pagination">

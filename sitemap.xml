@@ -193,6 +193,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://fullstackstanley.com/read/using-rails-5-1-with-elm</loc>
+    <lastmod>2017-04-28T22:10:34+01:00</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://fullstackstanley.com/page/2/</loc>
     <lastmod>2016-08-20T14:32:54+01:00</lastmod>
     <changefreq>weekly</changefreq>
