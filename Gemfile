@@ -28,3 +28,5 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 gem 'middleman-search_engine_sitemap'
 
 gem 'middleman-ogp'
+
+gem 'middleman-deploy', '~> 1.0'

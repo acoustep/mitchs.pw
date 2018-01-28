@@ -13,6 +13,12 @@ compass_config do |config|
   config.output_style = :compact
 end
 
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.remote = 'dokku'
+  deploy.branch = 'master'
+end
+
 activate :blog do |blog|
 	# set options on blog
 	blog.prefix = "read"
