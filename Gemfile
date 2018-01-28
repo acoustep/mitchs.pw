@@ -14,7 +14,7 @@ gem 'font-awesome-sass'
 gem 'redcarpet'
 
 # add nokogiri
-gem 'nokogiri'
+gem 'nokogiri', "~> 1.8.1"
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
