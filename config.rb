@@ -15,7 +15,7 @@ end
 
 activate :deploy do |deploy|
   deploy.method = :git
-  deploy.remote = 'dokku'
+  deploy.remote = "dokku@94.130.187.125:fullstackstanley.co.uk"
   deploy.branch = 'master'
 end
 
