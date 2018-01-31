@@ -1,0 +1,1 @@
+(function(){$(".about").click(function(t){return $("#contact").hide(),$("#aboutMe").slideDown()}),$(".contact").click(function(t){return $("#aboutMe").hide(),$("#contact").slideDown()})}).call(this);
