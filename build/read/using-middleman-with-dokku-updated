@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="author" content="Mitch Stanley">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>FullStack Stanley | Using Middleman with Dokku - Updated</title>
+      <meta name="description" content="">
+
+      <meta name="twitter:card" content="summary">
+      <meta property="og:description" content="Using Middleman with Dokku - Updated">
+      <meta property="og:title" content="Using Middleman with Dokku - Updated">
+      <meta property="og:url" content="http://fullstackstanley.com/read/using-middleman-with-dokku-updated">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="2018-01-31T12:37:00Z">
+      <meta property="article:tag" content="Middleman">
+      <meta property="article:tag" content="Dokku">
+      <meta property="article:tag" content="Static websites">
+
+      <link href="../stylesheets/application-7ad9a6eb.css" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-42788138-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+
+    <body class="read read_using-middleman-with-dokku-updated">
+      <div class="wrapper-for-content-outside-of-footer">
+        <header class="centered-navigation">
+	<div class="centered-navigation-wrapper">
+		<a href="javascript:void(0)" class="mobile-logo">
+			<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
+		</a>
+		<a href="" class="centered-navigation-menu-button">MENU</a>
+		<ul class="centered-navigation-menu">
+			<li class="nav-link"><a href="/">Home</a></li>
+			<li class="nav-link"><a class="contact" href="#top">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+        <a name="top"></a>
+        <div id="contact">
+	<div class="partial-container">
+		<h5>Contact</h5>
+		<p><a href="http://twitter.com/mitchartemis" target="_blank"><span class="fa fa-twitter"></span> Contact me via Twitter</a></p>
+		<p><a href="http://github.com/acoustep" target="_blank"><span class="fa fa-github"></span> Contact me via Github</a></p>
+	</div>
+</div>
+
+        <div id="container">
+          <div id="main">
+            	<article>
+		<h1>Using Middleman with Dokku - Updated</h1>
+    <div class="tags">
+        <a href="/read/categories/middleman">Middleman</a>
+        <a href="/read/categories/dokku">Dokku</a>
+        <a href="/read/categories/static-websites">Static websites</a>
+    </div>
+		<p><em>Posted on Jan 31, 2018</em></p>
+		<p>In a previous blog post I explained how to set up a Middleman blog alongside Dokku. Since then I’ve found a better approach which uses <code>middleman-deploy</code>.</p>
+
+<p>Full credit to this <a href="https://github.com/dokku/dokku/issues/1427">Github thread</a> which pointed me to the right path.</p>
+
+<p>First add your new Dokku app on your server the same way you’d set up any Dokku app.</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>dokku apps:create example-url.com
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In your local version add middleman deploy to your Gemfile</p>
+
+<p><a href="https://github.com/middleman-contrib/middleman-deploy">https://github.com/middleman-contrib/middleman-deploy</a></p>
+
+<p>Use these settings in your <code>confir.rb</code></p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="n">activate</span> <span class="ss">:deploy</span> <span class="k">do</span> <span class="o">|</span><span class="n">deploy</span><span class="o">|</span>
+    <span class="n">deploy</span><span class="p">.</span><span class="nf">deploy_method</span> <span class="o">=</span> <span class="ss">:git</span>
+    <span class="n">deploy</span><span class="p">.</span><span class="nf">remote</span> <span class="o">=</span> <span class="s1">'dokku@&lt;serverip&gt;:example-url.com'</span>
+    <span class="n">deploy</span><span class="p">.</span><span class="nf">branch</span> <span class="o">=</span> <span class="s1">'master'</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Note that in Middleman v3 you should use <code>method</code> and in v4 you should use <code>deploy_method</code></p>
+
+<p>Make sure to add Dokku as a remote git on your local Middleman project</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>git remote add dokku dokku@&lt;serverip&gt;:example-url.com
+</pre></td></tr></tbody></table>
+</div>
+
+<p>In the <code>source</code> dir add these two files</p>
+
+<p><code>Procfile</code></p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>web: vendor/bin/heroku-php-nginx -C nginx.conf
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>composer.json</code></p>
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="p">{}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>Running build will then put both files in the <code>build</code> which is where Dokku will find them.</p>
+
+<p>To deploy, simply commit to git and run </p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>Bundle <span class="nb">exec </span>middleman deploy
+</pre></td></tr></tbody></table>
+</div>
+
+<p>That&rsquo;s all there is to it. Except perhaps one caveat!</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>Can<span class="s1">'t deploy! Please add a remote with the name '</span>dokku@&lt;serverip&gt;:example-url.com<span class="s1">' to your repo
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>There are a couple of issues at play here, and it&rsquo;s to do with the middleman-deploy gem. Here&rsquo;s the quick fix:</p>
+
+<p>You will need to modify the gem code, do this either by using a <code>git clone</code>, and setting the <code>path:</code> in your Gemfile to your local version. Or (and not recommended) use <code>bundle show middleman-deploy</code> to get the gem location on your computer.</p>
+
+<p>In the file named <code>lib/middleman-deploy/strategies/git/force_push.rb</code> comment out these lines</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="k">unless</span> <span class="n">remote</span> <span class="o">=~</span><span class="sr">/\.git$/</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sb">`git config --get remote.</span><span class="si">#{</span><span class="n">url</span><span class="si">}</span><span class="sb">.url`</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>If your using the name &lsquo;dokku&rsquo; instead of the full remote url in the <code>config.rb</code>, change the remote from <code>dokku</code> to the full git remote address.</p>
+
+<p>Alternatively to modifying the <code>middleman-deploy</code> code, you can name your dokku project ending with <code>.git</code>.</p>
+
+	</article>
+  <hr>
+  <h2>About the Author</h2>
+  <div id="about-me">
+	<div class="partial-container">
+    <p>Hi, I'm <a href="https://mitchstanley.co.uk" target="_blank">Mitch</a> and I'm a 29 year old programmer from the UK.</p>
+    
+    <p>I work for a web design agency in Telford called <a href="https://isev.co.uk" target="_blank">isev</a>. We build cool products like <a href="https://pukkateam.com">PukkaTeam</a> for remote workers.</p>
+
+		<p>In my spare time I do many things. I like <a href="https://www.goodreads.com/user/show/12913105-mitch-stanley" target="_blank">reading fantasy books</a>, lifting weights, bouldering, boardgaming, and programming.</p>
+	</div>
+</div>
+
+	<div class="pagination">
+		<ul>
+			<li class="page-prev"><a href="/">Back to Latest Blogs</a></li>
+		</ul>
+	</div>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		        var disqus_shortname = 'mitchstanleysblog'; // required: replace example with your forum shortname
+				
+				        /* * * DON'T EDIT BELOW THIS LINE * * */
+						        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></span></a></a></noscript></script></div>
+
+          </div>
+        </div>
+        <div class="push"></div>
+      </div>
+
+      <footer class="footer-2">
+        <div class="partial-container">
+          <ul>
+            <li><a class="contact" href="#">Contact</a></li>
+          </ul>
+
+          <div class="footer-secondary-links">
+            <ul class="footer-social">
+              <li>
+                <a href="https://twitter.com/mitchartemis"><span class="fa fa-twitter"></span></a>
+              </li>
+              <li>
+                <a href="https://github.com/acoustep"><span class="fa fa-github"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../javascripts/application-af3913ea.js" type="text/javascript"></script>
+      <script>
+      (function(d, t) {
+          var g = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+          g.src = 'http://assets.gfycat.com/js/gfyajax-0.517d.js';
+          s.parentNode.insertBefore(g, s);
+      }(document, 'script'));
+      </script>
+    </body>
+  </html>

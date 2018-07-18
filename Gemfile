@@ -7,8 +7,8 @@ gem "middleman-blog"
 
 gem 'bitters'
 gem 'bourbon', '~>3.2.0'
-gem 'neat'
-gem "middleman-syntax"
+gem 'neat', '~>1.9.0'
+gem "middleman-syntax", '~>2.0.0'
 gem 'font-awesome-sass'
 
 gem 'redcarpet'
