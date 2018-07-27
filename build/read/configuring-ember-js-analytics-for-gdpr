@@ -9,18 +9,16 @@
 
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>FullStack Stanley | Configuring Ember JS Analytics for GDPR</title>
-      <meta name="description" content="Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more. Here's my method for integrating Elm, the functional programming language.">
+      <meta name="description" content="Develop a new Ember JS app with GDPR in mind">
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:description" content="Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more. Here's my method for integrating Elm, the functional programming language.">
+      <meta property="og:description" content="Develop a new Ember JS app with GDPR in mind">
       <meta property="og:title" content="Configuring Ember JS Analytics for GDPR">
       <meta property="og:url" content="http://fullstackstanley.com/read/configuring-ember-js-analytics-for-gdpr">
       <meta property="og:type" content="article">
       <meta property="article:published_time" content="2018-07-18T18:20:00Z">
-      <meta property="article:tag" content="rails">
-      <meta property="article:tag" content="elm">
-      <meta property="article:tag" content="webpack">
-      <meta property="article:tag" content="yarn">
+      <meta property="article:tag" content="Ember JS">
+      <meta property="article:tag" content="GDPR">
 
       <link href="../stylesheets/application-7ad9a6eb.css" rel="stylesheet" type="text/css" />
       <link href="../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -63,10 +61,8 @@
             	<article>
 		<h1>Configuring Ember JS Analytics for GDPR</h1>
     <div class="tags">
-        <a href="/read/categories/rails">rails</a>
-        <a href="/read/categories/elm">elm</a>
-        <a href="/read/categories/webpack">webpack</a>
-        <a href="/read/categories/yarn">yarn</a>
+        <a href="/read/categories/ember-js">Ember JS</a>
+        <a href="/read/categories/gdpr">GDPR</a>
     </div>
 		<p><em>Posted on Jul 18, 2018</em></p>
 		<p>One of the issues I ran into while developing a new Ember JS app was letting the user configure tracking libraries such as Google Analytics for GDPR compliance.</p>

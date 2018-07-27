@@ -55,6 +55,22 @@
             <h1>Ember JS Blogs</h1>
 	<article class="blurb">
 		<h1>
+			<a href="/read/configuring-ember-js-analytics-for-gdpr">Configuring Ember JS Analytics for GDPR</a>
+		</h1>
+    <div class="tags">
+        <a href="/read/categories/ember-js">Ember JS</a>
+        <a href="/read/categories/gdpr">GDPR</a>
+    </div>
+		<time>Jul 18, 2018</time>
+
+		<p>One of the issues I ran into while developing a new Ember JS app was letting the user configure tracking libraries such as Google Analytics for GDPR compliance.</p>
+
+<p>Fortunately it’s not that difficult! I’ve used two packages for this: <a href="https://github.com/poteto/ember-metrics">ember-metrics</a> and...</p>
+
+		<a href="/read/configuring-ember-js-analytics-for-gdpr">Read more</a>
+	</article>
+	<article class="blurb">
+		<h1>
 			<a href="/read/handling-slug-urls-in-ember-and-phoenix">Handling slug URLs in Ember and Phoenix</a>
 		</h1>
     <div class="tags">

@@ -1,14 +1,14 @@
 ---
 title: Configuring Ember JS Analytics for GDPR
-description: "Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more. Here's my method for integrating Elm, the functional programming language."
+description: "Develop a new Ember JS app with GDPR in mind"
 date: 2018-07-18 18:20 UTC
-tags: rails, elm, webpack, yarn
+tags: Ember JS, GDPR
 change_frequency: never
 ogp:
   og:
-    description: "Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more. Here's my method for integrating Elm, the functional programming language."
-    title: "Using Rails 5.1 with Elm"
-    url: 'read/using-rails-5-1-with-elm'
+    description: "Develop a new Ember JS app with GDPR in mind"
+    title: "Configuring Ember JS Analytics for GDPR"
+    url: 'read/configuring-ember-js-analytics-for-gdpr'
 ---
 
 One of the issues I ran into while developing a new Ember JS app was letting the user configure tracking libraries such as Google Analytics for GDPR compliance.

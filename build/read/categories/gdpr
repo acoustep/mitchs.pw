@@ -12,7 +12,7 @@
       <meta name="description" content="">
 
       <meta name="twitter:card" content="summary">
-      <meta property="og:url" content="http://fullstackstanley.com/read/categories/elm">
+      <meta property="og:url" content="http://fullstackstanley.com/read/categories/gdpr">
 
       <link href="../../stylesheets/application-7ad9a6eb.css" rel="stylesheet" type="text/css" />
       <link href="../../stylesheets/rogue-7109134b.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
       </script>
     </head>
 
-    <body class="read read_categories read_categories_elm">
+    <body class="read read_categories read_categories_gdpr">
       <div class="wrapper-for-content-outside-of-footer">
         <header class="centered-navigation">
 	<div class="centered-navigation-wrapper">
@@ -52,26 +52,22 @@
 
         <div id="container">
           <div id="main">
-            <h1>elm Blogs</h1>
+            <h1>GDPR Blogs</h1>
 	<article class="blurb">
 		<h1>
-			<a href="/read/using-rails-5-1-with-elm">Using Rails 5.1 with Elm</a>
+			<a href="/read/configuring-ember-js-analytics-for-gdpr">Configuring Ember JS Analytics for GDPR</a>
 		</h1>
     <div class="tags">
-        <a href="/read/categories/rails">rails</a>
-        <a href="/read/categories/elm">elm</a>
-        <a href="/read/categories/webpack">webpack</a>
-        <a href="/read/categories/yarn">yarn</a>
+        <a href="/read/categories/ember-js">Ember JS</a>
+        <a href="/read/categories/gdpr">GDPR</a>
     </div>
-		<time>Apr 28, 2017</time>
+		<time>Jul 18, 2018</time>
 
-		<p>Rails 5.1 comes with a lot changes for Javascript, making it easy to develop apps in Vue, React, and much more.</p>
+		<p>One of the issues I ran into while developing a new Ember JS app was letting the user configure tracking libraries such as Google Analytics for GDPR compliance.</p>
 
-<p>After a bit of playing around, here’s how I’ve set up Elm with Webpack.</p>
+<p>Fortunately it’s not that difficult! I’ve used two packages for this: <a href="https://github.com/poteto/ember-metrics">ember-metrics</a> and...</p>
 
-<p>First make sure you have Rails 5.1 installed and Elm 0.18.  This...</p>
-
-		<a href="/read/using-rails-5-1-with-elm">Read more</a>
+		<a href="/read/configuring-ember-js-analytics-for-gdpr">Read more</a>
 	</article>
 
 <div class="pagination">
